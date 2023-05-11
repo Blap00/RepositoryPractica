@@ -10,6 +10,8 @@
 
 <script src="{% static 'app/js/jquery-3.6.1.min.js' %}"></script>
 
+
+
 <!-- CONTENIDO principal -->
 
 
@@ -27,93 +29,92 @@
   {% if request.user.is_superuser %}
   {% else %}
 
-    <!-- <div class="col-8"> -->
-      <!-- <h4>Pacientes</h4> -->
-      <!-- <select name="pacientes" id="pacientes" style="width:100%;"> -->
-        <!-- Aún no ingresa al For -->
-        <!-- {% for i in paciente %} -->
-          <!-- Ingreso correctamente al For -->
-          <!-- <option value="{{i.idPaciente}}" id="{{i.idPaciente}}">{{i.idPaciente}}</option>
-        {% endfor %}
-
-      </select>
-    </div> -->
     <div class="col-8">
       <h4>Pacientes</h4>
-      <select name="pacientes" id="pacientes" style="width:100%;">
-        {% for p in Paciente.objects.all %}
-          <option value="{{p.idPaciente}}">{{p.idPaciente}}</option>
+
+      <select id="pacientes" name="pacientes" class="form-control" style="width:100%;" required>
+        <option value="null" disabled selected>Seleccione un paciente</option> <!---->
+        {% for p in pacientes %}
+        <option value="{{ p.id_prof_paci }}">{{ p.id_paciente }}</option>
         {% endfor %}
       </select>
     </div>
-
-
-
-
-
-<form id="mi-formulario" action="" method="post" style="margin-top:5rem;">
+    
+  <form id="mi-formulario" action="" method="post" style="margin-top:5rem;">
     {% csrf_token %}
-    <div class="row"> <!--Corregir, mostrar un select en vez de un input text, Corregir-->
-      <div class="col-6">
-        {{ formulario.G.label_tag }} {{ formulario.G }}
-      </div>
-      <div class="col-6">
-        {{ formulario.R.label_tag }} {{ formulario.R }}
-      </div>
-    </div>
-
     <div class="row">
       <div class="col-6">
-        {{ formulario.B.label_tag }} {{ formulario.B }}
-      </div>
+        <label  for="{{ formulario.G.id }}" id="label-{{ formulario.G.id }}" onclick="document.getElementById('{{ formulario.G.id }}').click()">{{ formulario.G.label }}:</label>
+        <select name="{{ formulario.G.name }}" id="{{ formulario.G.id }}">
+          <option value="null" selected disabled>Seleccione valor:</option>
+          {% for choice in formulario.G.field.choices %}
+            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+          {% endfor %}
+        </select>
+      </div>      
       <div class="col-6">
-        {{ formulario.A.label_tag }} {{ formulario.A }}
+        <label  for="{{ formulario.R.id }}" id="label-{{ formulario.R.id }}" onclick="document.getElementById('{{ formulario.R.id }}').click()">{{ formulario.R.label }}:</label>
+        <select name="{{ formulario.R.name }}" id="{{ formulario.R.id }}">
+          <option value="null" selected disabled>Seleccione valor:</option>
+          {% for choice in formulario.R.field.choices %}
+            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+          {% endfor %}
+        </select>
       </div>
-    </div>
-
+    </div> 
     <div class="row">
       <div class="col-6">
-        {{ formulario.S.label_tag }}
-        {{ formulario.S }}
-
+        <label  for="{{ formulario.B.id }}" id="label-{{ formulario.B.id }}" onclick="document.getElementById('{{ formulario.B.id }}').click()">{{ formulario.B.label }}:</label>
+        <select name="{{ formulario.B.name }}" id="{{ formulario.B.id }}">
+          <option value="null" selected disabled>Seleccione valor:</option>
+          {% for choice in formulario.B.field.choices %}
+          <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+          {% endfor %}
+        </select>
       </div>
-
+      <div class="col-6">
+        <label  for="{{ formulario.A.id }}" id="label-{{ formulario.A.id }}" onclick="document.getElementById('{{ formulario.A.id }}').click()">{{ formulario.A.label }}:</label>
+        <select name="{{ formulario.A.name }}" id="{{ formulario.A.id }}">
+          <option value="null" selected disabled>Seleccione valor:</option>
+          {% for choice in formulario.A.field.choices %}
+            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>   
+    <div class="row">
+      <div class="col-6">
+        <label  for="{{ formulario.S.id }}" id="label-{{ formulario.S.id }}" onclick="document.getElementById('{{ formulario.S.id }}').click()">{{ formulario.S.label }}:</label>
+        <select name="{{ formulario.S.name }}" id="{{ formulario.S.id }}">
+          <option value="null" selected disabled>Seleccione valor:</option>
+          {% for choice in formulario.S.field.choices %}
+            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+          {% endfor %}
+        </select>
+      </div> 
       <div class="col-6">
         {{ formulario.id_paciente }}
         {{ formulario.id_fonoaudilogo }}
-
+        
       </div>
-
+      
     </div>
-
     <div class="row">
       <div class="col-12">
         {{ formulario.Comentario.label_tag }}
         {{ formulario.Comentario }}
       </div>
     </div>
+    {% endif%}
 
+    {% if request.user.is_superuser %}
 
+    {% else %}
+    <div  class="centerbtn" style="  display: flex; justify-content: end; margin-top:5rem;">
+      <button type="submit">REGISTRAR</button>
+    </div>
   {% endif%}
-
-
-
-
-
-  {% if request.user.is_superuser %}
-
-  {% else %}
-<div  class="centerbtn" style="  display: flex;
-justify-content: end; margin-top:5rem;">
-
-<button type="submit" value="Enviar">REGISTRAR</button>
-
-
- </div>
-
-
- {% endif%}
- </form>
+  </form>
 
 
 

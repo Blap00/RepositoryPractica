@@ -35,7 +35,11 @@
     {% csrf_token %}
 <div class="row">
       <div class="col-6">
-        {{ formulario.R.label_tag }} {{ formulario.R }}
+        {{ formulario.R.label_tag }} 
+        <select>
+          {{ formulario.R }}
+        </select>
+        <!-- {{ formulario.R }} -->
       </div>
       <div class="col-6">
         {{ formulario.A.label_tag }} {{ formulario.A }}

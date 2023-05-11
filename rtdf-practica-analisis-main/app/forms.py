@@ -1,7 +1,7 @@
 from django import forms
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
-
+from datetime import datetime
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -21,11 +21,16 @@ class PreRegistroFrom(forms.ModelForm):
         model = PreRegistro
         fields = ('rut','nombre', 'apellido'  , 'email', 'telefono','tipo_user')
 
-
 class GrbasFrom(forms.ModelForm):
-    class Meta():
+    # G = forms.MultipleChoiceField(choices=RESPUESTAS_CHOICES, widget=forms.CheckboxSelectMultiple())
+    # R = forms.MultipleChoiceField(choices=RESPUESTAS_CHOICES, widget=forms.CheckboxSelectMultiple())
+    # B = forms.MultipleChoiceField(choices=RESPUESTAS_CHOICES, widget=forms.CheckboxSelectMultiple())
+    # A = forms.MultipleChoiceField(choices=RESPUESTAS_CHOICES, widget=forms.CheckboxSelectMultiple())
+    # S = forms.MultipleChoiceField(choices=RESPUESTAS_CHOICES, widget=forms.CheckboxSelectMultiple())
+    timestamp = models.DateTimeField(auto_now_add=True)
+    class Meta:
         model = Grbas
-        fields = ('id_fonoaudilogo','id_paciente','G','R','B','A','S','Comentario')
+        fields = ['id_fonoaudilogo', 'id_paciente', 'G', 'R', 'B', 'A', 'S', 'Comentario']
 
 
 

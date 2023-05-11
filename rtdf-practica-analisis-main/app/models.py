@@ -2,12 +2,19 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models import CheckConstraint, Q, F
+from datetime import datetime
+
 # Create your models here.
 ##FALTA CREAR TABLAS DE
 ###PROVINCIA-REGION(se relacionan con comuna) Y 6 TABLAS DE PACIENTE
 
+#CHOISE RESPUESTAS GRBA
+RESPUESTAS_CHOICES = (('0', '0'),('1', '1'),('2', '2'),('3', '3'))
+
 #TipoUsuario
+
 class TipoUsuario(models.Model):
+        id= models.CharField(primary_key=True, max_length=3)
         nombre_tipo_usuario = models.CharField(max_length=100)
         descripcion = models.CharField(max_length=100)
         def __str__(self):
@@ -141,10 +148,11 @@ class Familiar_paciente(models.Model):
 class Profesional_salud(models.Model):
      id_profesional = models.BigAutoField(primary_key=True)
      rut_profesional = models.CharField(max_length=100)
+    #  id_profesional_salud= models.ForeignKey(Usuario, on_delete=models.CASCADE, null=True)
      tipo_profesional = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE,null=True)
      institucion_id = models.ForeignKey(Institucion, on_delete=models.CASCADE,null=True)
      def __str__(self):
-         return str(self.rut_profesional)
+        return str(self.rut_profesional)
 
 
 
@@ -159,7 +167,7 @@ class Profesional_Paciente(models.Model):
      id_paciente = models.ForeignKey(Usuario, on_delete=models.CASCADE,null=True, related_name="Rpaciente",limit_choices_to=Q(id_tipo_user_id=3))
      tipo_profesional = models.ForeignKey(TipoUsuario, on_delete=models.CASCADE,null=True)
      def __str__(self):
-         return str(self.descripcion)
+         return str(self.id_paciente)
 
 
 
@@ -301,19 +309,21 @@ class AudiosCoeficientes_Fono(models.Model):
 
 ##   GRBAS
 class Grbas(models.Model):
-     id = models.BigAutoField(primary_key=True)
-     id_fonoaudilogo = models.CharField(max_length=100)
-     id_paciente =  models.CharField(max_length=100)
-     #Programas automaticamente horario en timestamp
-     timestamp = models.CharField(max_length=100)
-     G = models.CharField(max_length=100)
-     R = models.CharField(max_length=100)
-     B = models.CharField(max_length=100)
-     A = models.CharField(max_length=100)
-     S = models.CharField(max_length=100)
-     Comentario = models.CharField(max_length=100)
-     def __str__(self):
-         return str(self.id)
+    id = models.BigAutoField(primary_key=True)
+    id_fonoaudilogo = models.CharField(max_length=100)
+    id_paciente = models.CharField(max_length=100)
+    timestamp = models.CharField(max_length=100)
+    # RESPUESTAS_CHOICES = (('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'))
+    G = models.CharField(max_length=1, choices=RESPUESTAS_CHOICES)
+    R = models.CharField(max_length=1, choices=RESPUESTAS_CHOICES)
+    B = models.CharField(max_length=1, choices=RESPUESTAS_CHOICES)
+    A = models.CharField(max_length=1, choices=RESPUESTAS_CHOICES)
+    S = models.CharField(max_length=1, choices=RESPUESTAS_CHOICES)
+    Comentario = models.CharField(max_length=100)
+
+    def __str__(self):
+        return str(self.id)
+
 
 
 ##   RASATI

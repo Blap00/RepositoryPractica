@@ -74,41 +74,59 @@ def index(request):
 
 
 @user_passes_test(validate)
+
 def grbas(request):
     if request.method == 'GET':
-        username = str(request.user.username)
-        rut = str(request.user.rut)
-        user_type = str(request.user.id_tipo_user)
+        #Request Username of user in this device
+        username = str(request.user.username) #fonoaudiologo
+        #Request RUT of user in this device. 
+        rut = str(request.user.rut) #RUT USUARIO
+        #Request User type from user in this device
+        user_type = str(request.user.id_tipo_user) #FonoAudiologo
+        #Set id_fonoaudilogo as var username and query it!
         formulario = GrbasFrom(initial={'id_fonoaudilogo': username})
+        #Try to get if profesional_salud.tipo_profesional = user_type
         data = Profesional_salud.objects.filter(rut_profesional = request.user.rut)
+        data1 = Profesional_salud.objects.all()        
+        #Count how many profesional_salud.tipo_profesional= user_type
         data.count()
         if data.count() == 1:
+            #obten todos los registros en pacientes y guardarlas en paciente
             paciente = Paciente.objects.all()
-            form = Grbas.objects.filter(id_fonoaudilogo = username )
+            #Obtener los datos de GRBAS, unicamente donde la id_fonoaudilogo sea igual al Username
+            form = Grbas.objects.filter(id_fonoaudilogo = username ) ##QUERY VACIA
+            #Obtener el primer valor de id_profesional de la tabla Profesional Salud, que tenemos guardada en data
             id = data.values('id_profesional').first()
             id = id['id_profesional']
-            pacientes = Profesional_Paciente.objects.filter(id_profesional_salud = id)
-            print(pacientes)
-            return render(request, 'app/grbas.html',{"user_type":user_type,"paciente":paciente, "paciente":pacientes, "form":form, "formulario":formulario})
+
+
+            profesional = Profesional_Paciente.objects.filter(tipo_profesional= 2 ).first()
+            profesional =profesional.id_profesional_salud
+            pacientes = Profesional_Paciente.objects.filter(id_profesional_salud= profesional)
+            # pacientes= 
+            # print(str(paciente))
+            return render(request, 'app/grbas.html',{"user_type":user_type,"pacientes":pacientes, "form":form, "formulario":formulario})
         else:
             if request.user.is_superuser:
                 form = Grbas.objects.all()
                 return render(request, 'app/grbas.html',{"user_type":user_type, "form":form })
             else:
-                print("no tiene pacientes")
+                # print("no tiene pacientes")
                 return render(request, 'app/grbas.html',{"user_type":user_type})
 
     if request.method == 'POST':
-        print("GUARDADO")
         form = GrbasFrom(data=request.POST)
+        print(request.POST)
+        print()
+        print(form)
         if form.is_valid():
-            print("GUARDADO")
-
-            form.save()
-            form.clean()
-            return redirect("grbas")
+            form.save() 
+            print("form.save guardado")
+            return redirect('grbas')
         else:
+            print("No lo guarda aun XD")
             print(form.errors)
+            return redirect('grbas')
 
 
 
