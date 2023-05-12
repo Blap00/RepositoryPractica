@@ -2,15 +2,15 @@ from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.db.models import CheckConstraint, Q, F
-from datetime import datetime
 
 # Create your models here.
 ##FALTA CREAR TABLAS DE
 ###PROVINCIA-REGION(se relacionan con comuna) Y 6 TABLAS DE PACIENTE
 
 #CHOISE RESPUESTAS GRBA
-RESPUESTAS_CHOICES = (('0', '0'),('1', '1'),('2', '2'),('3', '3'))
+RESPUESTAS_CHOICES_GRBAS = (('0', '0'),('1', '1'),('2', '2'),('3', '3'))
 
+RESPUESTAS_CHOICES_RASATI = (('0', '0'),('1', '1'),('2', '2'),('3', '3'))
 #TipoUsuario
 
 class TipoUsuario(models.Model):
@@ -314,11 +314,11 @@ class Grbas(models.Model):
     id_paciente = models.CharField(max_length=100)
     timestamp = models.CharField(max_length=100)
     # RESPUESTAS_CHOICES = (('0', '0'), ('1', '1'), ('2', '2'), ('3', '3'))
-    G = models.CharField(max_length=1, choices=RESPUESTAS_CHOICES)
-    R = models.CharField(max_length=1, choices=RESPUESTAS_CHOICES)
-    B = models.CharField(max_length=1, choices=RESPUESTAS_CHOICES)
-    A = models.CharField(max_length=1, choices=RESPUESTAS_CHOICES)
-    S = models.CharField(max_length=1, choices=RESPUESTAS_CHOICES)
+    G = models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_GRBAS)
+    R = models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_GRBAS)
+    B = models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_GRBAS)
+    A = models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_GRBAS)
+    S = models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_GRBAS)
     Comentario = models.CharField(max_length=100)
 
     def __str__(self):
@@ -332,13 +332,19 @@ class Rasati(models.Model):
      id_fonoaudilogo = models.CharField(max_length=100)
      id_paciente =  models.CharField(max_length=100)
      timestamp = models.CharField(max_length=100)
-     RESPUESTAS_CHOICES = [('SI', 'SI'), ('NO', 'NO')]
-     R = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES)
-     A = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES)
-     S = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES)
-     A = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES)
-     T = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES)
-     I = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES)
+    #  RESPUESTAS_CHOICES = [('SI', 'SI'), ('NO', 'NO')]
+    ##RONQUIDO
+     R = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES_RASATI)
+     ##ASPEREZA
+     A = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES_RASATI)
+     ##SOPLO
+     S = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES_RASATI)
+     ##ASTENIA
+     A = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES_RASATI)
+     ##TENSION
+     T = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES_RASATI)
+     ##INESTABILIDAD
+     I = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES_RASATI)
      Comentario = models.CharField(max_length=100)
      
      def __str__(self):

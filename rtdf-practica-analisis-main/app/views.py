@@ -86,25 +86,23 @@ def grbas(request):
         #Set id_fonoaudilogo as var username and query it!
         formulario = GrbasFrom(initial={'id_fonoaudilogo': username})
         #Try to get if profesional_salud.tipo_profesional = user_type
-        data = Profesional_salud.objects.filter(rut_profesional = request.user.rut)
-        data1 = Profesional_salud.objects.all()        
-        #Count how many profesional_salud.tipo_profesional= user_type
+        data = Profesional_salud.objects.filter(rut_profesional = rut)       
+        #Count how many profesional_salud.tipo_profesional= rut
         data.count()
         if data.count() == 1:
-            #obten todos los registros en pacientes y guardarlas en paciente
-            paciente = Paciente.objects.all()
             #Obtener los datos de GRBAS, unicamente donde la id_fonoaudilogo sea igual al Username
             form = Grbas.objects.filter(id_fonoaudilogo = username ) ##QUERY VACIA
             #Obtener el primer valor de id_profesional de la tabla Profesional Salud, que tenemos guardada en data
             id = data.values('id_profesional').first()
+            #Clean ID Value
             id = id['id_profesional']
-
-
+            #Get firts value of tipo Profesional, is 2, what means that is a Fonoaudiologo
             profesional = Profesional_Paciente.objects.filter(tipo_profesional= 2 ).first()
+            #Clean ID Value
             profesional =profesional.id_profesional_salud
+            #Get value of Id_profesional_salud, where is equal to 2
             pacientes = Profesional_Paciente.objects.filter(id_profesional_salud= profesional)
-            # pacientes= 
-            # print(str(paciente))
+
             return render(request, 'app/grbas.html',{"user_type":user_type,"pacientes":pacientes, "form":form, "formulario":formulario})
         else:
             if request.user.is_superuser:
@@ -116,15 +114,10 @@ def grbas(request):
 
     if request.method == 'POST':
         form = GrbasFrom(data=request.POST)
-        print(request.POST)
-        print()
-        print(form)
         if form.is_valid():
             form.save() 
-            print("form.save guardado")
             return redirect('grbas')
         else:
-            print("No lo guarda aun XD")
             print(form.errors)
             return redirect('grbas')
 
@@ -135,20 +128,31 @@ def grbas(request):
 def rasati(request):
 
     if request.method == 'GET':
-
-
-        username = str(request.user.username)
-        rut = str(request.user.rut)
-        user_type = str(request.user.id_tipo_user)
+            #Request Username of user in this device
+        username = str(request.user.username) #fonoaudiologo
+            #Request RUT of user in this device. 
+        rut = str(request.user.rut) #RUT USUARIO
+            #Request User type from user in this device
+        user_type = str(request.user.id_tipo_user) #FonoAudiologo
+            #Use the username to have an ID_FONOAUDIOLOGO
         formulario = RasatiFrom(initial={'id_fonoaudilogo': username})
-
-        data = Profesional_salud.objects.filter(rut_profesional = request.user.rut)
+            #send Data request with PROFESIONAL_SALUD(rut_profesional=var rut)
+        data = Profesional_salud.objects.filter(rut_profesional = rut)
+            #count data register
         data.count()
         if data.count() == 1:
-            form = Rasati.objects.filter(id_fonoaudilogo = username )
+                #Obtener los datos de GRBAS, unicamente donde la id_fonoaudilogo sea igual al Username
+            form = Rasati.objects.filter(id_fonoaudilogo = username ) ##QUERY VACIA
+                #Obtener el primer valor de id_profesional de la tabla Profesional Salud, que tenemos guardada en data
             id = data.values('id_profesional').first()
-            id = id['id_profesional']
-            pacientes = Profesional_Paciente.objects.filter(id_profesional_salud = id)
+                #Clean ID Value
+            id = id['id_profesional']   
+            #Get kind of profesional, wich one was a "fonoaudiologo"
+            profesional = Profesional_Paciente.objects.filter(tipo_profesional= 2 ).first()
+            #Clean ID Value
+            profesional =profesional.id_profesional_salud
+            #Get value of Id_profesional_salud, where is equal to 2
+            pacientes = Profesional_Paciente.objects.filter(id_profesional_salud= profesional)
 
             return render(request, 'app/rasati.html',{"user_type":user_type, "paciente":pacientes, "form":form, "formulario":formulario})
         else:
@@ -161,17 +165,17 @@ def rasati(request):
 
 
     if request.method == 'POST':
-        print("GUARDADO")
         form = RasatiFrom(data=request.POST)
+        
+        print("")
+        print("FORM:")
+        print(form)
         if form.is_valid():
-            print("GUARDADO")
-
-            form.save()
-            form.clean()
-            print("guardadoooo")
-            return redirect("rasati")
+            form.save() 
+            return redirect('rasati')
         else:
             print(form.errors)
+            return redirect('rasati')
 
 #vista principal para agregar audios de manera manual
 #contenedor de informacion se actualiza por medio de js

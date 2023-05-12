@@ -1,7 +1,6 @@
 from django import forms
 from .models import *
 from django.contrib.auth.forms import UserCreationForm
-from datetime import datetime
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -36,6 +35,7 @@ class GrbasFrom(forms.ModelForm):
 
 
 class RasatiFrom(forms.ModelForm):
+    timestamp= models.DateTimeField(auto_now_add=True)
     class Meta():
         model = Rasati
         fields = ('id_fonoaudilogo','id_paciente','R','A','S','A','T','I','Comentario')

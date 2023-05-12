@@ -25,43 +25,89 @@
   {% else %}
     <div class="col-8">
       <h4>Pacientes</h4>
-      <select name="pacientes" id="pacientes" style="width:100%;">
-        {% for x in paciente %}
-        <option value="{{x}}" id="{{x}}">{{x}}</option>
+      <select id="pacientes" name="pacientes" class="form-control" style="width:100%;" required>
+        <option value="null" disabled selected>Seleccione un paciente</option> <!---->
+        {% for p in paciente %}
+        <option value="{{ p.id_prof_paci }}">{{ p.id_paciente }}</option>
         {% endfor %}
       </select>
     </div>
 <form id="mi-formulario" action="" method="post" style="margin-top:5rem;">
-    {% csrf_token %}
-<div class="row">
+  {% csrf_token %}
+  <div class="row">
       <div class="col-6">
-        {{ formulario.R.label_tag }} 
-        <select>
-          {{ formulario.R }}
-        </select>
-        <!-- {{ formulario.R }} -->
+        <label for="FORMULARIO.R.id" id="FORMULARIO-R">{{ formulario.R.label_tag }}</label>
+          <select name="FORMULARIO-R" id="FORMULARIO-R.id">  
+            <option value="" selected disabled>Seleccione valor:</option>
+            {% for choice in formulario.R.field.choices %}
+            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+            {% endfor %}
+          </select>
+          <div id="error-messageR"></div>
       </div>
       <div class="col-6">
-        {{ formulario.A.label_tag }} {{ formulario.A }}
+        <label for="FORMULARIO.A.id" id="FORMULARIO-A">{{ formulario.A.label_tag }}</label>
+          <select name="FORMULARIO-A" id="FORMULARIO-A.id">  
+            <option value="" selected disabled>Seleccione valor:</option>
+            {% for choice in formulario.A.field.choices %}
+            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+            {% endfor %}
+          </select>
+          <div id="error-messageA"></div>
       </div>
-    </div>
+  </div>
 
-    <div class="row">
+  <div class="row">
       <div class="col-6">
-        {{ formulario.S.label_tag }} {{ formulario.S }}
+        <div class="col-6">
+          <label for="FORMULARIO.S.id" id="FORMULARIO-S">{{ formulario.S.label_tag }}</label>
+            <select name="FORMULARIO-S" id="FORMULARIO-S.id">  
+              <option value="" selected disabled>Seleccione valor:</option>
+              {% for choice in formulario.S.field.choices %}
+              <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+              {% endfor %}
+            </select>
+            <div id="error-messageS"></div>
+        </div>
       </div>
       <div class="col-6">
-        {{ formulario.A.label_tag }} {{ formulario.A }}
+        <div class="col-6">
+          <label for="FORMULARIO.A.id" id="FORMULARIO-A">{{ formulario.A.label_tag }}</label>
+            <select name="FORMULARIO-A" id="FORMULARIO-A.id">  
+              <option value="" selected disabled>Seleccione valor:</option>
+              {% for choice in formulario.A.field.choices %}
+              <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+              {% endfor %}
+            </select>
+            <div id="error-messageA"></div>
+        </div>
       </div>
-    </div>
+  </div>
 
-    <div class="row">
+  <div class="row">
       <div class="col-6">
-        {{ formulario.T.label_tag }} {{ formulario.T }}
+        <div class="col-6">
+          <label for="FORMULARIO.T.id" id="FORMULARIO-T">{{ formulario.T.label_tag }}</label>
+            <select name="FORMULARIO-T" id="FORMULARIO-T.id">  
+              <option value="" selected disabled>Seleccione valor:</option>
+              {% for choice in formulario.T.field.choices %}
+              <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+              {% endfor %}
+            </select>
+            <div id="error-messageT"></div>
+        </div>
       </div>
-
       <div class="col-6">
-        {{ formulario.I.label_tag }} {{ formulario.I }}
+        <div class="col-6">
+          <label for="FORMULARIO.I.id" id="FORMULARIO-I">{{ formulario.I.label_tag }}</label>
+            <select name="FORMULARIO-I" id="FORMULARIO-I.id">  
+              <option value="" selected disabled>Seleccione valor:</option>
+              {% for choice in formulario.I.field.choices %}
+              <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+              {% endfor %}
+            </select>
+            <div id="error-messageI"></div>
+        </div>
       </div>
 
 </div>
@@ -87,10 +133,9 @@
 {% if request.user.is_superuser %}
 
 {% else %}
-<div  class="centerbtn" style="  display: flex;
-justify-content: end; margin-top:5rem;">
-<button type="submit" value="Enviar">REGISTRAR</button>
-</div>
+  <div  class="centerbtn" style="  display: flex; justify-content: end; margin-top:5rem;">
+    <button type="submit">REGISTRAR</button>
+  </div>
 {% endif%}
 </form>
 
@@ -136,7 +181,7 @@ justify-content: end; margin-top:5rem;">
 
 
 
-<script src="{% static 'app/js/grbas.js' %}"></script>
+<script src="{% static 'app/js/rasati.js' %}"></script>
 {% endblock %}
 
 
