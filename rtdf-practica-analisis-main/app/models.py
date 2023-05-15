@@ -336,11 +336,11 @@ class Rasati(models.Model):
     ##RONQUIDO
      R = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES_RASATI)
      ##ASPEREZA
-     A = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES_RASATI)
+     A1 = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES_RASATI)
      ##SOPLO
      S = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES_RASATI)
      ##ASTENIA
-     A = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES_RASATI)
+     A2 = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES_RASATI)
      ##TENSION
      T = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES_RASATI)
      ##INESTABILIDAD

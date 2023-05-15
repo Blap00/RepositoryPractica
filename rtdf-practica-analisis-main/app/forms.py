@@ -29,7 +29,7 @@ class GrbasFrom(forms.ModelForm):
     timestamp = models.DateTimeField(auto_now_add=True)
     class Meta:
         model = Grbas
-        fields = ['id_fonoaudilogo', 'id_paciente', 'G', 'R', 'B', 'A', 'S', 'Comentario']
+        fields = ['id_fonoaudilogo', 'id_paciente', 'timestamp', 'G', 'R', 'B', 'A', 'S', 'Comentario']
 
 
 
@@ -37,8 +37,8 @@ class GrbasFrom(forms.ModelForm):
 class RasatiFrom(forms.ModelForm):
     timestamp= models.DateTimeField(auto_now_add=True)
     class Meta():
-        model = Rasati
-        fields = ('id_fonoaudilogo','id_paciente','R','A','S','A','T','I','Comentario')
+        model = Rasati 
+        fields = ('id_fonoaudilogo','id_paciente','timestamp','R','A1','S','A2','T','I','Comentario')
 
 class CoeficientesForm(forms.ModelForm):
     class Meta():

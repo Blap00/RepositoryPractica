@@ -25,7 +25,7 @@
   {% else %}
     <div class="col-8">
       <h4>Pacientes</h4>
-      <select id="pacientes" name="pacientes" class="form-control" style="width:100%;" required>
+      <select id="pacientes"  name="pacientes" class="form-control" style="width:100%;" required>
         <option value="null" disabled selected>Seleccione un paciente</option> <!---->
         {% for p in paciente %}
         <option value="{{ p.id_prof_paci }}">{{ p.id_paciente }}</option>
@@ -36,8 +36,8 @@
   {% csrf_token %}
   <div class="row">
       <div class="col-6">
-        <label for="FORMULARIO.R.id" id="FORMULARIO-R">{{ formulario.R.label_tag }}</label>
-          <select name="FORMULARIO-R" id="FORMULARIO-R.id">  
+        <label for="FORMULARIO-R-id" id="FORMULARIO-R">{{ formulario.R.label_tag }}</label>
+          <select name="R" onchange="ocultarError(name)" id="FORMULARIO-R-id">  
             <option value="" selected disabled>Seleccione valor:</option>
             {% for choice in formulario.R.field.choices %}
             <option value="{{ choice.0 }}">{{ choice.1 }}</option>
@@ -46,22 +46,22 @@
           <div id="error-messageR"></div>
       </div>
       <div class="col-6">
-        <label for="FORMULARIO.A.id" id="FORMULARIO-A">{{ formulario.A.label_tag }}</label>
-          <select name="FORMULARIO-A" id="FORMULARIO-A.id">  
+        <label for="FORMULARIO-A1-id" id="FORMULARIO-A1">{{ formulario.A1.label_tag }}</label>
+          <select name="A1" onchange="ocultarError(name)" id="FORMULARIO-A1-id">  
             <option value="" selected disabled>Seleccione valor:</option>
-            {% for choice in formulario.A.field.choices %}
-            <option value="{{ choice.0 }}">{{ choice.1 }}</option>
+            {% for choice in formulario.A1.field.choices %}
+            <option value="1">{{ choice.1 }}</option>
             {% endfor %}
           </select>
-          <div id="error-messageA"></div>
+          <div id="error-messageA1"></div>
       </div>
   </div>
 
   <div class="row">
       <div class="col-6">
         <div class="col-6">
-          <label for="FORMULARIO.S.id" id="FORMULARIO-S">{{ formulario.S.label_tag }}</label>
-            <select name="FORMULARIO-S" id="FORMULARIO-S.id">  
+          <label for="FORMULARIO-S-id" id="FORMULARIO-S">{{ formulario.S.label_tag }}</label>
+            <select name="S" onchange="ocultarError(name)" id="FORMULARIO-S-id">  
               <option value="" selected disabled>Seleccione valor:</option>
               {% for choice in formulario.S.field.choices %}
               <option value="{{ choice.0 }}">{{ choice.1 }}</option>
@@ -72,14 +72,14 @@
       </div>
       <div class="col-6">
         <div class="col-6">
-          <label for="FORMULARIO.A.id" id="FORMULARIO-A">{{ formulario.A.label_tag }}</label>
-            <select name="FORMULARIO-A" id="FORMULARIO-A.id">  
+          <label for="FORMULARIO-A2-id" id="FORMULARIO-A2">{{ formulario.A2.label_tag }}</label>
+            <select name="A2" onchange="ocultarError(name)" id="FORMULARIO-A2-id">  
               <option value="" selected disabled>Seleccione valor:</option>
-              {% for choice in formulario.A.field.choices %}
+              {% for choice in formulario.A2.field.choices %}
               <option value="{{ choice.0 }}">{{ choice.1 }}</option>
               {% endfor %}
             </select>
-            <div id="error-messageA"></div>
+            <div id="error-messageA2"></div>
         </div>
       </div>
   </div>
@@ -87,8 +87,8 @@
   <div class="row">
       <div class="col-6">
         <div class="col-6">
-          <label for="FORMULARIO.T.id" id="FORMULARIO-T">{{ formulario.T.label_tag }}</label>
-            <select name="FORMULARIO-T" id="FORMULARIO-T.id">  
+          <label for="FORMULARIO-T-id" id="FORMULARIO-T">{{ formulario.T.label_tag }}</label>
+            <select name="T" onchange="ocultarError(name)" id="FORMULARIO-T-id">  
               <option value="" selected disabled>Seleccione valor:</option>
               {% for choice in formulario.T.field.choices %}
               <option value="{{ choice.0 }}">{{ choice.1 }}</option>
@@ -99,8 +99,8 @@
       </div>
       <div class="col-6">
         <div class="col-6">
-          <label for="FORMULARIO.I.id" id="FORMULARIO-I">{{ formulario.I.label_tag }}</label>
-            <select name="FORMULARIO-I" id="FORMULARIO-I.id">  
+          <label for="FORMULARIO-I-id" id="FORMULARIO-I">{{ formulario.I.label_tag }}</label>
+            <select name="I" onchange="ocultarError(name)" id="FORMULARIO-I-id">  
               <option value="" selected disabled>Seleccione valor:</option>
               {% for choice in formulario.I.field.choices %}
               <option value="{{ choice.0 }}">{{ choice.1 }}</option>
@@ -115,6 +115,7 @@
       <div class="col-6">
         {{ formulario.id_paciente }}
         {{ formulario.id_fonoaudilogo }}
+        {{ formulario.timestamp }}
       </div>
       <div class="col-12">
         {{ formulario.Comentario.label_tag }}
@@ -147,30 +148,32 @@
     <table class="table" >
         <thead>
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Paciente</th>
-            <th scope="col">R</th>
-            <th scope="col">A</th>
-            <th scope="col">S</th>
-            <th scope="col">A</th>
-            <th scope="col">T</th>
-            <th scope="col">I</th>
-            <th scope="col">Comentario</th>
+            <th style="text-align: center;" scope="col">#</th>
+            <th style="text-align: center;" scope="col">Paciente</th>
+            <th style="text-align: center;" scope="col">TimeStamp</th>
+            <th style="text-align: center;" scope="col">R</th>
+            <th style="text-align: center;" scope="col">A</th>
+            <th style="text-align: center;" scope="col">S</th>
+            <th style="text-align: center;" scope="col">A</th>
+            <th style="text-align: center;" scope="col">T</th>
+            <th style="text-align: center;" scope="col">I</th>
+            <th style="text-align: center;" scope="col">Comentario</th>
           </tr>
         </thead>
         <tbody>
              {% for i in form %}
 
           <tr id={{i.id}}>
-            <th value={{i.id}}>{{i.id}}</th>
-            <th value={{i.id_paciente}}>{{i.id_paciente}}</th>
-            <td value={{i.R}}>{{i.R}}</td>
-            <td value={{i.A}}>{{i.A}}</td>
-            <td value={{i.S}}>{{i.S}}</td>
-            <td value={{i.A}}>{{i.A}}</td>
-            <td value={{i.T}}>{{i.T}}</td>
-            <td value={{i.I}}>{{i.I}}</td>
-            <td value={{i.Comentario}}>{{i.Comentario}}</td>
+            <th style="text-align: center;" value={{i.id}}>{{i.id}}</th>
+            <th style="text-align: center;" value={{i.id_paciente}}>{{i.id_paciente}}</th>
+            <th style="text-align: center ;" value={{i.timestamp}}>{{i.timestamp}}</th>
+            <td style="text-align: center;" value={{i.R}}>{{i.R}}</td>
+            <td style="text-align: center;" value={{i.A}}>{{i.A1}}</td>
+            <td style="text-align: center;" value={{i.S}}>{{i.S}}</td>
+            <td style="text-align: center;" value={{i.A}}>{{i.A2}}</td>
+            <td style="text-align: center;" value={{i.T}}>{{i.T}}</td>
+            <td style="text-align: center;" value={{i.I}}>{{i.I}}</td>
+            <td style="text-align: center;" value={{i.Comentario}}>{{i.Comentario}}</td>
           </tr>
 {% endfor %}
         </tbody>

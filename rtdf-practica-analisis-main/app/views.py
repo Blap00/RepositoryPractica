@@ -113,7 +113,25 @@ def grbas(request):
                 return render(request, 'app/grbas.html',{"user_type":user_type})
 
     if request.method == 'POST':
-        form = GrbasFrom(data=request.POST)
+        #Get the ID_PACIENTE that already sent
+        id_prof_paciente=request.POST.get('id_paciente')
+        #filter all the tables to get the id_paciente
+        formpac=Profesional_Paciente.objects.filter(id_prof_paci = id_prof_paciente)
+        #Clean the ID to get a INT
+        numpac = formpac.values('id_paciente').get()['id_paciente']
+        #Get the username of the user.ID= profesional.paciente.id
+        test=Usuario.objects.all()
+        print(test)
+        formpac=Usuario.objects.get(id= numpac)
+        #set Var USERNAME = user.ID(Usuario.ID)
+        username=formpac
+        #GET COPY OF REQUEST
+        datacopy = request.POST.copy()
+        #SET id_paciente as the same Username!
+        datacopy['id_paciente'] = username
+
+        form = GrbasFrom(data=datacopy)
+
         if form.is_valid():
             form.save() 
             return redirect('grbas')
@@ -136,6 +154,7 @@ def rasati(request):
         user_type = str(request.user.id_tipo_user) #FonoAudiologo
             #Use the username to have an ID_FONOAUDIOLOGO
         formulario = RasatiFrom(initial={'id_fonoaudilogo': username})
+
             #send Data request with PROFESIONAL_SALUD(rut_profesional=var rut)
         data = Profesional_salud.objects.filter(rut_profesional = rut)
             #count data register
@@ -165,11 +184,21 @@ def rasati(request):
 
 
     if request.method == 'POST':
-        form = RasatiFrom(data=request.POST)
-        
-        print("")
-        print("FORM:")
-        print(form)
+        #Get the ID_PACIENTE that already sent
+        id_prof_paciente=request.POST.get('id_paciente')
+        #filter all the tables to get the id_paciente
+        formpac=Profesional_Paciente.objects.filter(id_prof_paci = id_prof_paciente)
+        #Clean the ID to get a INT
+        numpac = formpac.values('id_paciente').get()['id_paciente']
+        #Get the username of the user.ID= profesional.paciente.id
+        formpac=Usuario.objects.get(id= numpac)
+        #set Var USERNAME = user.ID(Usuario.ID)
+        username=formpac
+        #GET COPY OF REQUEST
+        datacopy = request.POST.copy()
+        #SET id_paciente as the same Username!
+        datacopy['id_paciente'] = username
+        form = RasatiFrom(data=datacopy)        
         if form.is_valid():
             form.save() 
             return redirect('rasati')

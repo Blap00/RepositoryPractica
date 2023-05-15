@@ -1,10 +1,31 @@
-// Ocultar campos
-document.querySelector('#id_id_paciente').value = document.querySelector('#pacientes').value
+// Get the current timestamp
+var timestamp = Date.now();
 
-$('#id_id_paciente').hide(); 
-$('#id_id_fonoaudilogo').hide();
-// document.querySelector('#id_id_paciente').style.display = 'none'; 
-// document.querySelector('#id_id_fonoaudilogo').style.display = 'none';
+// Create a new Date object using the timestamp
+var date = new Date(timestamp);
+
+// Extract the individual components of the date and time
+var year = date.getFullYear();
+var month = ('0' + (date.getMonth() + 1)).slice(-2);
+var day = ('0' + date.getDate()).slice(-2);
+var hours = ('0' + date.getHours()).slice(-2);
+var minutes = ('0' + date.getMinutes()).slice(-2);
+var seconds = ('0' + date.getSeconds()).slice(-2);
+
+// Create the formatted string
+var formattedDate = 'Fecha; '+  day + '/' + month + '/' + year + ', Hora; ' + hours + ':' + minutes+ ':' + seconds;
+//TEST console.log(formattedDate)
+
+//SET VALUES
+document.querySelector('#id_id_paciente').value = document.querySelector('#pacientes').value
+document.querySelector('#id_timestamp').value = formattedDate;
+
+// Ocultar campos
+$(document).ready(function() {
+  $('#id_id_paciente').hide(); 
+  $('#id_id_fonoaudilogo').hide();
+  $('#id_timestamp').hide();
+});
 
 // Validar campos y evitar envío del formulario
 var miFormulario = document.getElementById("mi-formulario");

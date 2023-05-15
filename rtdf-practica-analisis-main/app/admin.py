@@ -109,7 +109,7 @@ admin.site.register(Grbas, GrbasAdmin)
 
 # RASATI
 class RasatiAdmin(admin.ModelAdmin):
-     list_display =['id_fonoaudilogo','id_paciente','R','A','S','A','T','I','Comentario']
+     list_display =['id_fonoaudilogo','id_paciente','timestamp','R','A1','S','A2','T','I','Comentario']
 admin.site.register(Rasati, RasatiAdmin)
 
 
