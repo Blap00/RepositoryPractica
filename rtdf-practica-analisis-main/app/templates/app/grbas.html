@@ -41,7 +41,7 @@
     {% csrf_token %}
     <div class="row">
       <div class="col-6">
-        <label  for="{{ formulario.G.id }}" id="label-{{ formulario.G.id }}" onclick="document.getElementById('{{ formulario.G.id }}').click()">{{ formulario.G.label }} : </label>
+        <label  for="{{ formulario.G.id }}" id="label-{{ formulario.G.id }}" onclick="document.getElementById('{{ formulario.G.id }}').click()">Grado de disfonia : </label>
         <select name="{{ formulario.G.name }}" id="id_G">
           <option value="" selected disabled>Seleccione valor:</option>
           {% for choice in formulario.G.field.choices %}
@@ -53,7 +53,7 @@
         <div id="error-messageG"></div>
       </div>      
       <div class="col-6">
-        <label  for="{{ formulario.R.id }}" id="label-{{ formulario.R.id }}" onclick="document.getElementById('{{ formulario.R.id }}').click()">{{ formulario.R.label }}:  </label>
+        <label  for="{{ formulario.R.id }}" id="label-{{ formulario.R.id }}" onclick="document.getElementById('{{ formulario.R.id }}').click()">Rugosidad de la Voz:  </label>
         <select name="{{ formulario.R.name }}" id="id_R"> 
           <option value="" selected disabled>Seleccione valor:</option>
           {% for choice in formulario.R.field.choices %}
@@ -67,7 +67,7 @@
     </div> 
     <div class="row">
       <div class="col-6">
-        <label  for="{{ formulario.B.id }}" id="label-{{ formulario.B.id }}" onclick="document.getElementById('{{ formulario.B.id }}').click()">{{ formulario.B.label }}:  </label>
+        <label  for="{{ formulario.B.id }}" id="label-{{ formulario.B.id }}" onclick="document.getElementById('{{ formulario.B.id }}').click()">Respiracion dificultosa :  </label>
         <select name="{{ formulario.B.name }}" id="id_B">
           <option value="" selected disabled>Seleccione valor:</option>
           {% for choice in formulario.B.field.choices %}
@@ -79,7 +79,7 @@
         <div id="error-messageB"></div>
       </div>
       <div class="col-6">
-        <label  for="{{ formulario.A.id }}" id="label-{{ formulario.A.id }}" onclick="document.getElementById('{{ formulario.A.id }}').click()">{{ formulario.A.label }}:  </label>
+        <label  for="{{ formulario.A.id }}" id="label-{{ formulario.A.id }}" onclick="document.getElementById('{{ formulario.A.id }}').click()">Astenia:  </label>
         <select name="{{ formulario.A.name }}" id="id_A">
           <option value="" selected disabled>Seleccione valor:</option>
           {% for choice in formulario.A.field.choices %}
@@ -93,7 +93,7 @@
     </div>   
     <div class="row">
       <div class="col-6">
-        <label  for="{{ formulario.S.id }}" id="label-{{ formulario.S.id }}" onclick="document.getElementById('{{ formulario.S.id }}').click()">{{ formulario.S.label }}:  </label>
+        <label  for="{{ formulario.S.id }}" id="label-{{ formulario.S.id }}" onclick="document.getElementById('{{ formulario.S.id }}').click()">Grado de tensi&oacute;n vocal:  </label>
         <select name="{{ formulario.S.name }}" id="id_S">
           <option value="" selected disabled>Seleccione valor:</option>
           {% for choice in formulario.S.field.choices %}

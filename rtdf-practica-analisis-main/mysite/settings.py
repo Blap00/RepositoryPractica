@@ -27,7 +27,7 @@ SECRET_KEY = 'l&8=+mo)xfde5q=m+(l41*6o5a!a83s%$8ly1_8u0&1n!ne3&_'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*','Stban07.pythonanywhere.com']
+ALLOWED_HOSTS = ['*','FabianPalma001.pythonanywhere.com']
 
 
 # Application definition
@@ -83,26 +83,14 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
+##SQLITE
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'OPTIONS': {
-#             'sql_mode': 'traditional',
-#         },
-#         'NAME': config("practicaDuoc"),
-#         'USER': config("root"),
-#         'PASSWORD': config("c4FdL3#!V%TUg6jMne"),
-#         'HOST': config("localhost"),
-#         'PORT': config("3306"),
-#     }
-# }
+##LOCAL DATABASE
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -114,6 +102,19 @@ DATABASES = {
         'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
     }
 }
+##CLOUD DATABASE
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'OPTIONS': {
+#             'sql_mode': 'traditional',
+#         },
+#         'NAME': "FabianPalma001$practica",
+#         'USER': "FabianPalma001",
+#         'PASSWORD': "c4FdL3#!V%TUg6jMne",
+#         'HOST': "FabianPalma001.mysql.pythonanywhere-services.com",
+#     }
+# }
 
 
 # Password validation
