@@ -7,12 +7,12 @@ from django.db.models import CheckConstraint, Q, F
 ##FALTA CREAR TABLAS DE
 ###PROVINCIA-REGION(se relacionan con comuna) Y 6 TABLAS DE PACIENTE
 
-#CHOISE RESPUESTAS GRBA
-RESPUESTAS_CHOICES_GRBAS = (('0', '0'),('1', '1'),('2', '2'),('3', '3'))
+#CHOISE RESPUESTAS_forms
+RESPUESTAS_CHOICES_GRBAS = (('0', 'Normal'),('1', 'Alteración Ligera'),('2', 'Alteración Moderada'),('3', 'Alteración Severa'))
 
-RESPUESTAS_CHOICES_RASATI = (('0', '0'),('1', '1'),('2', '2'),('3', '3'))
+RESPUESTAS_CHOICES_RASATI = (('0', 'Normal'),('1', 'Leve'),('2', 'Moderado'),('3', 'Severo'))
+
 #TipoUsuario
-
 class TipoUsuario(models.Model):
         id= models.CharField(primary_key=True, max_length=3)
         nombre_tipo_usuario = models.CharField(max_length=100)
@@ -333,7 +333,7 @@ class Rasati(models.Model):
      id_paciente =  models.CharField(max_length=100)
      timestamp = models.CharField(max_length=100)
     #  RESPUESTAS_CHOICES = [('SI', 'SI'), ('NO', 'NO')]
-    ##RONQUIDO
+    ##RONQUIDO 'id_fonoaudilogo','id_paciente','timestamp','Ronquera','Aspereza','Soplo','Astenia','Tension','Inestabilidad','Comentario'
      R = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES_RASATI)
      ##ASPEREZA
      A1 = models.CharField(max_length=2, choices=RESPUESTAS_CHOICES_RASATI)

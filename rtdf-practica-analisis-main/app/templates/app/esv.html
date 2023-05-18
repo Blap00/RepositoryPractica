@@ -1,0 +1,41 @@
+{% extends 'app/base.html' %}
+{% load static%}
+
+
+{% block css%}
+
+{% endblock %}
+{% block contenido %}
+<link type="text/css" rel="stylesheet" href="{% static 'app/css/preregistrados.css' %}">
+
+
+<script src="{% static 'app/js/jquery-3.6.1.min.js' %}"></script>
+
+<!-- CONTENIDO principal -->
+
+
+
+
+
+<div style="width:100%; display:flex; justify-content:center; margin:5px;">
+
+    <main class="form-signin">
+        <form d="mi-formulario" action="" method="post" style="margin-top:5rem;"></form>
+        {% if request.user.is_superuser %}
+        <h1 class="h3 mb-3 fw-normal">Hello worlds, you are Super USER</h1>
+        {% else %}
+          <div class="col-8">
+            <h4>Pacientes</h4>
+            <select id="pacientes"  name="pacientes" class="form-control" style="width:100%;" required>
+              <option value="null" disabled selected>Seleccione un paciente</option> <!---->
+              {% for p in paciente %}
+              <option value="{{ p.id_prof_paci }}">{{ p.id_paciente }}</option>
+              {% endfor %}
+            </select>
+          </div>
+          {% endif %}
+    </main>
+</div>
+
+<script src="{% static 'app/js/rasati.js' %}"></script>
+{% endblock %}

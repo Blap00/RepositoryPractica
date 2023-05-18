@@ -51,39 +51,13 @@ var selectI = document.getElementById("FORMULARIO-I-id").value;
 // Validar campos y evitar envío del formulario
 var miFormulario = document.getElementById("mi-formulario");
 miFormulario.addEventListener("submit", function(event) {
-    // Prevenir el envío del formulario
+        // Prevenir el envío del formulario
     event.preventDefault();
-    //REALIZAR VALIDACIONES(NO FUNCIONA AUN):
-    // // if(selectR==""){
-    // //     console.log(selectR)
-    // //     alert("ERROR en el campo Ronquera")
-    // //     mostrarError("Ronquidos", "R");
-    // // }
-    // // else if(selectA1==""){
-    // //     alert("ERROR en el campo Aspereza")
-    // //     mostrarError("Aspereza", "A1");
-    // // }
-    // // else if(selectS==""){
-    // //     alert("ERROR en el campo Soplo")
-    // //     mostrarError("Soplo", "S");
-    // // }
-    // // else if(selectA2==""){
-    // //     alert("ERROR en el campo Astenia")
-    // //     mostrarError("Astenia", "A2");
-    // // }
-    // // else if(selectT==""){
-    // //     alert("ERROR en el campo Tensión")
-    // //     mostrarError("Tensión", "T");
-    // // }
-    // // else if(selectI==""){
-    // //     alert("ERROR en el campo Inestabilidad")
-    // //     mostrarError("Inestabilidad", "I");
-    // // }
-    // else{
-          // Asignar valor de paciente seleccionado al campo id_id_paciente
-        document.querySelector('#id_id_paciente').value = document.querySelector('#pacientes').value;
-          // Enviar el formulario manualmente
-        miFormulario.submit();
+    
+        // Asignar valor de paciente seleccionado al campo id_id_paciente
+    document.querySelector('#id_id_paciente').value = document.querySelector('#pacientes').value;
+        // Enviar el formulario manualmente
+    miFormulario.submit();
     // }
 
 }); 

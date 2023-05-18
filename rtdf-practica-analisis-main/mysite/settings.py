@@ -98,7 +98,7 @@ DATABASES = {
 #         },
 #         'NAME': config("practicaDuoc"),
 #         'USER': config("root"),
-#         'PASSWORD': config(""),
+#         'PASSWORD': config("c4FdL3#!V%TUg6jMne"),
 #         'HOST': config("localhost"),
 #         'PORT': config("3306"),
 #     }
@@ -110,7 +110,7 @@ DATABASES = {
         'USER': 'root',
         'PASSWORD': '',
         'HOST': 'localhost',
-        'PORT': '',
+        'PORT': '3306',
         'OPTIONS': {'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"},
     }
 }

@@ -120,8 +120,6 @@ def grbas(request):
         #Clean the ID to get a INT
         numpac = formpac.values('id_paciente').get()['id_paciente']
         #Get the username of the user.ID= profesional.paciente.id
-        test=Usuario.objects.all()
-        print(test)
         formpac=Usuario.objects.get(id= numpac)
         #set Var USERNAME = user.ID(Usuario.ID)
         username=formpac
@@ -140,7 +138,8 @@ def grbas(request):
             return redirect('grbas')
 
 
-
+def esv(request):
+    return render (request, 'app/esv.html')
 
 @user_passes_test(validate)
 def rasati(request):
@@ -154,7 +153,7 @@ def rasati(request):
         user_type = str(request.user.id_tipo_user) #FonoAudiologo
             #Use the username to have an ID_FONOAUDIOLOGO
         formulario = RasatiFrom(initial={'id_fonoaudilogo': username})
-
+        # print(RasatiFrom)
             #send Data request with PROFESIONAL_SALUD(rut_profesional=var rut)
         data = Profesional_salud.objects.filter(rut_profesional = rut)
             #count data register
@@ -172,7 +171,7 @@ def rasati(request):
             profesional =profesional.id_profesional_salud
             #Get value of Id_profesional_salud, where is equal to 2
             pacientes = Profesional_Paciente.objects.filter(id_profesional_salud= profesional)
-
+            # print(formulario)
             return render(request, 'app/rasati.html',{"user_type":user_type, "paciente":pacientes, "form":form, "formulario":formulario})
         else:
             if request.user.is_superuser:

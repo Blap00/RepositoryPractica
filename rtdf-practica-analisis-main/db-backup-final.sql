@@ -173,7 +173,7 @@ UNLOCK TABLES;
 -- Table structure for table `app_audioscoeficientes`
 --
 
-DROP TABLE IF EXISTS `app_audioscoeficientes`;
+  DROP TABLE IF EXISTS `app_audioscoeficientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `app_audioscoeficientes` (
@@ -201,7 +201,7 @@ CREATE TABLE `app_audioscoeficientes` (
   PRIMARY KEY (`id`),
   KEY `app_audioscoeficientes_idusuario_id_e6740300_fk_app_usuario_id` (`idusuario_id`),
   CONSTRAINT `app_audioscoeficientes_idusuario_id_e6740300_fk_app_usuario_id` FOREIGN KEY (`idusuario_id`) REFERENCES `app_usuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=938 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=938 DEFAULT CHARSET=utf8; /*SUBIR APP_USUARIO PRIMERO VER*/
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -827,28 +827,28 @@ UNLOCK TABLES;
 DROP TABLE IF EXISTS `app_usuario`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `app_usuario` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `password` varchar(128) NOT NULL,
-  `last_login` datetime(6) DEFAULT NULL,
-  `is_superuser` tinyint(1) NOT NULL,
-  `username` varchar(150) NOT NULL,
-  `first_name` varchar(150) NOT NULL,
-  `last_name` varchar(150) NOT NULL,
-  `email` varchar(254) NOT NULL,
-  `is_staff` tinyint(1) NOT NULL,
-  `is_active` tinyint(1) NOT NULL,
-  `date_joined` datetime(6) NOT NULL,
-  `rut` varchar(100) NOT NULL,
-  `comuna_id` bigint(20) DEFAULT NULL,
-  `id_tipo_user_id` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `username` (`username`),
-  KEY `app_usuario_comuna_id_f1726cda_fk_app_comuna_id_comuna` (`comuna_id`),
-  KEY `app_usuario_id_tipo_user_id_ed598a8a_fk_app_tipousuario_id` (`id_tipo_user_id`),
-  CONSTRAINT `app_usuario_comuna_id_f1726cda_fk_app_comuna_id_comuna` FOREIGN KEY (`comuna_id`) REFERENCES `app_comuna` (`id_comuna`),
-  CONSTRAINT `app_usuario_id_tipo_user_id_ed598a8a_fk_app_tipousuario_id` FOREIGN KEY (`id_tipo_user_id`) REFERENCES `app_tipousuario` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+  CREATE TABLE `app_usuario` (
+    `id` bigint(20) NOT NULL AUTO_INCREMENT,
+    `password` varchar(128) NOT NULL,
+    `last_login` datetime(6) DEFAULT NULL,
+    `is_superuser` tinyint(1) NOT NULL,
+    `username` varchar(150) NOT NULL,
+    `first_name` varchar(150) NOT NULL,
+    `last_name` varchar(150) NOT NULL,
+    `email` varchar(254) NOT NULL,
+    `is_staff` tinyint(1) NOT NULL,
+    `is_active` tinyint(1) NOT NULL,
+    `date_joined` datetime(6) NOT NULL,
+    `rut` varchar(100) NOT NULL,
+    `comuna_id` bigint(20) DEFAULT NULL,
+    `id_tipo_user_id` bigint(20) DEFAULT NULL,
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `username` (`username`),
+    KEY `app_usuario_comuna_id_f1726cda_fk_app_comuna_id_comuna` (`comuna_id`),
+    KEY `app_usuario_id_tipo_user_id_ed598a8a_fk_app_tipousuario_id` (`id_tipo_user_id`),
+    CONSTRAINT `app_usuario_comuna_id_f1726cda_fk_app_comuna_id_comuna` FOREIGN KEY (`comuna_id`) REFERENCES `app_comuna` (`id_comuna`),
+    CONSTRAINT `app_usuario_id_tipo_user_id_ed598a8a_fk_app_tipousuario_id` FOREIGN KEY (`id_tipo_user_id`) REFERENCES `app_tipousuario` (`id`)
+  ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;/* tipousuario */
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
