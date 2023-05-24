@@ -139,8 +139,54 @@ def grbas(request):
 
 
 def esv(request):
-    return render (request, 'app/esv.html')
+    if request.method =='GET':
+        #GET RUT
+        rut= str(request.user.rut)
+        #GET username from User.username
+        username = str(request.user.username) #PACIENTE USERNAME
+        #Get The ID from User.id
+        id_paciente = (str(request.user.id)) #6
+        #GET USER_TYPE, ideal Paciente
+        user_type = str(request.user.id_tipo_user) #PACIENTE
+        #Set Var Paciente on true if user_type=fonoaudiologo
+        fonoaud=(user_type=='Fonoaudiólogo')
+        nompac= str(request.user.first_name)
+        apepac= str(request.user.last_name)
+        nompac=(str(nompac)+' '+str(apepac))
+        #GET ESV form from forms.py and set id_paciente = username
+        formulario = EvaSinVocForm(initial={'id_fonoaudiologo': username})
+        #Get id from paciente, where the user tables = id_paciente
+        data = Usuario.objects.filter(id = id_paciente)       
+        # get profesionalsalud rut to verify rol
+        datafono= Profesional_salud.objects.filter(rut_profesional = rut)
+        if data.count()==1:   
+            #Obtener el primer valor de id_paciente de la tabla usuarios, que tenemos guardada en data
+            id = data.values('id').first()
+            #Clean ID Value
+            id = id['id']
+            #Get kind of profesional, wich one was a "fonoaudiologo"
+            profesional = Profesional_Paciente.objects.filter(tipo_profesional= 2 ).first()
+            #Clean ID Value
+            profesional =profesional.id_profesional_salud
+            #Get value of Id_profesional_salud, where is equal to 2
+            pacientes = Profesional_Paciente.objects.filter(id_profesional_salud= profesional)
 
+            # print(nompac)
+            return render(request, 'app/esv.html',{"user_type":user_type,"paciente":pacientes, "formulario":formulario,'user_fonod':fonoaud})        
+        if datafono.count()==1:
+            #Get ammount of forms emmited
+            print("Fonoaudilogos")
+            form = Esv.objects.filter(id_paciente = username ) ##QUERY VACIA
+            return render (request, 'app/esv.html', {"user_type":user_type,"form":form, 'user_fonod':fonoaud, 'formulario':formulario  })
+    if request.method == 'POST':
+        print(request.POST)
+        form = EvaSinVocForm(data=request.POST)        
+        if form.is_valid():
+            form.save() 
+            return redirect('esv')
+        else:
+            print(form.errors)
+            return redirect('esv')
 @user_passes_test(validate)
 def rasati(request):
 
@@ -172,6 +218,7 @@ def rasati(request):
             #Get value of Id_profesional_salud, where is equal to 2
             pacientes = Profesional_Paciente.objects.filter(id_profesional_salud= profesional)
             # print(formulario)
+
             return render(request, 'app/rasati.html',{"user_type":user_type, "paciente":pacientes, "form":form, "formulario":formulario})
         else:
             if request.user.is_superuser:
@@ -183,6 +230,7 @@ def rasati(request):
 
 
     if request.method == 'POST':
+        print(request.POST)
         #Get the ID_PACIENTE that already sent
         id_prof_paciente=request.POST.get('id_paciente')
         #filter all the tables to get the id_paciente
@@ -197,6 +245,7 @@ def rasati(request):
         datacopy = request.POST.copy()
         #SET id_paciente as the same Username!
         datacopy['id_paciente'] = username
+
         form = RasatiFrom(data=datacopy)        
         if form.is_valid():
             form.save() 

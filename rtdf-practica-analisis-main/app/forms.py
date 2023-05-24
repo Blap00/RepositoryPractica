@@ -45,6 +45,10 @@ class CoeficientesForm(forms.ModelForm):
         model = AudiosCoeficientes_Fono
         fields= ("idusuario","nombre_archivo", "timestamp","Intensidad","F0","F1","F2","F3","F4","Intensidad","HNR","Local_Jitter","Local_Absolute_Jitter","Rap_Jitter","ppq5_Jitter","ddp_Jitter","Local_Shimmer","Local_db_Shimmer","apq3_Shimmer","aqpq5_Shimmer","apq11_Shimmer")
 
+class EvaSinVocForm(forms.ModelForm):
+    class Meta():
+        model = Esv
+        fields= '__all__'
 
 # class MemoriceForm(forms.ModelForm):
 #     acierto = forms.CharField(label='Cantidad de aciertos', widget=forms.TextInput(

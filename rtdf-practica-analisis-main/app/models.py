@@ -12,6 +12,8 @@ RESPUESTAS_CHOICES_GRBAS = (('0', 'Normal'),('1', 'Alteración Ligera'),('2', 'A
 
 RESPUESTAS_CHOICES_RASATI = (('0', 'Normal'),('1', 'Leve'),('2', 'Moderado'),('3', 'Severo'))
 
+RESPUESTAS_CHOICES_ESV = (('0','Nunca'), ('1','Casi nunca'), ('2','A veces'), ('3','Casi siempre'), ('4','Siempre'))
+
 #TipoUsuario
 class TipoUsuario(models.Model):
         id= models.CharField(primary_key=True, max_length=3)
@@ -350,6 +352,47 @@ class Rasati(models.Model):
      def __str__(self):
          return str(self.id)
 
+class Esv(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    id_paciente =  models.CharField(max_length=100)
+    id_fonoaudiologo= models.CharField(max_length=100)
+    timestamp = models.DateTimeField(auto_now_add=True)
+    p1=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p2=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p3=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p4=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p5=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p6=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p7=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p8=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p9=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p10=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p11=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p12=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p13=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p14=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p15=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p16=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p17=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p18=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p19=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p20=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p21=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p22=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p23=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p24=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p25=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p26=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p27=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p28=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p29=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    p30=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
+    totalESV= models.CharField(max_length=3, null= False )
+    limitacion=models.CharField(max_length=2, null= False)
+    emocional=models.CharField(max_length=2, null= False)
+    fisico=models.CharField(max_length=2, null= False)
+    def __str__(self):
+        return str(self.id)
 
 
 

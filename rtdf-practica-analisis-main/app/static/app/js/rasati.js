@@ -17,7 +17,7 @@ var formattedDate = 'Fecha; '+  day + '/' + month + '/' + year + ', Hora; ' + ho
 //TEST console.log(formattedDate)
 
 //SET VALUES
-document.querySelector('#id_id_paciente').value = document.querySelector('#pacientes').value
+document.querySelector('#id_id_paciente').value = document.querySelector('#pacientes').value;
 document.querySelector('#id_timestamp').value = formattedDate;
 
 // Ocultar campos
@@ -34,19 +34,6 @@ var selectA2 = document.getElementById("FORMULARIO-A2-id").value;
 var selectT = document.getElementById("FORMULARIO-T-id").value;
 var selectI = document.getElementById("FORMULARIO-I-id").value;
 
-//MOSTRAR ERROR
-
-
-//NOFUNCIONA AUN
-// function mostrarError($nombre, $campo){
-//     var errorMessage = document.querySelector('#error-message'+$campo);
-//     errorMessage.innerHTML = 'Debe seleccionar un valor para: '+$nombre;  
-//     errorMessage.style.display = "none";
-// }
-// function ocultarError($campo){
-//     var errorMessage = document.querySelector('#error-message'+$campo);
-//     errorMessage.style.display = "none";
-// }
 
 // Validar campos y evitar envío del formulario
 var miFormulario = document.getElementById("mi-formulario");
