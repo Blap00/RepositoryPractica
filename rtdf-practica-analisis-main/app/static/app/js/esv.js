@@ -1,17 +1,3 @@
-    // Get the current timestamp
-    var timestamp = Date.now();
-
-    // Create a new Date object using the timestamp
-    var date = new Date(timestamp);
-
-    // Extract the individual components of the date and time
-    var year = date.getFullYear();
-    var month = ('0' + (date.getMonth() + 1)).slice(-2);
-    var day = ('0' + date.getDate()).slice(-2);
-
-    
-    // Create the formatted string
-    var formattedDate = year +'-'+ month +'-'+ day;
     // FUNCTION TO CHECK SELECT FORMS
     function checkSelect(pregini, pregfin, secform) {
         var hasEmptyField = false;
@@ -73,26 +59,79 @@
         return sum
     }
     function scrollToTop() {
-        // document.documentElement.scrollTop = 0; // For modern browsers
-        // document.body.scrollTop = 0; // For older browsers
         window.scrollTo({top:0, behavior:"smooth"})
     }
     function checkfirstData(){
+        var hasEmptyField = false;
+        if(document.querySelector('#pacientes').value === "" ){
+            alert("ERROR, tienes que tener un dato seleccionado en el Select de Pacientes.")
+            hasEmptyField = true;
+        } else if(document.querySelector('#pacientes').value === "null"){
+            alert("ERROR, tienes que tener un dato seleccionado en el Select de Pacientes.")
+            hasEmptyField = true;
+        }
+        // var buttonContinue=document.querySelector("#cont-form-esv-1");
+        if(!hasEmptyField){
+            // buttonContinue.disabled = false;
+            // console.log(hasEmptyField);
+            return true;
+        }else{
+            // buttonContinue.disabled = true;
+            // console.log(hasEmptyField);
 
+            return false;
+        }
     }
-    $(function(){
-        $('#datepicker').datepicker();
-    });
+    function checkdateData() {
+        var inputFecha = document.querySelector('#id_fechanac');
+        var fechaSeleccionada = inputFecha.value;
+      
+        // Validar si la fecha está vacía o es nula
+        if (!fechaSeleccionada) {
+          alert("ERROR: Debes seleccionar una fecha de nacimiento.");
+          return false;
+        } 
+        // Obtener la fecha actual
+        var fechaActual = Date.now();
+        dateObj= new Date(fechaActual)    
+        // Extract the individual components of the date and time
+        var year = dateObj.getFullYear();
+        var month = ('0' + (dateObj.getMonth() + 1)).slice(-2);
+        var day = ('0' + dateObj.getDate()).slice(-2);
+        // Format the date to YYYY-MM-DD
+        var fechaActual = year + '-' + month + '-' + day;
+        // Format the date to (YYYY-100)-MM-DD
+        var fechaMaximaperm= (year-100) + '-' + month + '-' + day; 
+        // Obtener la fecha mínima y máxima permitida
+        var fechaMinima = fechaMaximaperm;
+        var fechaMaxima = fechaActual;
+
+        // Convertir la fecha seleccionada a objeto Date
+        var fechaSeleccionadaObj = new Date(fechaSeleccionada);
+        var year1 = fechaSeleccionadaObj.getFullYear();
+        var month1 = ('0' + (fechaSeleccionadaObj.getMonth() + 1)).slice(-2);
+        var day1 = ('0' + fechaSeleccionadaObj.getDate()).slice(-2);
+        var fechaSeleccionadaObj= year1 + '-' + month1 + '-' + day1
+
+        if (fechaSeleccionadaObj < fechaMinima || fechaSeleccionadaObj > fechaMaxima) {
+            alert("ERROR: La fecha de nacimiento debe estar entre el "+ fechaMinima +" y el "+ fechaMaxima +".");
+            console.log(fechaSeleccionadaObj);
+            return false;
+        }else{
+            console.log(fechaSeleccionadaObj);
+        }
+      
+        // Validar otras condiciones si es necesario
+        // ...
+      
+        return true;
+      }
+
     //Create miFormulario and set Values to FORMULARIO
     var miFormulario = document.getElementById("mi-formulario");
     $(function() {
-
         //SET VALUES    
         $("#btnRegistro").prop("disabled", true);
-        document.querySelector('#id_fechaaho').value = formattedDate;
-        // document.querySelector('#id_limitacion').value = sumandsetlimit(1,30);
-        // document.querySelector('#id_fisico').value = sumandsetfisical(1,30);
-        // document.querySelector('#id_emocional').value = sumandsetemotion(1,30);
         //HIDE CAMPS
         $('#id_id_paciente').hide();
         $('#id_id_fonoaudiologo').hide(); 
@@ -143,7 +182,8 @@
         })
         //BUTTON CONTINUE FORM 1
         $("#cont-form-esv-1").click(function(){
-            // if(checked){
+            // console.log(checkfirstData());
+            if(checkfirstData()){
                 $("#Form-esv-1").show();
                 $(".formulario-esv-1").show();
                 $("#registro-datos").hide();
@@ -153,14 +193,15 @@
                 $("#Form-esv-3").hide();
                 $(".formulario-esv-3").hide();    
                 scrollToTop();
-            // }else{
-
-            // }
+            }else{
+                console.log('ERROR en el sector de registro datos');
+                scrollToTop();
+            }
         });
         //BUTTON CONTINUE TO FORM 2
         $("#cont-form-esv-2").click(function(){
 
-            if(checkSelect(1,10,1)){
+            if(checkSelect(1,10,1) && checkdateData()){
                 $("#Form-esv-1").hide();
                 $(".formulario-esv-1").hide();
                 $("#registro-datos").hide();
@@ -199,6 +240,7 @@
             var limitacion = sumandsetlimit(1, 30);
             var fisico = sumandsetfisical(1, 30);
             var emocion = sumandsetemotion(1, 30);
+            // console.log(document.querySelector('#id_id_paciente').value)
             document.querySelector('#id_totalESV').value = limitacion+fisico+emocion;
             document.querySelector('#id_limitacion').value = limitacion;
             document.querySelector('#id_fisico').value = fisico;
@@ -210,9 +252,21 @@
                 console.log("Valores de fisico: " + fisico);
                 console.log("Valores de Emocion: " + emocion);
                 console.log("Full");
-                    // Habilitar el botón de registro
-                $("#btnRegistro").prop("disabled", false);
-                
+                var miFormulario = document.getElementById("mi-formulario");
+                    if (miFormulario) {
+                        miFormulario.addEventListener("submit", function(event) {
+                            // Asegura asignar los valor ocultos del paciente seleccionado
+                            
+                            if (document.querySelector('#id_limitacion').value == "" || document.querySelector('#id_fisico').value == "" || document.querySelector('#id_emocional').value == "") {
+                                // Prevenir el envío del formulario
+                                event.preventDefault();
+                            } else {
+                                document.querySelector('#id_id_paciente').value = document.querySelector('#pacientes').value;
+                                // Enviar el formulario manualmente
+                                miFormulario.submit();    
+                            }
+                        });
+                    }
             } else {
                 console.log("NOTFULL, NOT ABLE");
             }
@@ -221,19 +275,6 @@
 
         //END BUTTONS AND CLICK
     });
-var miFormulario = document.getElementById("mi-formulario");
-if (miFormulario) {
-    miFormulario.addEventListener("submit", function(event) {
-        // Asegura asignar los valor ocultos del paciente seleccionado
-        if (document.querySelector('#id_limitacion').value == "" || document.querySelector('#id_fisico').value == "" || document.querySelector('#id_emocional').value == "") {
-            // Prevenir el envío del formulario
-            event.preventDefault();
-        } else {
-            document.querySelector('#id_id_paciente').value = document.querySelector('#pacientes').value;
-            document.querySelector('#id_fechaaho').value = formattedDate;
-            // Enviar el formulario manualmente
-            miFormulario.submit();    
-        }
-    });
-}
+
+
 

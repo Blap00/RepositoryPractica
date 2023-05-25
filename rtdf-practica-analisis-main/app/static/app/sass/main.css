@@ -431,8 +431,8 @@ p, ul, ol, dl, table {
 }
 
 .row {
-  margin-top: -40px;
-  margin-left: -40px;
+  margin-top: 0px;
+  margin-left: 0px;
 }
 
 .row > * {
@@ -648,8 +648,8 @@ p, ul, ol, dl, table {
     padding-top: 20px;
   }
   .row {
-    margin-top: -40px;
-    margin-left: -40px;
+    margin-top: 0px;
+    margin-left: 0px;
   }
   .row > * {
     padding: 40px 0 0 40px;
@@ -855,8 +855,8 @@ p, ul, ol, dl, table {
     padding-top: 12.5px;
   }
   .row {
-    margin-top: -25px;
-    margin-left: -25px;
+    margin-top: 0px;
+    margin-left: 0px;
   }
   .row > * {
     padding: 25px 0 0 25px;
@@ -1062,8 +1062,8 @@ p, ul, ol, dl, table {
     padding-top: 12.5px;
   }
   .row {
-    margin-top: -25px;
-    margin-left: -25px;
+    margin-top: 0px;
+    margin-left: 0px;
   }
   .row > * {
     padding: 25px 0 0 25px;
@@ -1269,8 +1269,8 @@ p, ul, ol, dl, table {
     padding-top: 10px;
   }
   .row {
-    margin-top: -20px;
-    margin-left: -20px;
+    margin-top: 0px;
+    margin-left: 0px;
   }
   .row > * {
     padding: 20px 0 0 20px;

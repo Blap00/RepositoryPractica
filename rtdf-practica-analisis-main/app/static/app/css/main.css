@@ -416,8 +416,8 @@ input, select, textarea {
 				}
 
 		.row {
-			margin-top: -40px;
-			margin-left: -40px;
+			margin-top: 0PX;
+			margin-left: 0px;
 		}
 
 			.row > * {
@@ -659,8 +659,8 @@ input, select, textarea {
 						}
 
 				.row {
-					margin-top: -40px;
-					margin-left: -40px;
+					margin-top: 0px;
+					margin-left: 0px;
 				}
 
 					.row > * {
@@ -904,8 +904,8 @@ input, select, textarea {
 						}
 
 				.row {
-					margin-top: -25px;
-					margin-left: -25px;
+					margin-top: 0px;
+					margin-left: 0px;
 				}
 
 					.row > * {
@@ -1149,8 +1149,8 @@ input, select, textarea {
 						}
 
 				.row {
-					margin-top: -25px;
-					margin-left: -25px;
+					margin-top: 0px;
+					margin-left: -0px;
 				}
 
 					.row > * {
@@ -1394,8 +1394,8 @@ input, select, textarea {
 						}
 
 				.row {
-					margin-top: -20px;
-					margin-left: -20px;
+					margin-top: 0px;
+					margin-left: 0px;
 				}
 
 					.row > * {
