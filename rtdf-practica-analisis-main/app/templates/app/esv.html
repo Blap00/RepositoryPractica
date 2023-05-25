@@ -20,11 +20,11 @@
 <div style="width:100%; display:flex; justify-content:center; margin:5px;">
     <main class="form-signin">
         {% if request.user.is_superuser %}
-        <h1 class="h3 mb-3 fw-normal">Hello worlds, you are Super USER</h1>
-        
+        <h1 class="h3 mb-3 fw-normal">Bienvenido, {{request.user.username}}.  </h1>
+        <h3 class="h3 mb-3 fw-normal">Revisa todos los registros realizados en este formulario aqui abajo!</h3>
         {% elif not user_fonod %}
           <div class="col-8">
-            <h1>YOU ARE A PACIENTE</h1>
+            <h1>ERROR 403, NO TIENES PERMISO DE INGRESAR</h1>
 
           </div>
         {% else %}
@@ -52,6 +52,7 @@
                     <div  class="centerbtn" id="Button-RD1" style="  display: flex; justify-content: end; margin-top:5rem;">
                         <button type="button" id="cont-form-esv-1">Continuar</button>
                     </div>
+                    
                     <div class="table">
                         <h4 style="margin-top:5rem;">Historico de Escala Sintoma Vocal ingresados</h4>
                         <table class="table" >
@@ -507,6 +508,36 @@
                     </div>
                 </div>  
             </form>
+        </div>
+        {% endif %}
+        {% if request.user.is_superuser %}
+        <div class="table">
+            <h4 style="margin-top:5rem;">Historico de Escala Sintoma Vocal ingresados</h4>
+            <table class="table" >
+                <thead>
+                    <tr>
+                        <th style="text-align: center;" scope="col">Paciente</th>
+                        <th style="text-align: center;" scope="col">Total ESV</th>
+                        <th style="text-align: center;" scope="col">Limitacion</th>
+                        <th style="text-align: center;" scope="col">Emocional</th>
+                        <th style="text-align: center;" scope="col">Fisico</th>
+                        <th style="text-align: center;" scope="col">TimeStamp</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in form %}
+                    <tr id={{i.id}}>
+                        <th style="text-align: center;" value={{i.id_paciente}}>{{i.id_paciente}}</th>
+                        <td style="text-align: center;" value={{i.totalESV}}>{{i.totalESV}}</td>
+                        <td style="text-align: center;" value={{i.limitacion}}>{{i.limitacion}}</td>
+                        <td style="text-align: center;" value={{i.emocional}}>{{i.emocional}}</td>
+                        <td style="text-align: center;" value={{i.fisico}}>{{i.fisico}}</td>
+                        <td style="text-align: center ;" value={{i.timestamp}}>{{i.timestamp}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
         {% endif %}
     </main>

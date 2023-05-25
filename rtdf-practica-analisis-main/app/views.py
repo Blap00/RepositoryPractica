@@ -137,7 +137,7 @@ def grbas(request):
             print(form.errors)
             return redirect('grbas')
 
-
+@user_passes_test(validate)
 def esv(request):
     if request.method =='GET':
         #GET RUT
@@ -162,6 +162,13 @@ def esv(request):
             pacientes = Profesional_Paciente.objects.filter(id_profesional_salud= profesional)
             form = Esv.objects.filter(id_fonoaudiologo = username )
             return render(request, 'app/esv.html',{"user_type":user_type,"paciente":pacientes,"form":form, "formulario":formulario,'user_fonod':fonoaud})        
+        else:
+            if request.user.is_superuser:
+                form = Esv.objects.all()
+                return render(request, 'app/esv.html',{"user_type":user_type, "form":form })
+            else:
+                print("no tiene pacientes")
+                return render(request, 'app/esv.html',{"user_type":user_type})
     if request.method == 'POST':
         print(request.POST)
         #Get the ID_PACIENTE that already sent
@@ -186,6 +193,7 @@ def esv(request):
         else:
             print(form.errors)
             return redirect('esv')
+
 @user_passes_test(validate)
 def rasati(request):
 
@@ -219,6 +227,7 @@ def rasati(request):
             # print(formulario)
 
             return render(request, 'app/rasati.html',{"user_type":user_type, "paciente":pacientes, "form":form, "formulario":formulario})
+        
         else:
             if request.user.is_superuser:
                 form = Rasati.objects.all()

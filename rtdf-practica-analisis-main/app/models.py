@@ -356,6 +356,7 @@ class Esv(models.Model):
     id = models.BigAutoField(primary_key=True)
     id_paciente =  models.CharField(max_length=100)
     id_fonoaudiologo= models.CharField(max_length=100)
+    
     timestamp = models.DateTimeField(auto_now_add=True)
     p1=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)
     p2=models.CharField(max_length=1, choices=RESPUESTAS_CHOICES_ESV)

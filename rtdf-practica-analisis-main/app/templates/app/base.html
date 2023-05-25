@@ -29,7 +29,7 @@
                 </div>
                 {% endif %}
                 <!-- Nav -->
-                <nav id="nav">
+                <nav id="nav" >
                     <ul>
                         {% if user_type == 'Paciente' %}
                         <li class="current">
@@ -41,15 +41,17 @@
                             <a href="">{{ user.username}}</a>
                         </li>
                         {%  elif request.user.is_superuser%}
-                        <li class="current">
-                            <li><a href="{% url 'update_csv_view' %}">Analisis</a></li>
-                            <li><a href="{% url 'rasati' %}" >RASATI</a></li>
-                            <li><a href="{% url 'grbas' %}" >GRBAS</a></li>
-                            <li><a href="{% url 'esv' %}" >ESV</a></li>
-                            <li><a href="{% url 'registro' %}" >Registrar Usuarios</a></li>
-                            <li><a href="{% url 'preregistrados' %}" >Usuarios Pre-Registrados</a></li>
-                            <li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
-                        </li>
+                        <div style="padding-top: 3rem;">
+                            <li class="current" >
+                                <li><a href="{% url 'update_csv_view' %}">Analisis</a></li>
+                                <li><a href="{% url 'rasati' %}" >RASATI</a></li>
+                                <li><a href="{% url 'grbas' %}" >GRBAS</a></li>
+                                <li><a href="{% url 'esv' %}" >ESV</a></li>
+                                <li><a href="{% url 'registro' %}" >Registrar Usuarios</a></li>
+                                <li><a href="{% url 'preregistrados' %}" >Usuarios Pre-Registrados</a></li>
+                                <li><a href="{% url 'logout' %}">Cerrar Sesion</a></li>
+                            </li>    
+                        </div>
                         {%  elif user_type == 'Enfermera' or  user_type == 'Fonoaudiólogo' %}
                         <li class="current">
                             <li><a href="{% url 'grbas' %}" >GRBAS</a></li>
@@ -96,7 +98,7 @@
         </div>
 
         <!-- AQUI VA EL CONTENIDO -->
-        <div class="container-wrapper">
+        <div style="padding-top: 2rem;" class="container-wrapper">
             {% block contenido %}
 
             {% endblock %}
