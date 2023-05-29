@@ -103,18 +103,18 @@ DATABASES = {
     }
 }
 ##CLOUD DATABASE
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'OPTIONS': {
-#             'sql_mode': 'traditional',
-#         },
-#         'NAME': "FabianPalma001$practica",
-#         'USER': "FabianPalma001",
-#         'PASSWORD': "c4FdL3#!V%TUg6jMne",
-#         'HOST': "FabianPalma001.mysql.pythonanywhere-services.com",
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'sql_mode': 'traditional',
+        },
+        'NAME': "FabianPalma001$practica",
+        'USER': "FabianPalma001",
+        'PASSWORD': "c4FdL3#!V%TUg6jMne",
+        'HOST': "FabianPalma001.mysql.pythonanywhere-services.com",
+    }
+}
 
 
 # Password validation
