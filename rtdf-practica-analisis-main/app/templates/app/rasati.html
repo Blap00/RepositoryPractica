@@ -154,7 +154,6 @@
           <tr>
             <th style="text-align: center;" scope="col">#</th>
             <th style="text-align: center;" scope="col">Paciente</th>
-            <th style="text-align: center;" scope="col">TimeStamp</th>
             <th style="text-align: center;" scope="col">R</th>
             <th style="text-align: center;" scope="col">A</th>
             <th style="text-align: center;" scope="col">S</th>
@@ -162,6 +161,7 @@
             <th style="text-align: center;" scope="col">T</th>
             <th style="text-align: center;" scope="col">I</th>
             <th style="text-align: center;" scope="col">Comentario</th>
+            <th style="text-align: center;" scope="col">TimeStamp</th>
           </tr>
         </thead>
         <tbody>
@@ -170,7 +170,6 @@
           <tr id={{i.id}}>
             <th style="text-align: center;" value={{i.id}}>{{i.id}}</th>
             <th style="text-align: center;" value={{i.id_paciente}}>{{i.id_paciente}}</th>
-            <th style="text-align: center ;" value={{i.timestamp}}>{{i.timestamp}}</th>
             <td style="text-align: center;" value={{i.R}}>{{i.R}}</td>
             <td style="text-align: center;" value={{i.A}}>{{i.A1}}</td>
             <td style="text-align: center;" value={{i.S}}>{{i.S}}</td>
@@ -178,6 +177,7 @@
             <td style="text-align: center;" value={{i.T}}>{{i.T}}</td>
             <td style="text-align: center;" value={{i.I}}>{{i.I}}</td>
             <td style="text-align: center;" value={{i.Comentario}}>{{i.Comentario}}</td>
+            <td style="text-align: center ;" value={{i.timestamp}}>{{i.timestamp}}</td>
           </tr>
 {% endfor %}
         </tbody>

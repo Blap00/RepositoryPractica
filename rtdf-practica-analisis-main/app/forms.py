@@ -21,12 +21,6 @@ class PreRegistroFrom(forms.ModelForm):
         fields = ('rut','nombre', 'apellido'  , 'email', 'telefono','tipo_user')
 
 class GrbasFrom(forms.ModelForm):
-    # G = forms.MultipleChoiceField(choices=RESPUESTAS_CHOICES, widget=forms.CheckboxSelectMultiple())
-    # R = forms.MultipleChoiceField(choices=RESPUESTAS_CHOICES, widget=forms.CheckboxSelectMultiple())
-    # B = forms.MultipleChoiceField(choices=RESPUESTAS_CHOICES, widget=forms.CheckboxSelectMultiple())
-    # A = forms.MultipleChoiceField(choices=RESPUESTAS_CHOICES, widget=forms.CheckboxSelectMultiple())
-    # S = forms.MultipleChoiceField(choices=RESPUESTAS_CHOICES, widget=forms.CheckboxSelectMultiple())
-    timestamp = models.DateTimeField(auto_now_add=True)
     class Meta:
         model = Grbas
         fields = ['id_fonoaudilogo', 'id_paciente', 'timestamp', 'G', 'R', 'B', 'A', 'S', 'Comentario']

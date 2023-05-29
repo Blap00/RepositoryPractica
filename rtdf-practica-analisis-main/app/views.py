@@ -104,6 +104,8 @@ def grbas(request):
             #Get value of Id_profesional_salud, where is equal to 2
             pacientes = Profesional_Paciente.objects.filter(id_profesional_salud= profesional)
 
+            form= Grbas.objects.order_by('-timestamp')
+
             return render(request, 'app/grbas.html',{"user_type":user_type,"pacientes":pacientes, "form":form, "formulario":formulario})
         else:
             if request.user.is_superuser:
@@ -162,6 +164,7 @@ def esv(request):
             #Get value of Id_profesional_salud, where is equal to 2
             pacientes = Profesional_Paciente.objects.filter(id_profesional_salud= profesional)
             form = Esv.objects.filter(id_fonoaudiologo = username )
+            form= Esv.objects.order_by('-timestamp')
             return render(request, 'app/esv.html',{"user_type":user_type,"paciente":pacientes,"form":form, "formulario":formulario,'user_fonod':fonoaud})        
         else:
             if request.user.is_superuser:
@@ -226,6 +229,7 @@ def rasati(request):
             #Get value of Id_profesional_salud, where is equal to 2
             pacientes = Profesional_Paciente.objects.filter(id_profesional_salud= profesional)
             # print(formulario)
+            form= Rasati.objects.order_by('-timestamp')
 
             return render(request, 'app/rasati.html',{"user_type":user_type, "paciente":pacientes, "form":form, "formulario":formulario})
         
