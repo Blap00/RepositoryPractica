@@ -7,6 +7,7 @@
 {% endblock %}
 {% block contenido %}
 <link type="text/css" rel="stylesheet" href="{% static 'app/css/preregistrados.css' %}">
+<link type="text/css" rel="stylesheet" href="{% static 'app/css/rasatiform.css' %}">
 
 
 <script src="{% static 'app/js/jquery-3.6.1.min.js' %}"></script>
@@ -36,7 +37,7 @@
   </div>
   <div class="row">
       <div class="col-3">
-        <label for="FORMULARIO-R-id" id="FORMULARIO-R">Ronquera (R):</label>
+        <label class="labelAlign"  for="FORMULARIO-R-id" id="FORMULARIO-R">Ronquera (R):</label>
           <select name="R" onchange="ocultarError(name)" id="FORMULARIO-R-id">  
             <option value="" selected disabled>Seleccione valor:</option>
             {% for choice in formulario.R.field.choices %}
@@ -49,7 +50,7 @@
         </div>
 
       <div class="col-3">
-        <label for="FORMULARIO-A1-id" id="FORMULARIO-A1">Aspereza (A): </label>
+        <label class="labelAlign" for="FORMULARIO-A1-id" id="FORMULARIO-A1">Aspereza (A): </label>
           <select name="A1" onchange="ocultarError(name)" id="FORMULARIO-A1-id">  
             <option value="" selected disabled>Seleccione valor:</option>
             {% for choice in formulario.A1.field.choices %}
@@ -61,7 +62,7 @@
           <div id="error-messageA1"></div>
       </div>
       <div class="col-3">
-        <label for="FORMULARIO-S-id" id="FORMULARIO-S">Soplo(S): </label>
+        <label class="labelAlign" for="FORMULARIO-S-id" id="FORMULARIO-S">Soplo(S): </label>
           <select name="S" onchange="ocultarError(name)" id="FORMULARIO-S-id">  
             <option value="" selected disabled>Seleccione valor:</option>
             {% for choice in formulario.S.field.choices %}
@@ -73,7 +74,7 @@
           <div id="error-messageS"></div>
       </div>
       <div class="col-3">
-        <label for="FORMULARIO-A2-id" id="FORMULARIO-A2">Astenia(A): </label>
+        <label class="labelAlign" for="FORMULARIO-A2-id" id="FORMULARIO-A2">Astenia(A): </label>
           <select name="A2" onchange="ocultarError(name)" id="FORMULARIO-A2-id">  
             <option value="" selected disabled>Seleccione valor:</option>
             {% for choice in formulario.A2.field.choices %}
@@ -88,7 +89,7 @@
 
   <div class="row">
     <div class="col-6">
-      <label style="text-align: center;" for="FORMULARIO-T-id" id="FORMULARIO-T">Tensi&oacute;n (T): </label>
+      <label class="labelAlign" for="FORMULARIO-T-id" id="FORMULARIO-T">Tensi&oacute;n (T): </label>
         <select name="T" onchange="ocultarError(name)" id="FORMULARIO-T-id">  
           <option value="" selected disabled>Seleccione valor:</option>
           {% for choice in formulario.T.field.choices %}
@@ -101,7 +102,7 @@
 
   </div>
     <div class="col-6">
-      <label style="text-align: center;" for="FORMULARIO-I-id" id="FORMULARIO-I">Inestabilidad (I):   </label>
+      <label class="labelAlign"  for="FORMULARIO-I-id" id="FORMULARIO-I">Inestabilidad (I):   </label>
         <select name="I" onchange="ocultarError(name)" id="FORMULARIO-I-id">  
           <option value="" selected disabled>Seleccione valor:</option>
           {% for choice in formulario.I.field.choices %}
@@ -115,12 +116,7 @@
   </div>
   <br>
 <div class="row">
-      <div class="col-6">
-        {{ formulario.id_paciente }}
-        {{ formulario.id_fonoaudilogo }}
-        {{ formulario.timestamp }}
-      </div>
-      <div class="col-12" style="margin-top: -6vw;">
+      <div class="col-12" style="margin-top: 0; padding: 0px 0px 0px 0px!important;">
         {{ formulario.Comentario.label_tag }}
         {{ formulario.Comentario }}
       </div>
