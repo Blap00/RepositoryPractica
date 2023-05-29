@@ -53,10 +53,11 @@ def index(request):
                 id = id['id_profesional']
                 pacientes = Profesional_Paciente.objects.filter(id_profesional_salud = id)
                 print(pacientes)
-            # id = pacientes.values('id_paciente').first()
-            # print(id)
-            #books = Profesional_Paciente.objects.prefetch_related('id_paciente').filter(id_profesional_salud = id )
-            #pacientes = books
+                id = pacientes.values('id_paciente').first()
+                # print(id)
+                books = Profesional_Paciente.objects.prefetch_related('id_paciente').filter(id_profesional_salud = id )
+                pacientes = books
+                print(pacientes)
             except:
                 pass
             d = Paciente.objects.all()

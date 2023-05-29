@@ -7,7 +7,7 @@
 {% endblock %}
 {% block contenido %}
 <link type="text/css" rel="stylesheet" href="{% static 'app/css/preregistrados.css' %}">
-
+<link type="text/css" rel="stylesheet" href="{% static 'app/css/grbasForm.css' %}">
 <script src="{% static 'app/js/jquery-3.6.1.min.js' %}"></script>
 
 <!-- CONTENIDO principal -->
@@ -19,28 +19,29 @@
 
 
 
-<div style="width:100%; display:flex; justify-content:center; margin:5px;">
+<div class="mainformCss">
 
 <main class="form-signin">
 
   {% if request.user.is_superuser %}
   {% else %}
-
-    <div class="col-6">
-      <h4>Pacientes</h4>
-
-      <select id="pacientes" name="pacientes" class="form-control" style="width:100%;" required>
-        <option value="null" disabled selected>Seleccione un paciente</option> <!---->
-        {% for p in pacientes %}
-        <option value="{{ p.id_prof_paci }}">{{ p.id_paciente }}</option>
-        {% endfor %}
-      </select>
+    <div class="row">
+      <div class="col-12">
+        <h4>Pacientes</h4>
+        <select id="pacientes" name="pacientes" class="form-control" style="width:100%;" required>
+          <option value="null" disabled selected>Seleccione un paciente</option> <!---->
+          {% for p in pacientes %}
+          <option value="{{ p.id_prof_paci }}">{{ p.id_paciente }}</option>
+          {% endfor %}
+        </select>
+      </div>
     </div>
     
-  <form id="mi-formulario" action="" method="post" style="margin-top:5rem;">
+    
+  <form id="mi-formulario" class="formcssin" action="" method="post" >
     {% csrf_token %}
     <div class="row">
-      <div class="col-2">
+      <div class="col-6">
         <label  for="{{ formulario.G.id }}" id="label-{{ formulario.G.id }}" onclick="document.getElementById('{{ formulario.G.id }}').click()">Grado de disfonia (G): </label>
         <select name="{{ formulario.G.name }}" id="id_G">
           <option value="" selected disabled>Seleccione valor:</option>
@@ -52,7 +53,7 @@
         </select>
         <div id="error-messageG"></div>
       </div>      
-      <div class="col-2">
+      <div class="col-6">
         <label  for="{{ formulario.R.id }}" id="label-{{ formulario.R.id }}" onclick="document.getElementById('{{ formulario.R.id }}').click()">Rugosidad de la Voz (R):  </label>
         <select name="{{ formulario.R.name }}" id="id_R"> 
           <option value="" selected disabled>Seleccione valor:</option>
@@ -64,7 +65,9 @@
         </select>
         <div id="error-messageR"></div>
       </div>
-      <div class="col-2">
+      </div>
+      <div class="row">
+      <div class="col-6">
         <label  for="{{ formulario.B.id }}" id="label-{{ formulario.B.id }}" onclick="document.getElementById('{{ formulario.B.id }}').click()">Respiracion dificultosa (B):  </label>
         <select name="{{ formulario.B.name }}" id="id_B">
           <option value="" selected disabled>Seleccione valor:</option>
@@ -76,7 +79,7 @@
         </select>
         <div id="error-messageB"></div>
       </div>
-      <div class="col-2">
+      <div class="col-6">
         <label  for="{{ formulario.A.id }}" id="label-{{ formulario.A.id }}" onclick="document.getElementById('{{ formulario.A.id }}').click()">Astenia (A):  </label>
         <select name="{{ formulario.A.name }}" id="id_A">
           <option value="" selected disabled>Seleccione valor:</option>
@@ -88,8 +91,11 @@
         </select>
         <div id="error-messageA"></div>
       </div>
-      <div class="col-2">
-        <label  for="{{ formulario.S.id }}" id="label-{{ formulario.S.id }}" onclick="document.getElementById('{{ formulario.S.id }}').click()">Tensi&oacute;n vocal (S):  </label>
+    </div>
+    <div class="row">
+      <div class="col-12">
+
+        <label class="labelCenter" for="{{ formulario.S.id }}" id="label-{{ formulario.S.id }}" onclick="document.getElementById('{{ formulario.S.id }}').click()">Tensi&oacute;n vocal (S):  </label>
         <select name="{{ formulario.S.name }}" id="id_S">
           <option value="" selected disabled>Seleccione valor:</option>
           {% for choice in formulario.S.field.choices %}
@@ -100,25 +106,26 @@
         </select>
         <div id="error-messageS"></div>
       </div> 
-
-    </div> 
-    <div class="row">
-
-    </div>   
-    <div class="row">
-      <div class="col-2">
-        {{ formulario.id_paciente }}
-        {{ formulario.id_fonoaudilogo }}
-        {{ formulario.timestamp }}        
-      </div>
-      
     </div>
     <div class="row">
       <div class="col-12">
         {{ formulario.Comentario.label_tag }}
         {{ formulario.Comentario }}
       </div>
+
     </div>
+    <div class="col-12">
+      {{ formulario.id_paciente }}
+      {{ formulario.id_fonoaudilogo }}
+      {{ formulario.timestamp }}        
+    </div>  
+    </div>   
+
+
+      
+    
+
+
     {% endif%}
 
     {% if request.user.is_superuser %}

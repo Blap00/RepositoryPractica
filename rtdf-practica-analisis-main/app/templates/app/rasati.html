@@ -113,15 +113,21 @@
         <div id="error-messageI"></div>
     </div>
   </div>
-<div class="row" style="margin-top: -3vw;">
+  <br>
+<div class="row">
       <div class="col-6">
         {{ formulario.id_paciente }}
         {{ formulario.id_fonoaudilogo }}
         {{ formulario.timestamp }}
       </div>
-      <div class="col-12">
+      <div class="col-12" style="margin-top: -6vw;">
         {{ formulario.Comentario.label_tag }}
         {{ formulario.Comentario }}
+      </div>
+      <div class="col-6" style="display: none; position: absolute;">
+        {{ formulario.id_paciente }}
+        {{ formulario.id_fonoaudilogo }}
+        {{ formulario.timestamp }}
       </div>
 </div>
 
