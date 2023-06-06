@@ -25,7 +25,10 @@ class GrbasFrom(forms.ModelForm):
         model = Grbas
         fields = ['id_fonoaudilogo', 'id_paciente', 'timestamp', 'G', 'R', 'B', 'A', 'S', 'Comentario']
 
-
+class EBCForm(forms.ModelForm):
+    class Meta:
+        model = EBC
+        fields  = '__all__'
 
 
 class RasatiFrom(forms.ModelForm):

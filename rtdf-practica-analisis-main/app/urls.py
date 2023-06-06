@@ -16,6 +16,7 @@ urlpatterns = [
     path('grbas/', grbas, name="grbas"),
     path('rasati/', rasati, name="rasati"),
     path('esv/', esv, name="esv"),
+    path('EBC-CPM/', ebc, name="ebc"),
     path('audios_pacientes/',audios_pacientes,name="audios_pacientes"),
     path('lista_pacientes/',lista_pacientes,name="lista_pacientes"),
     path('coeficientes_audio/',form_coeficientes,name="coeficientes_audio")

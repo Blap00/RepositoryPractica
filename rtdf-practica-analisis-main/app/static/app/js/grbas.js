@@ -25,6 +25,7 @@ $(document).ready(function() {
   $('#id_id_paciente').hide(); 
   $('#id_id_fonoaudilogo').hide();
   $('#id_timestamp').hide();
+  $('.sortable').DataTable();
 });
 
 // Validar campos y evitar envío del formulario

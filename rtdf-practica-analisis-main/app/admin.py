@@ -112,42 +112,14 @@ class RasatiAdmin(admin.ModelAdmin):
      list_display =['id_fonoaudilogo','id_paciente','timestamp','R','A1','S','A2','T','I','Comentario']
 admin.site.register(Rasati, RasatiAdmin)
 
-# ESV
-##,'p1','p2','p3','p4','p5','p6','p7','p8','p9','p10','p11','p12','p13','p14','p15','p16','p17','p18','p19','p20','p21','p22','p23','p24','p25','p26','p27','p28','p29','p30'
-# Alter table app_esv add COLUMN p1 varchar(2) not null
-# Alter table app_esv add COLUMN p2 varchar(2) not null
-# Alter table app_esv add COLUMN p3 varchar(2) not null
-# Alter table app_esv add COLUMN p4 varchar(2) not null
-# Alter table app_esv add COLUMN p5 varchar(2) not null
-# Alter table app_esv add COLUMN p6 varchar(2) not null
-# Alter table app_esv add COLUMN p7 varchar(2) not null
-# Alter table app_esv add COLUMN p8 varchar(2) not null
-# Alter table app_esv add COLUMN p9 varchar(2) not null
-# Alter table app_esv add COLUMN p10 varchar(2) not null
-# Alter table app_esv add COLUMN p11 varchar(2) not null
-# Alter table app_esv add COLUMN p12 varchar(2) not null
-# Alter table app_esv add COLUMN p13 varchar(2) not null
-# Alter table app_esv add COLUMN p14 varchar(2) not null
-# Alter table app_esv add COLUMN p15 varchar(2) not null
-# Alter table app_esv add COLUMN p16 varchar(2) not null
-# Alter table app_esv add COLUMN p17 varchar(2) not null
-# Alter table app_esv add COLUMN p18 varchar(2) not null
-# Alter table app_esv add COLUMN p19 varchar(2) not null
-# Alter table app_esv add COLUMN p20 varchar(2) not null
-# Alter table app_esv add COLUMN p21 varchar(2) not null
-# Alter table app_esv add COLUMN p22 varchar(2) not null
-# Alter table app_esv add COLUMN p23 varchar(2) not null
-# Alter table app_esv add COLUMN p24 varchar(2) not null
-# Alter table app_esv add COLUMN p25 varchar(2) not null
-# Alter table app_esv add COLUMN p26 varchar(2) not null
-# Alter table app_esv add COLUMN p27 varchar(2) not null
-# Alter table app_esv add COLUMN p28 varchar(2) not null
-# Alter table app_esv add COLUMN p29 varchar(2) not null
-# Alter table app_esv add COLUMN p30 varchar(2) not null
-
+# EvaluacionSintomasVocales
 class ESVAdmin(admin.ModelAdmin):
      list_display=['id','id_paciente','id_fonoaudiologo','timestamp','totalESV', 'limitacion','emocional','fisico']
 admin.site.register(Esv, ESVAdmin)
+# EvaluacionBiopsicosocial
+class EBCAdmin(admin.ModelAdmin):
+     list_display=['id','id_paciente','id_fonoaudiologo','timestamp','ActComun','part3Punt']
+admin.site.register(EBC, EBCAdmin)
 
 # #PROFESIONAL SALUD
 class ProfesionalAdmin(admin.ModelAdmin):

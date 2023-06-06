@@ -85,7 +85,8 @@ def grbas(request):
         #Request User type from user in this device
         user_type = str(request.user.id_tipo_user) #FonoAudiologo
         #Set id_fonoaudilogo as var username and query it!
-        formulario = GrbasFrom(initial={'id_fonoaudilogo': username})
+        formulario = GrbasFrom(initial={'id_fonoaudilogo': username}) 
+        
         #Try to get if profesional_salud.tipo_profesional = user_type
         data = Profesional_salud.objects.filter(rut_profesional = rut)       
         #Count how many profesional_salud.tipo_profesional= rut
@@ -139,6 +140,42 @@ def grbas(request):
         else:
             print(form.errors)
             return redirect('grbas')
+
+@user_passes_test(validate)
+def ebc(request):
+    if request.method =='GET':
+        #GET RUT
+        rut= str(request.user.rut)
+        #GET username from User.username
+        username = str(request.user.username) #PACIENTE USERNAME
+        #Get The ID from User.id
+        #GET USER_TYPE, ideal Paciente
+        user_type = str(request.user.id_tipo_user) #Fonoaudiologo
+        #Set Var Paciente on true if user_type=fonoaudiologo
+        fonoaud=(user_type=='Fonoaudiólogo')
+        #GET ESV form from forms.py and set id_paciente = username
+        # formulario = EBCForm(initial={'id_fonoaudiologo': username})
+        formulario= EBCForm(initial={'id_fonoaudiologo': username})
+        # get profesionalsalud rut to verify rol
+        data= Profesional_salud.objects.filter(rut_profesional = rut)
+        if data.count()==1:   
+            #Get kind of profesional, wich one was a "fonoaudiologo"
+            profesional = Profesional_Paciente.objects.filter(tipo_profesional= 2 ).first()
+            #Clean ID Value
+            profesional =profesional.id_profesional_salud
+            #Get value of Id_profesional_salud, where is equal to 2
+            pacientes = Profesional_Paciente.objects.filter(id_profesional_salud= profesional)
+            form = EBC.objects.filter(id_fonoaudiologo = username )
+            form= EBC.objects.order_by('-timestamp')
+            return render(request, 'app/EBC.html',{"user_type":user_type,"paciente":pacientes,"form":form, "formulario":formulario,'user_fonod':fonoaud})        
+        else:
+            if request.user.is_superuser:
+                form = EBC.objects.all()
+                return render(request, 'app/EBC.html',{"user_type":user_type, "form":form })
+            else:
+                print("no tiene pacientes")
+                return render(request, 'app/EBC.html',{"user_type":user_type})
+
 
 @user_passes_test(validate)
 def esv(request):
