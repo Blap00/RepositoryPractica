@@ -2,55 +2,97 @@
 document.addEventListener("DOMContentLoaded", function() {
     // Definir los datos de los campos y secciones
     const campos = [
-      { checkbox: "part2p1", clase: "resp1" },
-      { checkbox: "part2p7", clase: "resp2" },
-      { checkbox: "part2p13", clase: "resp3" },
-      { checkbox: "part2p19", clase: "resp4" },
-      // Agrega aquí más campos y secciones si es necesario
+        { checkbox: "part2p1", clase: "resp1" },
+        { checkbox: "part2p7", clase: "resp2" },
+        { checkbox: "part2p13", clase: "resp3" },
+        { checkbox: "part2p19", clase: "resp4" },
+        // Agrega aquí más campos y secciones si es necesario
     ];
-  
+
     // Función para verificar los campos y mostrar u ocultar las secciones correspondientes
     function verificarCampos() {
-      for (const campo of campos) {
-        const checkbox = document.getElementsByName(campo.checkbox)[0];
-        const elementos = document.getElementsByClassName(campo.clase);
-        
-        if (checkbox.checked) {
-          for (const elemento of elementos) {
-            elemento.style.display = "table-cell";
-          }
-        } else {
-          for (const elemento of elementos) {
-            elemento.style.display = "none";
-          }
+        for (const campo of campos) {
+            const checkbox = document.getElementsByName(campo.checkbox)[0];
+            const elementos = document.getElementsByClassName(campo.clase);
+
+            if (checkbox.checked) {
+                for (const elemento of elementos) {
+                    elemento.style.display = "table-cell";
+                }
+            } else {
+                for (const elemento of elementos) {
+                    elemento.style.display = "none";
+                }
+            }
         }
-      }
     }
-  
+
     // Función para agregar eventos a los checkboxes
     function agregarEventosCheckboxes() {
-      for (const campo of campos) {
-        const checkbox = document.getElementsByName(campo.checkbox)[0];
-        checkbox.addEventListener("change", verificarCampos);
-      }
+        for (const campo of campos) {
+            const checkbox = document.getElementsByName(campo.checkbox)[0];
+            checkbox.addEventListener("change", verificarCampos);
+        }
     }
-  
+
+    const campos1 = [
+        { radio: "p2p4i", input: "p2p4es" },
+        { radio: "p2p4p", input: "p2p4es" },
+        { radio: "p2p4c", input: "p2p4es" },
+        { radio: "p2p4o", input: "p2p4es" },
+        { radio: "p2p10i", input: "p2p10es" },
+        { radio: "p2p10p", input: "p2p10es" },
+        { radio: "p2p10c", input: "p2p10es" },
+        { radio: "p2p10o", input: "p2p10es" },
+        { radio: "p2p16i", input: "p2p16es" },
+        { radio: "p2p16p", input: "p2p16es" },
+        { radio: "p2p16c", input: "p2p16es" },
+        { radio: "p2p16o", input: "p2p16es" },
+        { radio: "p2p22i", input: "p2p22es" },
+        { radio: "p2p22p", input: "p2p22es" },
+        { radio: "p2p22c", input: "p2p22es" },
+        { radio: "p2p22o", input: "p2p22es" },       
+    ];
+      
+    function verificarCampos1() {
+        for (const campo of campos1) {
+            const radio = document.getElementById(campo.radio);
+            const input = document.getElementById(campo.input);
+            
+            if (radio.checked && radio.value === "Otro" && radio.id === campo.radio) {
+                input.style.display = "block";
+                input.disabled = false; // Habilitar el input
+            } else if (!radio.checked || radio.value !== "Otro" || radio.id !== campo.radio) { 
+                input.style.display = "none";
+                input.value = ""; // Limpiar el valor del input
+                input.disabled = true; // Deshabilitar el input
+            }
+        }
+    }
+      
+    // Agregar evento de cambio a los radio buttons
+    for (const campo of campos1) {
+        const radio = document.getElementById(campo.radio);
+        radio.addEventListener('change', verificarCampos1);
+    }
+      
+    // Llamar a la función verificarCampos1 para imprimir los valores chequeados inicialmente
+    verificarCampos1();
     verificarCampos();
     agregarEventosCheckboxes();
-  });
+});
+
   
 
 //FUNCIONES CHECK
 function checkchoice(preginicio, pregfinal, secc) {
     var hasCheckedField = false;
     var selectedValue = 0; // Variable para almacenar la suma de los valores seleccionados
-
     for (var i = preginicio; i <= pregfinal; i++) {
         var radioButtons = document.getElementsByName(`part${secc}p${i}`);
         var checked = false;
-
         for (var j = 0; j < radioButtons.length; j++) {
-            if (radioButtons[j].checked) {
+            if (radioButtons[j].checked) {        
                 checked = true;
                 selectedValue += Number(radioButtons[j].value); // Sumar el valor seleccionado
                 break;
@@ -138,7 +180,7 @@ $(document).ready(function() {
         }else{
             // console.log(checkfirstData)
         }
-    })
+    })//FIN REGISTRO DATOS
     $("#cont-form-ebc-2").click(function(){
         // console.log("CHECKCHOICES: ")
         if(checkchoice(1,12,1)!=null){
@@ -146,7 +188,7 @@ $(document).ready(function() {
         }else{
             // console.log(checkfirstData)
         }
-    })
+    })//FIN PARTE 1(1-1)
     $("#cont-form-ebc-3").click(function(){
         // console.log("CHECKCHOICES: ")
         if(checkchoice(13,19,1)!=null){
@@ -156,6 +198,10 @@ $(document).ready(function() {
         }else{
             // console.log(checkfirstData)
         }
+    }) //FIN PARTE 1(1-2), 
+    $("#cont-form-ebc-4").click(function(){
+        // if(checkchoice(1,24,2)!=null){
+        // }
     })
 
 

@@ -33,6 +33,7 @@ select #pacientes{
 .resp1, .resp2, .resp3, .resp4 {
     transition: opacity 0.5s ease;
 }  
+
 .input{
     display: none!important;
 }
@@ -101,7 +102,9 @@ body{
     width: 94vw;
 }
 .inputopc{
-    display: none!important;
+    /* display: none!important; */
+    -webkit-appearance: auto!important;
+    appearance: auto!important;
 }
 textarea{
     resize: none;   
