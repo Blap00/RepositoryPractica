@@ -22,7 +22,7 @@
         </div>
         {% else %}
         <div class="user-form">
-            <form action="" method="post">
+            <form id="mi-formulario" action="" method="post">
                 {% csrf_token %}
                 <div class="registro-datos" id="registro-datos">
                     <div class="generateid">
@@ -258,44 +258,43 @@
                                 </tr>
                                 <tr>
                                     <td class="responder">
-                                        <label >Conyuge: 
-                                            <label>
-                                                <h4>SI / NO</h4>
-                                                <input type="checkbox" name="{{ formulario.part2p1.name  }}" id="p2p1" checked>
-                                            </label>
-                                        </label>
+                                        <label for="p2p1">Conyuge: <label for="p2p1">SI/NO<input type="checkbox" name="{{ formulario.part2p1.name  }}" id="p2p1" checked></label></label>
                                     </td>
                                     <td class="responder resp1">
-                                            <label for="p2p2e">Esporádica<input type="radio" name="{{ formulario.part2p2.name  }}"value="Esporadica"{% if formulario.part2p2.value == "Esporadica" %}checked{% endif %} id="p2p2e"></label> <br>
-                                            <label for="p2p2m">Mensual<input type="radio" name="{{ formulario.part2p2.name  }}"value="Mensual"{% if formulario.part2p2.value == "Esporadica" %}checked{% endif %} id="p2p2m"></label> <br>
-                                            <input type="radio" name="{{ formulario.part2p2.name  }}"value="Semanal" id="p2p2s">Semanal <br> <!--AVANZAR-->
-                                            <input type="radio" name="{{ formulario.part2p2.name  }}"value="Diaria" id="p2p2d">Diaria <br>
-                                            <input type="radio" name="{{ formulario.part2p2.name  }}"value="Varias" id="p2p2v">Varias Veces al día
+                                            <label for="p2p2e">Esporádica<input type="radio" name="{{ formulario.part2p2.name  }}"value="Esporadica"{% if formulario.part2p2.value == "Esporadica" %}checked{% endif %} id="p2p2e"></label><br>
+                                            <label for="p2p2m">Mensual<input type="radio" name="{{ formulario.part2p2.name  }}"value="Mensual"{% if formulario.part2p2.value == "Mensual" %}checked{% endif %} id="p2p2m"></label><br>
+                                            <label for="p2p2s">Semanal<input type="radio" name="{{ formulario.part2p2.name  }}"value="Semanal" {% if formulario.part2p2.value == "Semanal" %}checked{% endif %} id="p2p2s"></label><br> 
+                                            <label for="p2p2d">Diaria<input type="radio" name="{{ formulario.part2p2.name  }}"value="Diaria" {% if formulario.part2p2.value == "Diaria" %}checked{% endif %} id="p2p2d"></label><br>
+                                            <label for="p2p2v">Varias veces<input type="radio" name="{{ formulario.part2p2.name  }}"value="Varias" {% if formulario.part2p2.value == "Varias" %}checked{% endif %} id="p2p2v"></label>
                                     </td>
                                     <td class="responder resp1">
-                                            <input type="radio" name="{{ formulario.part2p3.name  }}" value="0a15" id="p2p31">0-15min<br>
-                                            <input type="radio" name="{{ formulario.part2p3.name  }}" value="15a30" id="p2p32">15-30min<br>
-                                            <input type="radio" name="{{ formulario.part2p3.name  }}" value="30a60" id="p2p33">30-60min<br>
-                                            <input type="radio" name="{{ formulario.part2p3.name  }}" value="60mas" id="p2p34">60 o más min
+                                            <label for="p2p31">0-15min<input type="radio" name="{{ formulario.part2p3.name  }}" {% if formulario.part2p3.value == "0a15" %}checked{% endif %} value="0a15" id="p2p31"></label><br>
+                                            <label for="p2p32">15-30min<input type="radio" name="{{ formulario.part2p3.name  }}" {% if formulario.part2p3.value == "15a30" %}checked{% endif %} value="15a30" id="p2p32"></label><br>
+                                            <label for="p2p33">30-60min<input type="radio" name="{{ formulario.part2p3.name  }}" {% if formulario.part2p3.value == "30a60" %}checked{% endif %} value="30a60" id="p2p33"></label><br>
+                                            <label for="p2p34">60 o más min<input type="radio" name="{{ formulario.part2p3.name  }}" {% if formulario.part2p3.value == "60mas" %}checked{% endif %}value="60mas" id="p2p34"></label>
                                     </td>
                                     <td class="responder resp1">
-                                            <input type="radio" name="{{ formulario.part2p4.name  }}"value="Satisfaccion" id="p2p4i">Sobre satisfacción de necesidades vitales.<br>
-                                            <input type="radio" name="{{ formulario.part2p4.name  }}"value="Emociones/Propositos" id="p2p4p">Sobre emociones o propósitos de vida.<br>
-                                            <input type="radio" name="{{ formulario.part2p4.name  }}"value="Noticias/Informaciones" id="p2p4c">Sobre noticias diarias o información mundial.<br>
-                                            <input type="radio" name="{{ formulario.part2p4.name  }}" value="Otro" id="p2p4o">Otro, especifique: <!--Al momento de hacer click despliega input opc-->
-                                            <input type="text" class="inputopc opc1" name="opcfunconver1" id="p2p4es"> <!--Guarda el valor aut-->
+                                            <label for="p2p4i">Sobre satisfacción de necesidades vitales.<input type="radio" name="{{ formulario.part2p4.name  }}"value="Satisfaccion" id="p2p4i" {% if formulario.part2p4.value == "Satisfaccion" %}checked{% endif %}></label><br>
+                                            <label for="p2p4p">Sobre emociones o propósitos de vida.<input type="radio" name="{{ formulario.part2p4.name  }}"value="Emociones/Propositos" id="p2p4p" {% if formulario.part2p4.value == "Emociones/Propositos" %}checked{% endif %}></label><br>
+                                            <label for="p2p4c">Sobre noticias diarias o información mundial.<input type="radio" name="{{ formulario.part2p4.name  }}"value="Noticias/Informaciones" id="p2p4c" {% if formulario.part2p4.value == "Noticias/Informaciones" %}checked{% endif %}></label><br>
+                                            <label for="p2p4o">Otro, especifique:<input type="radio" name="{{ formulario.part2p4.name  }}" value="Otro" id="p2p4o" {% if formulario.part2p4.value == "Otro" %}checked{% endif %}> <!--Al momento de hacer click despliega input opc--></label><br>
+                                            <label for="p2p4es"><input type="text" class="inputopc opc1" placeholder="Otro..." name="{{ formulario.opcfunconver1.name }}" id="p2p4es"></label>
                                     </td>
                                     <td class="responder resp1">
-                                            <input type="radio" name="part2p5" value="Nada" id="p2p5ns">Nada satisfecho.<br>
-                                            <input type="radio" name="part2p5" value="Poco" id="p2p5po">Poco satisfecho<br>
-                                            <input type="radio" name="part2p5" value="Medianamente" id="p2p5me">Medianamente satisfecho<br>
-                                            <input type="radio" name="part2p5" value="Satisfecho" id="p2p5sa">Satisfecho<br>
-                                            <input type="radio" name="part2p5" value="Muy satisfecho" id="p2p5ms">Muy Satisfecho
+                                            <label for="p2p5ns">Nada satisfecho.<input type="radio" name="{{ formulario.part2p5.name  }}" value="Nada" id="p2p5ns"{% if formulario.part2p5.value == "Nada" %}checked{% endif %}></label><br>
+                                            <label for="p2p5po">Poco satisfecho.<input type="radio" name="{{ formulario.part2p5.name  }}" value="Poco" id="p2p5po"{% if formulario.part2p5.value == "Poco" %}checked{% endif %}></label><br>
+                                            <label for="p2p5me">Medianamente satisfecho.<input type="radio" name="{{ formulario.part2p5.name  }}" value="Medianamente" id="p2p5me"{% if formulario.part2p5.value == "Medianamente" %}checked{% endif %}></label><br>
+                                            <label for="p2p5sa">Satisfecho.<input type="radio" name="{{ formulario.part2p5.name  }}" value="Satisfecho" id="p2p5sa"{% if formulario.part2p5.value == "Satisfecho" %}checked{% endif %}></label><br>
+                                            <label for="p2p5ms">Muy Satisfecho.<input type="radio" name="{{ formulario.part2p5.name  }}" value="Muy satisfecho" id="p2p5ms"{% if formulario.part2p5.value == "Muy satisfecho" %}checked{% endif %}></label>
                                     </td>
-                                    
                                 </tr>
                                 <tr class="responder">
-                                    <td colspan="5" class="resp1"><textarea class="textAr"name="part2p6" id="p2p6AC" cols="30" rows="5" placeholder=" Otros aspectos cualitativos para complementar (lazos afectivos, motivaciones, contextos, rutinas diarias, etc.) en relación con OTROS FAMILIARES (puede también especificar con quiénes). Señale también Ambiente comunicativo, características facilitadoras y/o barreras que existen en el contexto."></textarea></td>
+                                    <td colspan="5" class="resp1"><textarea class="textAr"name="{{ formulario.part2p6.name  }}" id="p2p6AC" cols="30" rows="5" 
+                                        placeholder=" Otros aspectos cualitativos para complementar (lazos afectivos, motivaciones, contextos,
+                                         rutinas diarias, etc.) en relación con OTROS FAMILIARES (puede también especificar con quiénes). Señale 
+                                         también Ambiente comunicativo, características facilitadoras y/o barreras que existen en el contexto.">
+                                        </textarea>
+                                    </td>
                                 </tr>
                                 <div id="Separaciondetexto">
                                     <tr class="separacion">
@@ -315,46 +314,43 @@
                                 </tr>
                                 <tr>
                                     <td class="responder">
-                                        <label >Hijos / as: 
-                                            <label>
-                                                <h4>SI / NO</h4>
-                                                <input type="checkbox" name="part2p7" id="p2p7" checked>
-                                            </label>
-                                        </label>                                            
+                                        <label for="p2p7">Hijos/as: <label for="p2p7">SI/NO<input type="checkbox" name="{{ formulario.part2p7.name  }}" id="p2p7" checked></label></label>                                           
                                     </td>
                                     <td class="responder resp2">
-                                        <input type="radio" name="part2p8"value="Esporadica" id="p2p8e">Esporádica <br>
-                                        <input type="radio" name="part2p8"value="Mensual" id="p2p8m">Mensual <br>
-                                        <input type="radio" name="part2p8"value="Semanal" id="p2p8s">Semanal <br>
-                                        <input type="radio" name="part2p8"value="Diaria" id="p2p8d">Diaria <br>
-                                        <input type="radio" name="part2p8"value="Varias" id="p2p8v">Varias Veces al día
+                                        <label for="p2p8e">Esporádica<input type="radio" name="{{ formulario.part2p8.name  }}"value="Esporadica"{% if formulario.part2p8.value == "Esporadica" %}checked{% endif %} id="p2p8e"></label><br>
+                                        <label for="p2p8m">Mensual<input type="radio" name="{{ formulario.part2p8.name  }}"value="Mensual"{% if formulario.part2p8.value == "Mensual" %}checked{% endif %} id="p2p8m"></label><br>
+                                        <label for="p2p8s">Semanal<input type="radio" name="{{ formulario.part2p8.name  }}"value="Semanal" {% if formulario.part2p8.value == "Semanal" %}checked{% endif %} id="p2p8s"></label><br> 
+                                        <label for="p2p8d">Diaria<input type="radio" name="{{ formulario.part2p8.name  }}"value="Diaria" {% if formulario.part2p8.value == "Diaria" %}checked{% endif %} id="p2p8d"></label><br>
+                                        <label for="p2p8v">Varias veces<input type="radio" name="{{ formulario.part2p8.name  }}"value="Varias" {% if formulario.part2p8.value == "Varias" %}checked{% endif %} id="p2p8v"></label>
                                     </td>
                                     <td class="responder resp2">
-                                        <input type="radio" name="part2p9" value="0a15"id="p2p91">0-15min<br>
-                                        <input type="radio" name="part2p9" value="15a30"id="p2p92">15-30min<br>
-                                        <input type="radio" name="part2p9" value="30a60"id="p2p93">30-60min<br>
-                                        <input type="radio" name="part2p9" value="60mas"id="p2p94">60 o más min
+                                        <label for="p2p91">0-15min<input type="radio" name="{{ formulario.part2p9.name  }}" {% if formulario.part2p9.value == "0a15" %}checked{% endif %} value="0a15" id="p2p91"></label><br>
+                                        <label for="p2p92">15-30min<input type="radio" name="{{ formulario.part2p9.name  }}" {% if formulario.part2p9.value == "15a30" %}checked{% endif %} value="15a30" id="p2p92"></label><br>
+                                        <label for="p2p93">30-60min<input type="radio" name="{{ formulario.part2p9.name  }}" {% if formulario.part2p9.value == "30a60" %}checked{% endif %} value="30a60" id="p2p93"></label><br>
+                                        <label for="p2p94">60 o más min<input type="radio" name="{{ formulario.part2p9.name  }}" {% if formulario.part2p9.value == "60mas" %}checked{% endif %}value="60mas" id="p2p94"></label>
                                     </td>
                                     <td class="responder resp2">
-                                        <input type="radio" name="part2p10"value="Satisfaccion"  id="p2p10i">Sobre satisfacción de necesidades vitales.<br>
-                                        <input type="radio" name="part2p10"value="Emociones/Propositos" id="p2p10p">Sobre emociones o propósitos de vida.<br>
-                                        <input type="radio" name="part2p10"value="Noticias/Informaciones" id="p2p10c">Sobre noticias diarias o información mundial.<br>
-                                        <input type="radio" name="part2p10" value="Otro" id="p2p10o">Otro, especifique:
-                                        <input type="text" class="inputopc opc2" name="opcfunconver2" id="p2p10es">
-                                        <!-- preg 4 -->
+                                        <label for="p2p10i">Sobre satisfacción de necesidades vitales.<input type="radio" name="{{ formulario.part2p10.name  }}"value="Satisfaccion" id="p2p10i" {% if formulario.part2p10.value == "Satisfaccion" %}checked{% endif %}></label><br>
+                                        <label for="p2p10p">Sobre emociones o propósitos de vida.<input type="radio" name="{{ formulario.part2p10.name  }}"value="Emociones/Propositos" id="p2p10p" {% if formulario.part2p10.value == "Emociones/Propositos" %}checked{% endif %}></label><br>
+                                        <label for="p2p10c">Sobre noticias diarias o información mundial.<input type="radio" name="{{ formulario.part2p10.name  }}"value="Noticias/Informaciones" id="p2p10c" {% if formulario.part2p10.value == "Noticias/Informaciones" %}checked{% endif %}></label><br>
+                                        <label for="p2p10o">Otro, especifique:<input type="radio" name="{{ formulario.part2p10.name  }}" value="Otro" id="p2p10o" {% if formulario.part2p10.value == "Otro" %}checked{% endif %}> <!--Al momento de hacer click despliega input opc--></label><br>
+                                        <label for="p2p10es"><input type="text" class="inputopc opc2" placeholder="Otro..." name="{{ formulario.opcfunconver2.name }}" id="p2p10es"></label>
                                     </td>
                                     <td class="responder resp2">
-                                        <input type="radio" name="part2p11" value="Nada" id="p2p11ns">Nada satisfecho.<br>
-                                        <input type="radio" name="part2p11" value="Poco" id="p2p11po">Poco satisfecho<br>
-                                        <input type="radio" name="part2p11" value="Medianamente" id="p2p11me">Medianamente satisfecho<br>
-                                        <input type="radio" name="part2p11" value="Satisfecho" id="p2p11sa">Satisfecho<br>
-                                        <input type="radio" name="part2p11" value="Muy satisf"id="p2p11ms">Muy Satisfecho
-
-                                        <!-- preg 5 -->
+                                        <label for="p2p11ns">Nada satisfecho.<input type="radio" name="{{ formulario.part2p11.name  }}" value="Nada" id="p2p11ns"{% if formulario.part2p11.value == "Nada" %}checked{% endif %}></label><br>
+                                        <label for="p2p11po">Poco satisfecho.<input type="radio" name="{{ formulario.part2p11.name  }}" value="Poco" id="p2p11po"{% if formulario.part2p11.value == "Poco" %}checked{% endif %}></label><br>
+                                        <label for="p2p11me">Medianamente satisfecho.<input type="radio" name="{{ formulario.part2p11.name  }}" value="Medianamente" id="p2p11me"{% if formulario.part2p11.value == "Medianamente" %}checked{% endif %}></label><br>
+                                        <label for="p2p11sa">Satisfecho.<input type="radio" name="{{ formulario.part2p11.name  }}" value="Satisfecho" id="p2p11sa"{% if formulario.part2p11.value == "Satisfecho" %}checked{% endif %}></label><br>
+                                        <label for="p2p11ms">Muy Satisfecho.<input type="radio" name="{{ formulario.part2p11.name  }}" value="Muy satisfecho" id="p2p11ms"{% if formulario.part2p11.value == "Muy satisfecho" %}checked{% endif %}></label>
                                     </td>
                                 </tr>
                                 <tr class="responder">
-                                    <td colspan="5" class="resp2"><textarea class="textAr"name="part2p12" id="p2p12AC" cols="30" rows="5" placeholder=" Otros aspectos cualitativos para complementar (lazos afectivos, motivaciones, contextos, rutinas diarias, etc.) en relación con OTROS FAMILIARES (puede también especificar con quiénes). Señale también Ambiente comunicativo, características facilitadoras y/o barreras que existen en el contexto."></textarea></td>
+                                    <td colspan="5" class="resp2"><textarea class="textAr"name="{{ formulario.part2p12.name  }}" id="p2p12AC" cols="30" rows="5" 
+                                        placeholder=" Otros aspectos cualitativos para complementar (lazos afectivos, motivaciones, contextos, 
+                                        rutinas diarias, etc.) en relación con OTROS FAMILIARES (puede también especificar con quiénes). Señale 
+                                        también Ambiente comunicativo, características facilitadoras y/o barreras que existen 
+                                        en el contexto."></textarea>
+                                    </td>
                                 </tr>  
                                 <div id="Separaciondetexto">
                                     <tr class="separacion">
@@ -374,48 +370,43 @@
                                 </tr>
                                 <tr>
                                     <td class="responder">
-                                        <label >Otros familiares:
-                                            <label>
-                                                <h4>SI / NO</h4>
-                                                <input type="checkbox" name="part2p13" id="p2p13" checked>
-                                            </label>
-                                        </label>
+                                        <label for="p2p13">Otros familiares: <label for="p2p13">SI/NO<input type="checkbox" name="{{ formulario.part2p13.name  }}" id="p2p13" checked></label></label>
                                     </td>
                                     <td class="responder resp3">
-                                        <input type="radio" name="part2p14" value="Esporadica"id="p2p14e">Esporádica <br>
-                                        <input type="radio" name="part2p14" value="Mensual"id="p2p14m">Mensual <br>
-                                        <input type="radio" name="part2p14" value="Semanal"id="p2p14s">Semanal <br>
-                                        <input type="radio" name="part2p14" value="Diaria"id="p2p14d">Diaria <br>
-                                        <input type="radio" name="part2p14" value="Varias"id="p2p14v">Varias Veces al día
+                                        <label for="p2p14e">Esporádica<input type="radio" name="{{ formulario.part2p14.name  }}"value="Esporadica"{% if formulario.part2p14.value == "Esporadica" %}checked{% endif %} id="p2p14e"></label><br>
+                                        <label for="p2p14m">Mensual<input type="radio" name="{{ formulario.part2p14.name  }}"value="Mensual"{% if formulario.part2p14.value == "Mensual" %}checked{% endif %} id="p2p14m"></label><br>
+                                        <label for="p2p14s">Semanal<input type="radio" name="{{ formulario.part2p14.name  }}"value="Semanal" {% if formulario.part2p14.value == "Semanal" %}checked{% endif %} id="p2p14s"></label><br> 
+                                        <label for="p2p14d">Diaria<input type="radio" name="{{ formulario.part2p14.name  }}"value="Diaria" {% if formulario.part2p14.value == "Diaria" %}checked{% endif %} id="p2p14d"></label><br>
+                                        <label for="p2p14v">Varias veces<input type="radio" name="{{ formulario.part2p14.name  }}"value="Varias" {% if formulario.part2p14.value == "Varias" %}checked{% endif %} id="p2p14v"></label>
                                     </td>
                                     <td class="responder resp3">
-                                        <input type="radio" name="part2p15"value="0a15" id="p2p151">0-15min<br>
-                                        <input type="radio" name="part2p15" value="15a30"id="p2p152">15-30min<br>
-                                        <input type="radio" name="part2p15" value="30a60"id="p2p153">30-60min<br>
-                                        <input type="radio" name="part2p15" value="60mas"id="p2p154">60 o más min
+                                        <label for="p2p151">0-15min<input type="radio" name="{{ formulario.part2p15.name  }}" {% if formulario.part2p15.value == "0a15" %}checked{% endif %} value="0a15" id="p2p151"></label><br>
+                                        <label for="p2p152">15-30min<input type="radio" name="{{ formulario.part2p15.name  }}" {% if formulario.part2p15.value == "15a30" %}checked{% endif %} value="15a30" id="p2p152"></label><br>
+                                        <label for="p2p153">30-60min<input type="radio" name="{{ formulario.part2p15.name  }}" {% if formulario.part2p15.value == "30a60" %}checked{% endif %} value="30a60" id="p2p153"></label><br>
+                                        <label for="p2p154">60 o más min<input type="radio" name="{{ formulario.part2p15.name  }}" {% if formulario.part2p15.value == "60mas" %}checked{% endif %}value="60mas" id="p2p154"></label>
                                     </td>
                                     <td class="responder resp3">
-                                        <input type="radio" name="part2p16" value="Satisfaccion"  id="p2p16i">Sobre satisfacción de necesidades vitales.<br>
-                                        <input type="radio" name="part2p16" value="Emociones/Propositos" id="p2p16p">Sobre emociones o propósitos de vida.<br>
-                                        <input type="radio" name="part2p16" value="Noticias/Informaciones" id="p2p16c">Sobre noticias diarias o información mundial.<br>
-                                        <input type="radio" name="part2p16" value="Otro" id="p2p16o">Otro, especifique:
-                                        <input type="text" class="inputopc opc3" name="opcfunconver3" id="p2p16es">
-                                        <!-- preg 4 -->
+                                        <label for="p2p16i">Sobre satisfacción de necesidades vitales.<input type="radio" name="{{ formulario.part2p16.name  }}"value="Satisfaccion" id="p2p16i" {% if formulario.part2p16.value == "Satisfaccion" %}checked{% endif %}></label><br>
+                                        <label for="p2p16p">Sobre emociones o propósitos de vida.<input type="radio" name="{{ formulario.part2p16.name  }}"value="Emociones/Propositos" id="p2p16p" {% if formulario.part2p16.value == "Emociones/Propositos" %}checked{% endif %}></label><br>
+                                        <label for="p2p16c">Sobre noticias diarias o información mundial.<input type="radio" name="{{ formulario.part2p16.name  }}"value="Noticias/Informaciones" id="p2p16c" {% if formulario.part2p16.value == "Noticias/Informaciones" %}checked{% endif %}></label><br>
+                                        <label for="p2p16o">Otro, especifique:<input type="radio" name="{{ formulario.part2p16.name  }}" value="Otro" id="p2p16o" {% if formulario.part2p16.value == "Otro" %}checked{% endif %}> <!--Al momento de hacer click despliega input opc--></label><br>
+                                        <label for="p2p16es"><input type="text" class="inputopc opc3" placeholder="Otro..." name="{{ formulario.opcfunconver3.name }}" id="p2p16es"></label>
                                     </td>
                                     <td class="responder resp3">
-                                        <input type="radio" name="part2p17" value="Nada" id="p2p17ns">Nada satisfecho.<br>
-                                        <input type="radio" name="part2p17" value="Poco" id="p2p17po">Poco satisfecho<br>
-                                        <input type="radio" name="part2p17" value="Medianamente" id="p2p17me">Medianamente satisfecho<br>
-                                        <input type="radio" name="part2p17" value="Satisfecho" id="p2p17sa">Satisfecho<br>
-                                        <input type="radio" name="part2p17" value="Muy satisf"id="p2p17ms">Muy Satisfecho
-
-                                        <!-- preg 5 -->
+                                        <label for="p2p17ns">Nada satisfecho.<input type="radio" name="{{ formulario.part2p17.name  }}" value="Nada" id="p2p17ns"{% if formulario.part2p17.value == "Nada" %}checked{% endif %}></label><br>
+                                        <label for="p2p17po">Poco satisfecho.<input type="radio" name="{{ formulario.part2p17.name  }}" value="Poco" id="p2p17po"{% if formulario.part2p17.value == "Poco" %}checked{% endif %}></label><br>
+                                        <label for="p2p17me">Medianamente satisfecho.<input type="radio" name="{{ formulario.part2p17.name  }}" value="Medianamente" id="p2p17me"{% if formulario.part2p17.value == "Medianamente" %}checked{% endif %}></label><br>
+                                        <label for="p2p17sa">Satisfecho.<input type="radio" name="{{ formulario.part2p17.name  }}" value="Satisfecho" id="p2p17sa"{% if formulario.part2p17.value == "Satisfecho" %}checked{% endif %}></label><br>
+                                        <label for="p2p17ms">Muy Satisfecho.<input type="radio" name="{{ formulario.part2p17.name  }}" value="Muy satisfecho" id="p2p17ms"{% if formulario.part2p17.value == "Muy satisfecho" %}checked{% endif %}></label>
                                     </td>
                                 </tr>
                                 <tr class="responder">
                                     <td colspan="5" class="resp3">
                                     <!-- ASPECTOS CUALITATIVOS -->
-                                        <textarea class="textAr"name="part2p18" id="p2p17AC" cols="30" rows="5" placeholder=" Otros aspectos cualitativos para complementar (lazos afectivos, motivaciones, contextos, rutinas diarias, etc.) en relación con OTROS FAMILIARES (puede también especificar con quiénes). Señale también Ambiente comunicativo, características facilitadoras y/o barreras que existen en el contexto."></textarea>
+                                        <textarea class="textAr"name="{{ formulario.part2p18.name  }}" id="p2p17AC" cols="30" rows="5" 
+                                        placeholder=" Otros aspectos cualitativos para complementar (lazos afectivos, motivaciones, contextos, rutinas diarias, etc.) 
+                                        en relación con OTROS FAMILIARES (puede también especificar con quiénes). Señale también Ambiente comunicativo, características 
+                                        facilitadoras y/o barreras que existen en el contexto."></textarea>
                                     </td>
                                 </tr>    
                                 <div id="Separaciondetexto">
@@ -446,48 +437,43 @@
                                     </tr>
                                     <tr>
                                         <td class="responder">
-                                            <label >Otras personas: 
-                                                <label>
-                                                    <h4>SI / NO</h4>
-                                                    <input type="checkbox" name="part2p19" id="p2p19" checked>
-                                                </label>
-                                            </label>
+                                            <label for="p2p19">Otros familiares: <label for="p2p19">SI/NO<input type="checkbox" name="{{ formulario.part2p19.name  }}" id="p2p19" checked></label></label>
                                         </td>
                                         <td class="responder resp4">
-                                            <input type="radio" name="part2p20"value="Esporadica" id="p2p20e">Esporádica <br>
-                                            <input type="radio" name="part2p20" value="Mensual"id="p2p20m">Mensual <br>
-                                            <input type="radio" name="part2p20" value="Semanal"id="p2p20s">Semanal <br>
-                                            <input type="radio" name="part2p20" value="Diaria"id="p2p20d">Diaria <br>
-                                            <input type="radio" name="part2p20" value="Varias"id="p2p20v">Varias Veces al día
+                                            <label for="p2p20e">Esporádica<input type="radio" name="{{ formulario.part2p20.name  }}"value="Esporadica"{% if formulario.part2p20.value == "Esporadica" %}checked{% endif %} id="p2p20e"></label><br>
+                                            <label for="p2p20m">Mensual<input type="radio" name="{{ formulario.part2p20.name  }}"value="Mensual"{% if formulario.part2p20.value == "Mensual" %}checked{% endif %} id="p2p20m"></label><br>
+                                            <label for="p2p20s">Semanal<input type="radio" name="{{ formulario.part2p20.name  }}"value="Semanal" {% if formulario.part2p20.value == "Semanal" %}checked{% endif %} id="p2p20s"></label><br> 
+                                            <label for="p2p20d">Diaria<input type="radio" name="{{ formulario.part2p20.name  }}"value="Diaria" {% if formulario.part2p20.value == "Diaria" %}checked{% endif %} id="p2p20d"></label><br>
+                                            <label for="p2p20v">Varias veces<input type="radio" name="{{ formulario.part2p20.name  }}"value="Varias" {% if formulario.part2p20.value == "Varias" %}checked{% endif %} id="p2p20v"></label>
                                         </td>
                                         <td class="responder resp4">
-                                            <input type="radio" name="part2p21" value="0a15"id="p2p211">0-15min<br>
-                                            <input type="radio" name="part2p21" value="15a30"id="p2p212">15-30min<br>
-                                            <input type="radio" name="part2p21" value="30a60"id="p2p213">30-60min<br>
-                                            <input type="radio" name="part2p21" value="60mas"id="p2p214">60 o más min
+                                            <label for="p2p211">0-15min<input type="radio" name="{{ formulario.part2p21.name  }}" {% if formulario.part2p21.value == "0a15" %}checked{% endif %} value="0a15" id="p2p211"></label><br>
+                                            <label for="p2p212">15-30min<input type="radio" name="{{ formulario.part2p21.name  }}" {% if formulario.part2p21.value == "15a30" %}checked{% endif %} value="15a30" id="p2p212"></label><br>
+                                            <label for="p2p213">30-60min<input type="radio" name="{{ formulario.part2p21.name  }}" {% if formulario.part2p21.value == "30a60" %}checked{% endif %} value="30a60" id="p2p213"></label><br>
+                                            <label for="p2p214">60 o más min<input type="radio" name="{{ formulario.part2p21.name  }}" {% if formulario.part2p21.value == "60mas" %}checked{% endif %}value="60mas" id="p2p214"></label>
                                         </td>
                                         <td class="responder resp4">
-                                            <input type="radio" name="part2p22"value="Satisfaccion" id="p2p22i">Sobre satisfacción de necesidades vitales.<br>
-                                            <input type="radio" name="part2p22"value="Emociones/Propositos" id="p2p22p">Sobre emociones o propósitos de vida.<br>
-                                            <input type="radio" name="part2p22"value="Noticias/Informaciones" id="p2p22c">Sobre noticias diarias o información mundial.<br>
-                                            <input type="radio" name="part2p22" value="Otro" id="p2p22o">Otro, especifique:
-                                            <input type="text" class="inputopc opc4" name="opcfunconver4" id="p2p22es">
-                                            <!-- preg 4 -->
+                                            <label for="p2p22i">Sobre satisfacción de necesidades vitales.<input type="radio" name="{{ formulario.22.name  }}"value="Satisfaccion" id="p2p22i" {% if formulario.22.value == "Satisfaccion" %}checked{% endif %}></label><br>
+                                            <label for="p2p22p">Sobre emociones o propósitos de vida.<input type="radio" name="{{ formulario.22.name  }}"value="Emociones/Propositos" id="p2p22p" {% if formulario.22.value == "Emociones/Propositos" %}checked{% endif %}></label><br>
+                                            <label for="p2p22c">Sobre noticias diarias o información mundial.<input type="radio" name="{{ formulario.22.name  }}"value="Noticias/Informaciones" id="p2p22c" {% if formulario.22.value == "Noticias/Informaciones" %}checked{% endif %}></label><br>
+                                            <label for="p2p22o">Otro, especifique:<input type="radio" name="{{ formulario.22.name  }}" value="Otro" id="p2p22o" {% if formulario.22.value == "Otro" %}checked{% endif %}> <!--Al momento de hacer click despliega input opc--></label><br>
+                                            <label for="p2p22es"><input type="text" class="inputopc opc3" placeholder="Otro..." name="{{ formulario.opcfunconver4.name }}" id="p2p22es"></label>
                                         </td>
                                         <td class="responder resp4">
-                                            <input type="radio" name="part2p23" value="Nada" id="p2p23ns">Nada satisfecho.<br>
-                                            <input type="radio" name="part2p23" value="Poco" id="p2p23po">Poco satisfecho<br>
-                                            <input type="radio" name="part2p23" value="Medianamente" id="p2p23me">Medianamente satisfecho<br>
-                                            <input type="radio" name="part2p23" value="Satisfecho" id="p2p23sa">Satisfecho<br>
-                                            <input type="radio" name="part2p23" value="Muy satisf"id="p2p23ms">Muy Satisfecho
-
-                                            <!-- preg 5 -->
+                                            <label for="p2p23ns">Nada satisfecho.<input type="radio" name="{{ formulario.part2p23.name  }}" value="Nada" id="p2p23ns"{% if formulario.part2p23.value == "Nada" %}checked{% endif %}></label><br>
+                                            <label for="p2p23po">Poco satisfecho.<input type="radio" name="{{ formulario.part2p23.name  }}" value="Poco" id="p2p23po"{% if formulario.part2p23.value == "Poco" %}checked{% endif %}></label><br>
+                                            <label for="p2p23me">Medianamente satisfecho.<input type="radio" name="{{ formulario.part2p23.name  }}" value="Medianamente" id="p2p23me"{% if formulario.part2p23.value == "Medianamente" %}checked{% endif %}></label><br>
+                                            <label for="p2p23sa">Satisfecho.<input type="radio" name="{{ formulario.part2p23.name  }}" value="Satisfecho" id="p2p23sa"{% if formulario.part2p23.value == "Satisfecho" %}checked{% endif %}></label><br>
+                                            <label for="p2p23ms">Muy Satisfecho.<input type="radio" name="{{ formulario.part2p23.name  }}" value="Muy satisfecho" id="p2p23ms"{% if formulario.part2p23.value == "Muy satisfecho" %}checked{% endif %}></label>
                                         </td>
                                     </tr>
                                     <tr class="responder">
                                         <td colspan="5" class="resp4">
                                         <!-- ASPECTOS CUALITATIVOS -->
-                                            <textarea class="textAr"name="part2p24" id="p2p24AC" cols="30" rows="5" placeholder=" Otros aspectos cualitativos para complementar (lazos afectivos, motivaciones, contextos, rutinas diarias, etc.) en relación con OTROS FAMILIARES (puede también especificar con quiénes). Señale también Ambiente comunicativo, características facilitadoras y/o barreras que existen en el contexto."></textarea>
+                                            <textarea class="textAr"name="{{ formulario.part2p24.name  }}" id="p2p24AC" cols="30" rows="5" 
+                                            placeholder=" Otros aspectos cualitativos para complementar (lazos afectivos, motivaciones, contextos, 
+                                            rutinas diarias, etc.) en relación con OTROS FAMILIARES (puede también especificar con quiénes). Señale también 
+                                            Ambiente comunicativo, características facilitadoras y/o barreras que existen en el contexto."></textarea>
                                         </td>
                                     </tr>    
 
@@ -546,13 +532,13 @@
                                         1.¿La persona tiene dificultad para hablar directamente?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p1" value="1" id="part3p1s">
+                                        <input type="radio" name="{{ formulario.part3p1.name }}" value="1" id="part3p1s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p1" value="0.5" id="part3p1a">
+                                        <input type="radio" name="{{ formulario.part3p1.name }}" value="0.5" id="part3p1a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p1" value="0" id="part3p1n">
+                                        <input type="radio" name="{{ formulario.part3p1.name }}" value="0" id="part3p1n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp1" id="Obserp1">
@@ -563,13 +549,13 @@
                                         2.¿La persona presenta modificaciones en la velocidad de su habla?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p2" value="1" id="part3p2s">
+                                        <input type="radio" name="{{ formulario.part3p2.name }}" value="1" id="part3p2s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p2" value="0.5" id="part3p2a">
+                                        <input type="radio" name="{{ formulario.part3p2.name }}" value="0.5" id="part3p2a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p2" value="0" id="part3p2n">
+                                        <input type="radio" name="{{ formulario.part3p2.name }}" value="0" id="part3p2n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp2" id="Obserp2">
@@ -585,13 +571,13 @@
                                         3. ¿La persona marca la entonación de las palabras y frases adecuadamente, subrayando los aspectos más importantes y su estado de ánimo?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p3" value="1" id="part3p3s">
+                                        <input type="radio" name="{{ formulario.part3p3.name }}" value="1" id="part3p3s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p3" value="0.5" id="part3p3a">
+                                        <input type="radio" name="{{ formulario.part3p3.name }}" value="0.5" id="part3p3a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p3" value="0" id="part3p3n">
+                                        <input type="radio" name="{{ formulario.part3p3.name }}" value="0" id="part3p3n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp3" id="Obserp3">
@@ -607,13 +593,13 @@
                                         4. ¿La persona habla a un volumen comprensible y adecuado según lugar en el que se comunica?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p4" value="1" id="part3p4s">
+                                        <input type="radio" name="{{ formulario.part3p4.name }}" value="1" id="part3p4s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p4" value="0.5" id="part3p4a">
+                                        <input type="radio" name="{{ formulario.part3p4.name }}" value="0.5" id="part3p4a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p4" value="0" id="part3p4n">
+                                        <input type="radio" name="{{ formulario.part3p4.name }}" value="0" id="part3p4n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp4" id="Obserp4">
@@ -624,13 +610,13 @@
                                         5. ¿La persona presenta una emisión de la voz disfónica?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p5" value="1" id="part3p5s">
+                                        <input type="radio" name="{{ formulario.part3p5.name }}" value="1" id="part3p5s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p5" value="0.5" id="part3p5a">
+                                        <input type="radio" name="{{ formulario.part3p5.name }}" value="0.5" id="part3p5a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p5" value="0" id="part3p5n">
+                                        <input type="radio" name="{{ formulario.part3p5.name }}" value="0" id="part3p5n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp5" id="Obserp5">
@@ -646,13 +632,13 @@
                                         6. ¿Tengo que subir el volumen de mi voz para que la persona  mayor me entienda?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p6" value="1" id="part3p6s">
+                                        <input type="radio" name="{{ formulario.part3p6.name }}" value="1" id="part3p6s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p6" value="0.5" id="part3p6a">                                        
+                                        <input type="radio" name="{{ formulario.part3p6.name }}" value="0.5" id="part3p6a">                                        
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p6" value="0" id="part3p6n">
+                                        <input type="radio" name="{{ formulario.part3p6.name }}" value="0" id="part3p6n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp6" id="Obserp6">
@@ -663,13 +649,13 @@
                                         7. ¿Tengo que hablar más lento para que la persona mayor me  entienda?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p7" value="1" id="part3p7s">
+                                        <input type="radio" name="{{ formulario.part3p7.name }}" value="1" id="part3p7s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p7" value="0.5" id="part3p7a">
+                                        <input type="radio" name="{{ formulario.part3p7.name }}" value="0.5" id="part3p7a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p7" value="0" id="part3p7n">
+                                        <input type="radio" name="{{ formulario.part3p7.name }}" value="0" id="part3p7n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp7" id="Obserp7">
@@ -690,13 +676,13 @@
                                         8. ¿La persona me comprende cuando utilizo frases largas?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p8" value="1" id="part3p8s">
+                                        <input type="radio" name="{{ formulario.part3p8.name }}" value="1" id="part3p8s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p8" value="0.5" id="part3p8a">
+                                        <input type="radio" name="{{ formulario.part3p8.name }}" value="0.5" id="part3p8a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p8" value="0" id="part3p8n">
+                                        <input type="radio" name="{{ formulario.part3p8.name }}" value="0" id="part3p8n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp8" id="Obserp8">
@@ -707,13 +693,13 @@
                                         9. ¿La persona responde solamente lo que se le pide alrealizarle una pregunta?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p9" value="1" id="part3p9s">
+                                        <input type="radio" name="{{ formulario.part3p9.name }}" value="1" id="part3p9s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p9" value="0.5" id="part3p9a">
+                                        <input type="radio" name="{{ formulario.part3p9.name }}" value="0.5" id="part3p9a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p9" value="0" id="part3p9n">
+                                        <input type="radio" name="{{ formulario.part3p9.name }}" value="0" id="part3p9n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp9" id="Obserp9">
@@ -729,13 +715,13 @@
                                         10. ¿La persona utiliza frases largas, que me dan información que no conocía?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p10" value="1" id="part3p10s">
+                                        <input type="radio" name="{{ formulario.part3p10.name }}" value="1" id="part3p10s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p10" value="0.5" id="part3p10a">
+                                        <input type="radio" name="{{ formulario.part3p10.name }}" value="0.5" id="part3p10a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p10" value="0" id="part3p10n">
+                                        <input type="radio" name="{{ formulario.part3p10.name }}" value="0" id="part3p10n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp10" id="Obserp10">
@@ -746,13 +732,13 @@
                                         11. ¿La persona es capaz de darme respuestas completas, que me dan información que no le pedía directamente?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p11" value="1" id="part3p11s">
+                                        <input type="radio" name="{{ formulario.part3p11.name }}" value="1" id="part3p11s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p11" value="0.5" id="part3p11a">
+                                        <input type="radio" name="{{ formulario.part3p11.name }}" value="0.5" id="part3p11a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p11" value="0" id="part3p11n">
+                                        <input type="radio" name="{{ formulario.part3p11.name }}" value="0" id="part3p11n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp11" id="Obserp11">
@@ -773,13 +759,13 @@
                                         12. ¿La persona usa palabras o nombres incorrectos para nombrar algo?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p12" value="1" id="part3p12s">
+                                        <input type="radio" name="{{ formulario.part3p12.name }}" value="1" id="part3p12s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p12" value="0.5" id="part3p12a">
+                                        <input type="radio" name="{{ formulario.part3p12.name }}" value="0.5" id="part3p12a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p12" value="0" id="part3p12n">
+                                        <input type="radio" name="{{ formulario.part3p12.name }}" value="0" id="part3p12n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp12" id="Obserp12">
@@ -790,13 +776,13 @@
                                         13. ¿A la persona le cuesta encontrar la palabra correcta y mantiene la conversación sin encontrarla?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p13" value="1" id="part3p13s">
+                                        <input type="radio" name="{{ formulario.part3p13.name }}" value="1" id="part3p13s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p13" value="0.5" id="part3p13a">
+                                        <input type="radio" name="{{ formulario.part3p13.name }}" value="0.5" id="part3p13a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p13" value="0" id="part3p13n">
+                                        <input type="radio" name="{{ formulario.part3p13.name }}" value="0" id="part3p13n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp13" id="Obserp13">
@@ -807,13 +793,13 @@
                                         14. ¿La persona, cuando no encuentra la palabra, busca estrategias  para explicarse?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p14" value="1" id="part3p14s">
+                                        <input type="radio" name="{{ formulario.part3p14.name }}" value="1" id="part3p14s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p14" value="0.5" id="part3p14a">
+                                        <input type="radio" name="{{ formulario.part3p14.name }}" value="0.5" id="part3p14a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p14" value="0" id="part3p14n">
+                                        <input type="radio" name="{{ formulario.part3p14.name }}" value="0" id="part3p14n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp14" id="Obserp14">
@@ -829,13 +815,13 @@
                                         15. ¿La persona utiliza correctamente convenciones sociales, como saludar o despedirse?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p15" value="1" id="part3p15s">
+                                        <input type="radio" name="{{ formulario.part3p15.name }}" value="1" id="part3p15s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p15" value="0.5" id="part3p15a">
+                                        <input type="radio" name="{{ formulario.part3p15.name }}" value="0.5" id="part3p15a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p15" value="0" id="part3p15n">
+                                        <input type="radio" name="{{ formulario.part3p15.name }}" value="0" id="part3p15n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp15" id="Obserp15">
@@ -846,13 +832,13 @@
                                         16. ¿La persona comienza las conversaciones de forma adecuada, sin brusquedad?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p16" value="1" id="part3p16s">
+                                        <input type="radio" name="{{ formulario.part3p16.name }}" value="1" id="part3p16s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p16" value="0.5" id="part3p16a">
+                                        <input type="radio" name="{{ formulario.part3p16.name }}" value="0.5" id="part3p16a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p16" value="0" id="part3p16n">
+                                        <input type="radio" name="{{ formulario.part3p16.name }}" value="0" id="part3p16n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp16" id="Obserp16">
@@ -863,13 +849,13 @@
                                         17. ¿La persona tiene problemas en responderme cuando es su turno para hablar?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p17" value="1" id="part3p17s">
+                                        <input type="radio" name="{{ formulario.part3p17.name }}" value="1" id="part3p17s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p17" value="0.5" id="part3p17a">
+                                        <input type="radio" name="{{ formulario.part3p17.name }}" value="0.5" id="part3p17a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p17" value="0" id="part3p17n">
+                                        <input type="radio" name="{{ formulario.part3p17.name }}" value="0" id="part3p17n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp17" id="Obserp17">
@@ -880,13 +866,13 @@
                                         18. ¿La persona se detiene cuando está hablando y hace largas pausas antes de continuar?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p18" value="1" id="part3p18s">
+                                        <input type="radio" name="{{ formulario.part3p18.name }}" value="1" id="part3p18s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p18" value="0.5" id="part3p18a">
+                                        <input type="radio" name="{{ formulario.part3p18.name }}" value="0.5" id="part3p18a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p18" value="0" id="part3p18n">
+                                        <input type="radio" name="{{ formulario.part3p18.name }}" value="0" id="part3p18n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp18" id="Obserp18">
@@ -897,13 +883,13 @@
                                         19. ¿La persona me interrumpe cuando estamos conversando?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p19" value="1" id="part3p19s">
+                                        <input type="radio" name="{{ formulario.part3p19.name }}" value="1" id="part3p19s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p19" value="0.5" id="part3p19a">
+                                        <input type="radio" name="{{ formulario.part3p19.name }}" value="0.5" id="part3p19a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p19" value="0" id="part3p19n">
+                                        <input type="radio" name="{{ formulario.part3p19.name }}" value="0" id="part3p19n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp19" id="Obserp19">
@@ -914,13 +900,13 @@
                                         20. ¿La persona es capaz de introducir temas nuevos en la  conversación?
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p20" value="1" id="part3p20s">
+                                        <input type="radio" name="{{ formulario.part3p20.name }}" value="1" id="part3p20s">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p20" value="0.5" id="part3p20a">
+                                        <input type="radio" name="{{ formulario.part3p20.name }}" value="0.5" id="part3p20a">
                                     </td>
                                     <td>
-                                        <input type="radio" name="part3p20" value="0" id="part3p20n">
+                                        <input type="radio" name="{{ formulario.part3p20.name }}" value="0" id="part3p20n">
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp20" id="Obserp20">
@@ -930,7 +916,7 @@
                         </table>
                     </div>
                     <div class="centerbtn" id="Button-RD1">
-                        <button type="button" id="cont-form-ebc-5">Continuar</button>
+                        <button type="button" id="cont-form-ebc-5">Enviar formulario</button>
                     </div>
                 </div>
                 <div class="table">
@@ -960,9 +946,6 @@
                         </tbody>
                     </table>
                 </div>
-                <!-- <div class="ocult"> -->
-                    {{ formulario }}
-                <!-- </div> -->
             </form>
         </div>
     </div>

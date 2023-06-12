@@ -153,8 +153,7 @@ def ebc(request):
         user_type = str(request.user.id_tipo_user) #Fonoaudiologo
         #Set Var Paciente on true if user_type=fonoaudiologo
         fonoaud=(user_type=='Fonoaudiólogo')
-        #GET ESV form from forms.py and set id_paciente = username
-        # formulario = EBCForm(initial={'id_fonoaudiologo': username})
+        #GET ebc form from forms.py and set id_paciente = username
         formulario= EBCForm(initial={'id_fonoaudiologo': username})
         # get profesionalsalud rut to verify rol
         data= Profesional_salud.objects.filter(rut_profesional = rut)
@@ -175,6 +174,29 @@ def ebc(request):
             else:
                 print("no tiene pacientes")
                 return render(request, 'app/EBC.html',{"user_type":user_type})
+    if request.method == 'POST':
+        #Get the ID_PACIENTE that already sent
+        # id_prof_paciente=request.POST.get('id_paciente')
+        #filter all the tables to get the id_paciente
+        # formpac=Profesional_Paciente.objects.filter(id_prof_paci = id_prof_paciente)
+        #Clean the ID to get a INT
+        # numpac = formpac.values('id_paciente').get()['id_paciente']
+        #Get the username of the user.ID= profesional.paciente.id
+        # formpac=Usuario.objects.get(id= numpac)
+        #set Var USERNAME = user.ID(Usuario.ID)
+        # username=formpac
+        #GET COPY OF REQUEST
+        datacopy = request.POST.copy()
+        #SET id_paciente as the same Username!
+        # datacopy['id_paciente'] = username
+
+        form = EBCForm(data=datacopy)        
+        if form.is_valid():
+            form.save() 
+            return redirect('ebc')
+        else:
+            print(form.errors)
+            return redirect('ebc')
 
 
 @user_passes_test(validate)

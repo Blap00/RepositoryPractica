@@ -113,10 +113,25 @@ function checkchoice(preginicio, pregfinal, secc) {
         var radioButtons = document.getElementsByName(`part${secc}p${i}`);
         var checked = false;
         for (var j = 0; j < radioButtons.length; j++) {
-            if (radioButtons[j].checked) {        
-                checked = true;
-                selectedValue += Number(radioButtons[j].value); // Sumar el valor seleccionado
-                break;
+            if(setanalfab()){
+                if(i==17 || i==18){
+                    checked = true;
+                    radioButtons[j].value=0;
+                    selectedValue += 0; // Sumar el valor seleccionado
+                    break;            
+                }else{
+                    if (radioButtons[j].checked) {            
+                        checked = true;
+                        selectedValue += Number(radioButtons[j].value); // Sumar el valor seleccionado
+                        break;    
+                    }    
+                }
+            }else{
+                if (radioButtons[j].checked) {            
+                    checked = true;
+                    selectedValue += Number(radioButtons[j].value); // Sumar el valor seleccionado
+                    break;    
+                }    
             }
         }
 
@@ -156,12 +171,34 @@ function setAnswer(pregIni, pregFin, secc) {
         var bdDate= document.querySelector("#id_part"+secc+"p"+i); //dato de BBDD
         // IDFBBDD_id_part1p1
         var radioButtons = document.getElementsByName(`part${secc}p${i}`); //GET RADIOBUTTONS
+        // for (var j = 0; j < radioButtons.length; j++) {
+        //     if (radioButtons[j].checked) { //SI ESTA CHEQUEADO
+        //         selectedValue = Number(radioButtons[j].value); // obtener el valor seleccionado
+        //         bdDate.value=selectedValue; //enviar a BBDD
+        //         selectTotal+=Number(radioButtons[j].value);
+        //         break;
+        //     }
+        // }
         for (var j = 0; j < radioButtons.length; j++) {
-            if (radioButtons[j].checked) { //SI ESTA CHEQUEADO
-                selectedValue = Number(radioButtons[j].value); // obtener el valor seleccionado
-                bdDate.value=selectedValue; //enviar a BBDD
-                selectTotal+=Number(radioButtons[j].value);
-                break;
+            if(setanalfab()){
+                if(i==17 || i==18){
+                    checked = true;
+                    radioButtons[j].value=0;
+                    selectedValue += 0; // Sumar el valor seleccionado
+                    break;            
+                }else{
+                    if (radioButtons[j].checked) {            
+                        checked = true;
+                        selectedValue += Number(radioButtons[j].value); // Sumar el valor seleccionado
+                        break;    
+                    }    
+                }
+            }else{
+                if (radioButtons[j].checked) {            
+                    checked = true;
+                    selectedValue += Number(radioButtons[j].value); // Sumar el valor seleccionado
+                    break;    
+                }    
             }
         }
     }
@@ -183,30 +220,38 @@ function setAnswer(pregIni, pregFin, secc) {
         }
     }
     else{
-        if(selectTotal>=17){
-            return "Actividad comunicativa normal.";
-        }else if(selectTotal<=16){
-            return "Déficit de actividad comunicativa.";
+        if(secc==1){
+            if(selectTotal>=17){
+                return "Actividad comunicativa normal.";
+            }else if(selectTotal<=16){
+                return "Déficit de actividad comunicativa.";
+            }
+        }
+        else if(secc==3){
+            if(selectTotal==20){
+                return "Funcionalidad comunicativa normal.";
+            }
+            else if(selectTotal<=18){
+                return "déficit de la funcionalidad comunicativa.";
+            }
         }
     }
 }
-
-function setanalfab(){
-    var isanalfab= $('#RDA').checked
-    if(isanalfab){
-        $('#pregalf1').hide();
-        $('#pregalf2').hide();
-        console.log("hide")
-    }else{
-        $('#pregalf1').hide();
-        $('#pregalf2').hide(); //NO FUNCIONA
-        console.log("hide")
-    }    
-}        
   
-value0=document.querySelector('#RDA');
+//SET VALUES; 
+function setanalfab() {
+    let isanalfab = $('#RDA').prop('checked');
+
+    if (isanalfab) {
+        $('#dispAlfa1, #dispAlfa2').hide();
+    } else {
+        $('#dispAlfa1, #dispAlfa2').show();
+    }
+    return isanalfab;
+}   
 // CUANDO EL DOCUMENTO ESTE LISTO:
 $(document).ready(function() {
+      
 
     // OCULTAR CAMPOS 
     $('#id_id_paciente').hide(); 
@@ -231,7 +276,6 @@ $(document).ready(function() {
     $("#cont-form-ebc-1").click(function(){
         if(checkfirstData()==true){
             //REGISTRO DATOS
-            setanalfab();
             $(".registro-datos").hide();
             $(".registro-datos-btn").hide();
             //FORM 1
@@ -274,8 +318,9 @@ $(document).ready(function() {
         }
     })//FIN PARTE 1(1-1)
     $("#cont-form-ebc-3").click(function(){
+        setanalfab();
         if(checkchoice(13,19,1)!=null){
-            let setansw1=setAnswer(1,19,1)
+            
             //REGISTRO DATOS
             $(".registro-datos").hide();
             $(".registro-datos-btn").hide();
@@ -316,22 +361,21 @@ $(document).ready(function() {
     $("#cont-form-ebc-5").click(function(){ //SUBMIT
         // console.log(checkchoice(1,20,3))
         if(checkchoice(1,20,3)!=null){
+            let setansw1=setAnswer(1,19,1)
             let setansw2=setAnswer(1,20,3)
             //REGISTRO DATOS
-            document.querySelector('#id_ActComun').value =setansw1;
-            document.querySelector('#id_part3Punt').value = setansw2;
+            
             var miFormulario = document.getElementById("mi-formulario");
             if (miFormulario) {
                 miFormulario.addEventListener("submit", function(event) {
                 // Asegura asignar los valor ocultos del paciente seleccionado   
-                if (!miFormulario) {
-                    // Prevenir el envío del formulario
-                    event.preventDefault();
-                } else {
-                    document.querySelector('#id_id_paciente').value = document.querySelector('#pacientes').value;
-                    // Enviar el formulario manualmente
-                    miFormulario.submit();    
-                }
+                
+                document.querySelector('#id_id_paciente').value = document.querySelector('#pacientes').value;
+                document.querySelector('#id_ActComun').value =setansw1;
+                document.querySelector('#id_part3Punt').value = setansw2;
+                // Enviar el formulario manualmente
+                miFormulario.submit();    
+                
             });               
             } else {
                 console.log("NOTFULL, NOT ABLE");
