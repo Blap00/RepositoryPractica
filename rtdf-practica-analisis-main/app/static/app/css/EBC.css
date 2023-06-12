@@ -106,6 +106,9 @@ body{
     -webkit-appearance: auto!important;
     appearance: auto!important;
 }
+.ocult{
+    display: none;
+}
 textarea{
     resize: none;   
 }

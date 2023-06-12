@@ -1,5 +1,22 @@
 // Verificar los campos al cargar la página y agregar eventos a los checkboxes
 document.addEventListener("DOMContentLoaded", function() {
+        //MODIFICAR CAMPOS
+    //OBTENER ELEMENTOS POR ID
+    // Obtener los elementos por su ID
+    const p1 = $("#id_part1p1");const p2 = $("#id_part1p2");const p3 = $("#id_part1p3");
+    const p4 = $("#id_part1p4");const p5 = $("#id_part1p5");const p6 = $("#id_part1p6");
+    const p7 = $("#id_part1p7");const p8 = $("#id_part1p8");const p9 = $("#id_part1p9");
+    const p10 = $("#id_part1p10");const p11 = $("#id_part1p11");const p12 = $("#id_part1p12");
+    const p13 = $("#id_part1p13");const p14 = $("#id_part1p14");const p15 = $("#id_part1p15");
+    const p16 = $("#id_part1p16");const p17 = $("#id_part1p17");const p18 = $("#id_part1p18");
+    const p19 = $("#id_part1p19");
+
+    // Setear elementos para que se conviertan en input:radio
+    p1.attr("type", "radio");p2.attr("type", "radio");p3.attr("type", "radio");p4.attr("type", "radio");
+    p5.attr("type", "radio");p6.attr("type", "radio");p7.attr("type", "radio");p8.attr("type", "radio");
+    p9.attr("type", "radio");p10.attr("type", "radio");p11.attr("type", "radio");p12.attr("type", "radio");
+    p13.attr("type", "radio");p14.attr("type", "radio");p15.attr("type", "radio");p16.attr("type", "radio");
+    p17.attr("type", "radio");p18.attr("type", "radio");p19.attr("type", "radio");
     // Definir los datos de los campos y secciones
     const campos = [
         { checkbox: "part2p1", clase: "resp1" },
@@ -60,30 +77,34 @@ document.addEventListener("DOMContentLoaded", function() {
             const input = document.getElementById(campo.input);
             
             if (radio.checked && radio.value === "Otro" && radio.id === campo.radio) {
-                input.style.display = "block";
                 input.disabled = false; // Habilitar el input
             } else if (!radio.checked || radio.value !== "Otro" || radio.id !== campo.radio) { 
-                input.style.display = "none";
                 input.value = ""; // Limpiar el valor del input
                 input.disabled = true; // Deshabilitar el input
             }
         }
     }
-      
-    // Agregar evento de cambio a los radio buttons
-    for (const campo of campos1) {
-        const radio = document.getElementById(campo.radio);
-        radio.addEventListener('change', verificarCampos1);
+    function agregarEventosCheckbox(){
+        // Agregar evento de cambio a los radio buttons
+        for (const campo of campos1) {
+            const radio = document.getElementById(campo.radio);
+            radio.addEventListener('change', verificarCampos1);
+        }
     }
-      
+
     // Llamar a la función verificarCampos1 para imprimir los valores chequeados inicialmente
     verificarCampos1();
     verificarCampos();
+    agregarEventosCheckbox();
     agregarEventosCheckboxes();
+
+    // DISPLAY ALFABETIZADO
 });
 
   
-
+function scrollToTop() {
+    window.scrollTo({top:0, behavior:"smooth"})
+}
 //FUNCIONES CHECK
 function checkchoice(preginicio, pregfinal, secc) {
     var hasCheckedField = false;
@@ -113,7 +134,6 @@ function checkchoice(preginicio, pregfinal, secc) {
     }
 }
 function checkfirstData(){
-    var isanalfab= document.querySelector('#RDA').checked
     var hasEmptyField = false;
     if(document.querySelector('#pacientes').value === "" ){
         alert("ERROR, tienes que tener un dato seleccionado en el Select de Pacientes.")
@@ -123,7 +143,6 @@ function checkfirstData(){
         hasEmptyField = true;
     }
     if(!hasEmptyField){
-        console.log(isanalfab);
         return true;
     }else{
         return false;
@@ -147,11 +166,20 @@ function setAnswer(pregIni, pregFin, secc) {
         }
     }
     if(!isanalfab){
-        if(selectTotal==19){
-            return "Actividad comunicativa normal.";
-        }
-        else if(selectTotal<=18){
-            return "Déficit de actividad comunicativa.";
+        if(secc==3){
+            if(selectTotal==20){
+                return "Funcionalidad comunicativa normal.";
+            }
+            else if(selectTotal<=18){
+                return "déficit de la funcionalidad comunicativa.";
+            }
+        }else if(secc=1){
+            if(selectTotal>=19){
+                return "Actividad comunicativa normal.";
+            }
+            else if(selectTotal<=18){
+                return "Déficit de actividad comunicativa.";
+            }    
         }
     }
     else{
@@ -163,49 +191,152 @@ function setAnswer(pregIni, pregFin, secc) {
     }
 }
 
-  
+function setanalfab(){
+    var isanalfab= $('#RDA').checked
+    if(isanalfab){
+        $('#pregalf1').hide();
+        $('#pregalf2').hide();
+        console.log("hide")
+    }else{
+        $('#pregalf1').hide();
+        $('#pregalf2').hide(); //NO FUNCIONA
+        console.log("hide")
+    }    
+}        
   
 value0=document.querySelector('#RDA');
 // CUANDO EL DOCUMENTO ESTE LISTO:
 $(document).ready(function() {
+
     // OCULTAR CAMPOS 
     $('#id_id_paciente').hide(); 
     $('#id_id_fonoaudiologo').hide();
     $('#id_timestamp').hide();
+    //REGISTRO DATOS
+    $(".registro-datos").show();
+    $(".registro-datos-btn").show();
+    //FORM 1
+    $(".form-part-1").hide();
+    //PART 1
+    $(".formEBC-part-1-1").hide();
+    $(".formEBC-part-1-1-btn").hide();
+    //PART 2
+    $(".formEBC-part-1-2").hide();
+    $(".formEBC-part-1-2-btn").hide();
+    //FORM 2
+    $(".form-part-2").hide();
+    //FORM 3
+    $(".form-part-3").hide(); 
     //BOTONES
     $("#cont-form-ebc-1").click(function(){
-        // console.log(checkfirstData())
         if(checkfirstData()==true){
-            //SET ALL VALUES HIDDEN OR SHOWED
+            //REGISTRO DATOS
+            setanalfab();
+            $(".registro-datos").hide();
+            $(".registro-datos-btn").hide();
+            //FORM 1
+            $(".form-part-1").show();
+            //PART 1
+            $(".formEBC-part-1-1").show();
+            $(".formEBC-part-1-1-btn").show();
+            //PART 2
+            $(".formEBC-part-1-2").hide();
+            $(".formEBC-part-1-2-btn").hide();
+            //FORM 2
+            $(".form-part-2").hide();
+            //FORM 3
+            $(".form-part-3").hide(); 
+            scrollToTop();
         }else{
-            // console.log(checkfirstData)
+            scrollToTop();
         }
     })//FIN REGISTRO DATOS
     $("#cont-form-ebc-2").click(function(){
-        // console.log("CHECKCHOICES: ")
         if(checkchoice(1,12,1)!=null){
-            // HABILITAR EL OTRO FORMULARIO Y ENVIAR PARA LA PARTE SUPERIOR DEL SITIO
+            //REGISTRO DATOS
+            $(".registro-datos").hide();
+            $(".registro-datos-btn").hide();
+            //FORM 1
+            $(".form-part-1").show();
+            //PART 1
+            $(".formEBC-part-1-1").hide();
+            $(".formEBC-part-1-1-btn").hide();
+            //PART 2
+            $(".formEBC-part-1-2").show();
+            $(".formEBC-part-1-2-btn").show();
+            //FORM 2
+            $(".form-part-2").hide();
+            //FORM 3
+            $(".form-part-3").hide(); 
+            scrollToTop();
         }else{
-            // console.log(checkfirstData)
+            scrollToTop();
         }
     })//FIN PARTE 1(1-1)
     $("#cont-form-ebc-3").click(function(){
-        // console.log("CHECKCHOICES: ")
         if(checkchoice(13,19,1)!=null){
-            let setansw=setAnswer(1,19,1)
-            var s= document.querySelector("#id_ActComun").value=setansw;
-            // HABILITAR EL OTRO FORMULARIO Y ENVIAR PARA LA PARTE SUPERIOR DEL SITIO
+            let setansw1=setAnswer(1,19,1)
+            //REGISTRO DATOS
+            $(".registro-datos").hide();
+            $(".registro-datos-btn").hide();
+            //FORM 1
+            $(".form-part-1").hide();
+            //PART 1
+            $(".formEBC-part-1-1").hide();
+            $(".formEBC-part-1-1-btn").hide();
+            //PART 2
+            $(".formEBC-part-1-2").hide();
+            $(".formEBC-part-1-2-btn").hide();
+            //FORM 2
+            $(".form-part-2").show();
+            //FORM 3
+            $(".form-part-3").hide(); 
+            scrollToTop();
         }else{
-            // console.log(checkfirstData)
+            scrollToTop();
         }
     }) //FIN PARTE 1(1-2), 
     $("#cont-form-ebc-4").click(function(){
-        // if(checkchoice(1,24,2)!=null){
-        // }
+        //REGISTRO DATOS
+        $(".registro-datos").hide();
+        $(".registro-datos-btn").hide();
+        //FORM 1
+        $(".form-part-1").hide();
+        //PART 1
+        $(".formEBC-part-1-1").hide();
+        $(".formEBC-part-1-1-btn").hide();
+        //PART 2
+        $(".formEBC-part-1-2").hide();
+        $(".formEBC-part-1-2-btn").hide();
+        //FORM 2
+        $(".form-part-2").hide();
+        //FORM 3
+        $(".form-part-3").show();
     })
-
-
+    $("#cont-form-ebc-5").click(function(){ //SUBMIT
+        // console.log(checkchoice(1,20,3))
+        if(checkchoice(1,20,3)!=null){
+            let setansw2=setAnswer(1,20,3)
+            //REGISTRO DATOS
+            document.querySelector('#id_ActComun').value =setansw1;
+            document.querySelector('#id_part3Punt').value = setansw2;
+            var miFormulario = document.getElementById("mi-formulario");
+            if (miFormulario) {
+                miFormulario.addEventListener("submit", function(event) {
+                // Asegura asignar los valor ocultos del paciente seleccionado   
+                if (!miFormulario) {
+                    // Prevenir el envío del formulario
+                    event.preventDefault();
+                } else {
+                    document.querySelector('#id_id_paciente').value = document.querySelector('#pacientes').value;
+                    // Enviar el formulario manualmente
+                    miFormulario.submit();    
+                }
+            });               
+            } else {
+                console.log("NOTFULL, NOT ABLE");
+            }
+        } 
+    })
     // REALIZAR BBDD
-
-
 })
