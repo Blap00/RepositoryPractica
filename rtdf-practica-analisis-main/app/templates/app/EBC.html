@@ -39,14 +39,13 @@
                                 {% for p in paciente %}
                                 <option value="{{ p.id_prof_paci }}">{{ p.id_paciente }} </option>
                                 {% endfor %}
+                                {{ formulario.id_paciente }}
                             </select>
                         </div>
                     </div>                    
                     <div class="row">
                         <div class="col-12 ajustar">
-                            <label >Es analfabeto?</label>
-                            <input type="checkbox" name="analf" id="RDA">
-
+                            <label for="RDA">Es analfabeto?<input type="checkbox" name="{{ formulario.pac_analfabeto.name }}" id="RDA"></label>
                         </div>
                     </div>
                 </div>
@@ -218,6 +217,7 @@
                                     <td>¿La persona es capaz de seguir la instrucción dada por el terapeuta?</td>
                                     <td><label for="p1p19s">SI<input type="radio" name="{{ formulario.part1p19.name }}" value="1" id="p1p19s" {% if formulario.part1p19.value == "1" %}checked{% endif %}></label></td>
                                     <td><label for="p1p19n">NO<input type="radio" name="{{ formulario.part1p19.name }}" value="0" id="p1p19n" {% if formulario.part1p19.value == "0" %}checked{% endif %}></label></td>
+                                    {{formulario.ActComun}}
                                 </tr>
                             </tbody>
                         </table>
@@ -258,7 +258,8 @@
                                 </tr>
                                 <tr>
                                     <td class="responder">
-                                        <label for="p2p1">Conyuge: <label for="p2p1">SI/NO<input type="checkbox" name="{{ formulario.part2p1.name  }}" id="p2p1" checked></label></label>
+                                        <label for="p2p1">Conyuge: <label for="p2p1">SI/NO<input type="checkbox" value="Si"name="{{ formulario.part2p1.name  }}" id="p2p1" checked></label></label>
+                                        {{formulario.part2p1}}
                                     </td>
                                     <td class="responder resp1">
                                             <label for="p2p2e">Esporádica<input type="radio" name="{{ formulario.part2p2.name  }}"value="Esporadica"{% if formulario.part2p2.value == "Esporadica" %}checked{% endif %} id="p2p2e"></label><br>
@@ -266,12 +267,14 @@
                                             <label for="p2p2s">Semanal<input type="radio" name="{{ formulario.part2p2.name  }}"value="Semanal" {% if formulario.part2p2.value == "Semanal" %}checked{% endif %} id="p2p2s"></label><br> 
                                             <label for="p2p2d">Diaria<input type="radio" name="{{ formulario.part2p2.name  }}"value="Diaria" {% if formulario.part2p2.value == "Diaria" %}checked{% endif %} id="p2p2d"></label><br>
                                             <label for="p2p2v">Varias veces<input type="radio" name="{{ formulario.part2p2.name  }}"value="Varias" {% if formulario.part2p2.value == "Varias" %}checked{% endif %} id="p2p2v"></label>
+                                            {{formulario.part2p2}}
                                     </td>
                                     <td class="responder resp1">
                                             <label for="p2p31">0-15min<input type="radio" name="{{ formulario.part2p3.name  }}" {% if formulario.part2p3.value == "0a15" %}checked{% endif %} value="0a15" id="p2p31"></label><br>
                                             <label for="p2p32">15-30min<input type="radio" name="{{ formulario.part2p3.name  }}" {% if formulario.part2p3.value == "15a30" %}checked{% endif %} value="15a30" id="p2p32"></label><br>
                                             <label for="p2p33">30-60min<input type="radio" name="{{ formulario.part2p3.name  }}" {% if formulario.part2p3.value == "30a60" %}checked{% endif %} value="30a60" id="p2p33"></label><br>
                                             <label for="p2p34">60 o más min<input type="radio" name="{{ formulario.part2p3.name  }}" {% if formulario.part2p3.value == "60mas" %}checked{% endif %}value="60mas" id="p2p34"></label>
+                                            {{formulario.part2p3}}
                                     </td>
                                     <td class="responder resp1">
                                             <label for="p2p4i">Sobre satisfacción de necesidades vitales.<input type="radio" name="{{ formulario.part2p4.name  }}"value="Satisfaccion" id="p2p4i" {% if formulario.part2p4.value == "Satisfaccion" %}checked{% endif %}></label><br>
@@ -279,6 +282,7 @@
                                             <label for="p2p4c">Sobre noticias diarias o información mundial.<input type="radio" name="{{ formulario.part2p4.name  }}"value="Noticias/Informaciones" id="p2p4c" {% if formulario.part2p4.value == "Noticias/Informaciones" %}checked{% endif %}></label><br>
                                             <label for="p2p4o">Otro, especifique:<input type="radio" name="{{ formulario.part2p4.name  }}" value="Otro" id="p2p4o" {% if formulario.part2p4.value == "Otro" %}checked{% endif %}> <!--Al momento de hacer click despliega input opc--></label><br>
                                             <label for="p2p4es"><input type="text" class="inputopc opc1" placeholder="Otro..." name="{{ formulario.opcfunconver1.name }}" id="p2p4es"></label>
+                                            {{formulario.part2p4}}
                                     </td>
                                     <td class="responder resp1">
                                             <label for="p2p5ns">Nada satisfecho.<input type="radio" name="{{ formulario.part2p5.name  }}" value="Nada" id="p2p5ns"{% if formulario.part2p5.value == "Nada" %}checked{% endif %}></label><br>
@@ -286,6 +290,7 @@
                                             <label for="p2p5me">Medianamente satisfecho.<input type="radio" name="{{ formulario.part2p5.name  }}" value="Medianamente" id="p2p5me"{% if formulario.part2p5.value == "Medianamente" %}checked{% endif %}></label><br>
                                             <label for="p2p5sa">Satisfecho.<input type="radio" name="{{ formulario.part2p5.name  }}" value="Satisfecho" id="p2p5sa"{% if formulario.part2p5.value == "Satisfecho" %}checked{% endif %}></label><br>
                                             <label for="p2p5ms">Muy Satisfecho.<input type="radio" name="{{ formulario.part2p5.name  }}" value="Muy satisfecho" id="p2p5ms"{% if formulario.part2p5.value == "Muy satisfecho" %}checked{% endif %}></label>
+                                            {{formulario.part2p5}}
                                     </td>
                                 </tr>
                                 <tr class="responder">
@@ -294,6 +299,7 @@
                                          rutinas diarias, etc.) en relación con OTROS FAMILIARES (puede también especificar con quiénes). Señale 
                                          también Ambiente comunicativo, características facilitadoras y/o barreras que existen en el contexto.">
                                         </textarea>
+                                        {{formulario.part2p6}}
                                     </td>
                                 </tr>
                                 <div id="Separaciondetexto">
@@ -314,7 +320,8 @@
                                 </tr>
                                 <tr>
                                     <td class="responder">
-                                        <label for="p2p7">Hijos/as: <label for="p2p7">SI/NO<input type="checkbox" name="{{ formulario.part2p7.name  }}" id="p2p7" checked></label></label>                                           
+                                        <label for="p2p7">Hijos/as: <label for="p2p7">SI/NO<input type="checkbox" value="Si"name="{{ formulario.part2p7.name  }}" id="p2p7" checked></label></label>                                           
+                                        {{formulario.part2p7}}
                                     </td>
                                     <td class="responder resp2">
                                         <label for="p2p8e">Esporádica<input type="radio" name="{{ formulario.part2p8.name  }}"value="Esporadica"{% if formulario.part2p8.value == "Esporadica" %}checked{% endif %} id="p2p8e"></label><br>
@@ -322,12 +329,14 @@
                                         <label for="p2p8s">Semanal<input type="radio" name="{{ formulario.part2p8.name  }}"value="Semanal" {% if formulario.part2p8.value == "Semanal" %}checked{% endif %} id="p2p8s"></label><br> 
                                         <label for="p2p8d">Diaria<input type="radio" name="{{ formulario.part2p8.name  }}"value="Diaria" {% if formulario.part2p8.value == "Diaria" %}checked{% endif %} id="p2p8d"></label><br>
                                         <label for="p2p8v">Varias veces<input type="radio" name="{{ formulario.part2p8.name  }}"value="Varias" {% if formulario.part2p8.value == "Varias" %}checked{% endif %} id="p2p8v"></label>
+                                        {{formulario.part2p8}}
                                     </td>
                                     <td class="responder resp2">
                                         <label for="p2p91">0-15min<input type="radio" name="{{ formulario.part2p9.name  }}" {% if formulario.part2p9.value == "0a15" %}checked{% endif %} value="0a15" id="p2p91"></label><br>
                                         <label for="p2p92">15-30min<input type="radio" name="{{ formulario.part2p9.name  }}" {% if formulario.part2p9.value == "15a30" %}checked{% endif %} value="15a30" id="p2p92"></label><br>
                                         <label for="p2p93">30-60min<input type="radio" name="{{ formulario.part2p9.name  }}" {% if formulario.part2p9.value == "30a60" %}checked{% endif %} value="30a60" id="p2p93"></label><br>
                                         <label for="p2p94">60 o más min<input type="radio" name="{{ formulario.part2p9.name  }}" {% if formulario.part2p9.value == "60mas" %}checked{% endif %}value="60mas" id="p2p94"></label>
+                                        {{formulario.part2p9}}
                                     </td>
                                     <td class="responder resp2">
                                         <label for="p2p10i">Sobre satisfacción de necesidades vitales.<input type="radio" name="{{ formulario.part2p10.name  }}"value="Satisfaccion" id="p2p10i" {% if formulario.part2p10.value == "Satisfaccion" %}checked{% endif %}></label><br>
@@ -335,6 +344,7 @@
                                         <label for="p2p10c">Sobre noticias diarias o información mundial.<input type="radio" name="{{ formulario.part2p10.name  }}"value="Noticias/Informaciones" id="p2p10c" {% if formulario.part2p10.value == "Noticias/Informaciones" %}checked{% endif %}></label><br>
                                         <label for="p2p10o">Otro, especifique:<input type="radio" name="{{ formulario.part2p10.name  }}" value="Otro" id="p2p10o" {% if formulario.part2p10.value == "Otro" %}checked{% endif %}> <!--Al momento de hacer click despliega input opc--></label><br>
                                         <label for="p2p10es"><input type="text" class="inputopc opc2" placeholder="Otro..." name="{{ formulario.opcfunconver2.name }}" id="p2p10es"></label>
+                                        {{formulario.part2p10}}
                                     </td>
                                     <td class="responder resp2">
                                         <label for="p2p11ns">Nada satisfecho.<input type="radio" name="{{ formulario.part2p11.name  }}" value="Nada" id="p2p11ns"{% if formulario.part2p11.value == "Nada" %}checked{% endif %}></label><br>
@@ -342,6 +352,7 @@
                                         <label for="p2p11me">Medianamente satisfecho.<input type="radio" name="{{ formulario.part2p11.name  }}" value="Medianamente" id="p2p11me"{% if formulario.part2p11.value == "Medianamente" %}checked{% endif %}></label><br>
                                         <label for="p2p11sa">Satisfecho.<input type="radio" name="{{ formulario.part2p11.name  }}" value="Satisfecho" id="p2p11sa"{% if formulario.part2p11.value == "Satisfecho" %}checked{% endif %}></label><br>
                                         <label for="p2p11ms">Muy Satisfecho.<input type="radio" name="{{ formulario.part2p11.name  }}" value="Muy satisfecho" id="p2p11ms"{% if formulario.part2p11.value == "Muy satisfecho" %}checked{% endif %}></label>
+                                        {{formulario.part2p11}}
                                     </td>
                                 </tr>
                                 <tr class="responder">
@@ -350,6 +361,7 @@
                                         rutinas diarias, etc.) en relación con OTROS FAMILIARES (puede también especificar con quiénes). Señale 
                                         también Ambiente comunicativo, características facilitadoras y/o barreras que existen 
                                         en el contexto."></textarea>
+                                        {{formulario.part2p12}}
                                     </td>
                                 </tr>  
                                 <div id="Separaciondetexto">
@@ -370,7 +382,8 @@
                                 </tr>
                                 <tr>
                                     <td class="responder">
-                                        <label for="p2p13">Otros familiares: <label for="p2p13">SI/NO<input type="checkbox" name="{{ formulario.part2p13.name  }}" id="p2p13" checked></label></label>
+                                        <label for="p2p13">Otros familiares: <label for="p2p13">SI/NO<input type="checkbox" value="Si"name="{{ formulario.part2p13.name  }}" id="p2p13" checked></label></label>
+                                        {{formulario.part2p13}}
                                     </td>
                                     <td class="responder resp3">
                                         <label for="p2p14e">Esporádica<input type="radio" name="{{ formulario.part2p14.name  }}"value="Esporadica"{% if formulario.part2p14.value == "Esporadica" %}checked{% endif %} id="p2p14e"></label><br>
@@ -378,12 +391,14 @@
                                         <label for="p2p14s">Semanal<input type="radio" name="{{ formulario.part2p14.name  }}"value="Semanal" {% if formulario.part2p14.value == "Semanal" %}checked{% endif %} id="p2p14s"></label><br> 
                                         <label for="p2p14d">Diaria<input type="radio" name="{{ formulario.part2p14.name  }}"value="Diaria" {% if formulario.part2p14.value == "Diaria" %}checked{% endif %} id="p2p14d"></label><br>
                                         <label for="p2p14v">Varias veces<input type="radio" name="{{ formulario.part2p14.name  }}"value="Varias" {% if formulario.part2p14.value == "Varias" %}checked{% endif %} id="p2p14v"></label>
+                                        {{formulario.part2p14}}
                                     </td>
                                     <td class="responder resp3">
                                         <label for="p2p151">0-15min<input type="radio" name="{{ formulario.part2p15.name  }}" {% if formulario.part2p15.value == "0a15" %}checked{% endif %} value="0a15" id="p2p151"></label><br>
                                         <label for="p2p152">15-30min<input type="radio" name="{{ formulario.part2p15.name  }}" {% if formulario.part2p15.value == "15a30" %}checked{% endif %} value="15a30" id="p2p152"></label><br>
                                         <label for="p2p153">30-60min<input type="radio" name="{{ formulario.part2p15.name  }}" {% if formulario.part2p15.value == "30a60" %}checked{% endif %} value="30a60" id="p2p153"></label><br>
                                         <label for="p2p154">60 o más min<input type="radio" name="{{ formulario.part2p15.name  }}" {% if formulario.part2p15.value == "60mas" %}checked{% endif %}value="60mas" id="p2p154"></label>
+                                        {{formulario.part2p15}}
                                     </td>
                                     <td class="responder resp3">
                                         <label for="p2p16i">Sobre satisfacción de necesidades vitales.<input type="radio" name="{{ formulario.part2p16.name  }}"value="Satisfaccion" id="p2p16i" {% if formulario.part2p16.value == "Satisfaccion" %}checked{% endif %}></label><br>
@@ -391,6 +406,7 @@
                                         <label for="p2p16c">Sobre noticias diarias o información mundial.<input type="radio" name="{{ formulario.part2p16.name  }}"value="Noticias/Informaciones" id="p2p16c" {% if formulario.part2p16.value == "Noticias/Informaciones" %}checked{% endif %}></label><br>
                                         <label for="p2p16o">Otro, especifique:<input type="radio" name="{{ formulario.part2p16.name  }}" value="Otro" id="p2p16o" {% if formulario.part2p16.value == "Otro" %}checked{% endif %}> <!--Al momento de hacer click despliega input opc--></label><br>
                                         <label for="p2p16es"><input type="text" class="inputopc opc3" placeholder="Otro..." name="{{ formulario.opcfunconver3.name }}" id="p2p16es"></label>
+                                        {{formulario.part2p16}}
                                     </td>
                                     <td class="responder resp3">
                                         <label for="p2p17ns">Nada satisfecho.<input type="radio" name="{{ formulario.part2p17.name  }}" value="Nada" id="p2p17ns"{% if formulario.part2p17.value == "Nada" %}checked{% endif %}></label><br>
@@ -398,6 +414,7 @@
                                         <label for="p2p17me">Medianamente satisfecho.<input type="radio" name="{{ formulario.part2p17.name  }}" value="Medianamente" id="p2p17me"{% if formulario.part2p17.value == "Medianamente" %}checked{% endif %}></label><br>
                                         <label for="p2p17sa">Satisfecho.<input type="radio" name="{{ formulario.part2p17.name  }}" value="Satisfecho" id="p2p17sa"{% if formulario.part2p17.value == "Satisfecho" %}checked{% endif %}></label><br>
                                         <label for="p2p17ms">Muy Satisfecho.<input type="radio" name="{{ formulario.part2p17.name  }}" value="Muy satisfecho" id="p2p17ms"{% if formulario.part2p17.value == "Muy satisfecho" %}checked{% endif %}></label>
+                                        {{formulario.part2p17}}
                                     </td>
                                 </tr>
                                 <tr class="responder">
@@ -407,6 +424,7 @@
                                         placeholder=" Otros aspectos cualitativos para complementar (lazos afectivos, motivaciones, contextos, rutinas diarias, etc.) 
                                         en relación con OTROS FAMILIARES (puede también especificar con quiénes). Señale también Ambiente comunicativo, características 
                                         facilitadoras y/o barreras que existen en el contexto."></textarea>
+                                        {{formulario.part2p18}}
                                     </td>
                                 </tr>    
                                 <div id="Separaciondetexto">
@@ -437,7 +455,8 @@
                                     </tr>
                                     <tr>
                                         <td class="responder">
-                                            <label for="p2p19">Otros familiares: <label for="p2p19">SI/NO<input type="checkbox" name="{{ formulario.part2p19.name  }}" id="p2p19" checked></label></label>
+                                            <label for="p2p19">Otros familiares: <label for="p2p19">SI/NO<input type="checkbox" value="Si"name="{{ formulario.part2p19.name  }}" id="p2p19" checked></label></label>
+                                            {{formulario.part2p19}}
                                         </td>
                                         <td class="responder resp4">
                                             <label for="p2p20e">Esporádica<input type="radio" name="{{ formulario.part2p20.name  }}"value="Esporadica"{% if formulario.part2p20.value == "Esporadica" %}checked{% endif %} id="p2p20e"></label><br>
@@ -445,12 +464,14 @@
                                             <label for="p2p20s">Semanal<input type="radio" name="{{ formulario.part2p20.name  }}"value="Semanal" {% if formulario.part2p20.value == "Semanal" %}checked{% endif %} id="p2p20s"></label><br> 
                                             <label for="p2p20d">Diaria<input type="radio" name="{{ formulario.part2p20.name  }}"value="Diaria" {% if formulario.part2p20.value == "Diaria" %}checked{% endif %} id="p2p20d"></label><br>
                                             <label for="p2p20v">Varias veces<input type="radio" name="{{ formulario.part2p20.name  }}"value="Varias" {% if formulario.part2p20.value == "Varias" %}checked{% endif %} id="p2p20v"></label>
+                                            {{formulario.part2p20}}
                                         </td>
                                         <td class="responder resp4">
                                             <label for="p2p211">0-15min<input type="radio" name="{{ formulario.part2p21.name  }}" {% if formulario.part2p21.value == "0a15" %}checked{% endif %} value="0a15" id="p2p211"></label><br>
                                             <label for="p2p212">15-30min<input type="radio" name="{{ formulario.part2p21.name  }}" {% if formulario.part2p21.value == "15a30" %}checked{% endif %} value="15a30" id="p2p212"></label><br>
                                             <label for="p2p213">30-60min<input type="radio" name="{{ formulario.part2p21.name  }}" {% if formulario.part2p21.value == "30a60" %}checked{% endif %} value="30a60" id="p2p213"></label><br>
                                             <label for="p2p214">60 o más min<input type="radio" name="{{ formulario.part2p21.name  }}" {% if formulario.part2p21.value == "60mas" %}checked{% endif %}value="60mas" id="p2p214"></label>
+                                            {{formulario.part2p21}}
                                         </td>
                                         <td class="responder resp4">
                                             <label for="p2p22i">Sobre satisfacción de necesidades vitales.<input type="radio" name="{{ formulario.22.name  }}"value="Satisfaccion" id="p2p22i" {% if formulario.22.value == "Satisfaccion" %}checked{% endif %}></label><br>
@@ -458,6 +479,7 @@
                                             <label for="p2p22c">Sobre noticias diarias o información mundial.<input type="radio" name="{{ formulario.22.name  }}"value="Noticias/Informaciones" id="p2p22c" {% if formulario.22.value == "Noticias/Informaciones" %}checked{% endif %}></label><br>
                                             <label for="p2p22o">Otro, especifique:<input type="radio" name="{{ formulario.22.name  }}" value="Otro" id="p2p22o" {% if formulario.22.value == "Otro" %}checked{% endif %}> <!--Al momento de hacer click despliega input opc--></label><br>
                                             <label for="p2p22es"><input type="text" class="inputopc opc3" placeholder="Otro..." name="{{ formulario.opcfunconver4.name }}" id="p2p22es"></label>
+                                            {{formulario.part2p22}}
                                         </td>
                                         <td class="responder resp4">
                                             <label for="p2p23ns">Nada satisfecho.<input type="radio" name="{{ formulario.part2p23.name  }}" value="Nada" id="p2p23ns"{% if formulario.part2p23.value == "Nada" %}checked{% endif %}></label><br>
@@ -465,6 +487,7 @@
                                             <label for="p2p23me">Medianamente satisfecho.<input type="radio" name="{{ formulario.part2p23.name  }}" value="Medianamente" id="p2p23me"{% if formulario.part2p23.value == "Medianamente" %}checked{% endif %}></label><br>
                                             <label for="p2p23sa">Satisfecho.<input type="radio" name="{{ formulario.part2p23.name  }}" value="Satisfecho" id="p2p23sa"{% if formulario.part2p23.value == "Satisfecho" %}checked{% endif %}></label><br>
                                             <label for="p2p23ms">Muy Satisfecho.<input type="radio" name="{{ formulario.part2p23.name  }}" value="Muy satisfecho" id="p2p23ms"{% if formulario.part2p23.value == "Muy satisfecho" %}checked{% endif %}></label>
+                                            {{formulario.part2p23}}
                                         </td>
                                     </tr>
                                     <tr class="responder">
@@ -474,6 +497,7 @@
                                             placeholder=" Otros aspectos cualitativos para complementar (lazos afectivos, motivaciones, contextos, 
                                             rutinas diarias, etc.) en relación con OTROS FAMILIARES (puede también especificar con quiénes). Señale también 
                                             Ambiente comunicativo, características facilitadoras y/o barreras que existen en el contexto."></textarea>
+                                            {{formulario.part2p24}}
                                         </td>
                                     </tr>    
 
@@ -916,7 +940,7 @@
                         </table>
                     </div>
                     <div class="centerbtn" id="Button-RD1">
-                        <button type="button" id="cont-form-ebc-5">Enviar formulario</button>
+                        <button type="submit" id="cont-form-ebc-5">Enviar formulario</button>
                     </div>
                 </div>
                 <div class="table">

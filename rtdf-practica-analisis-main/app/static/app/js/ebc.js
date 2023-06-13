@@ -248,15 +248,64 @@ function setanalfab() {
         $('#dispAlfa1, #dispAlfa2').show();
     }
     return isanalfab;
-}   
+}
+
+function setpropervalue(secc, pregini, pregfin) {
+    for (let i = pregini; i <= pregfin; i++) {
+        var setpregunta = document.getElementsByName(`part${secc}p${i}`);
+        var selectedOption = "";
+
+        if (secc == 2) {
+            if (setpregunta[0].type === "checkbox") {
+                if (setpregunta[0].checked) {
+                    selectedOption = "SI";
+                    setpregunta[0].removeAttribute('required');
+                } else {
+                    selectedOption = "NO";
+                    setpregunta[0].removeAttribute('required');
+                }
+            } else if (setpregunta[0].type === "radio") {
+                for (let j = 0; j < setpregunta.length; j++) {
+                    if (setpregunta[j].checked) {
+                        selectedOption = setpregunta[j].value;
+                        setpregunta[0].removeAttribute('required');
+                        break;
+                    }
+                }
+            } else if (setpregunta[0].type === "text") {
+                selectedOption = setpregunta[0].value;
+                setpregunta[0].removeAttribute('required');
+            } else if (setpregunta[0].type === "text" || setpregunta[0].tagName === "textarea") {
+                selectedOption = setpregunta[0].value;
+                setpregunta[0].removeAttribute('required');
+            }else{
+                selectedOption= "NO"
+            }
+            var inputField = document.getElementById(`id_part${secc}p${i}`);
+            inputField.value = selectedOption;
+        }
+    }
+}
+      
+function hideelements(secc, pregIni,pregFin){
+    for(let i=pregIni; i<=pregFin; i++){
+        $(`#id_part${secc}p${i}`).hide();
+        $(`#id_part${secc}p${i}`)[0].removeAttribute('required');
+    }
+}
 // CUANDO EL DOCUMENTO ESTE LISTO:
 $(document).ready(function() {
-      
-
+    //FUNCTION TO HIDE ELEMENTS SECT2
+    hideelements(2,1,24);
     // OCULTAR CAMPOS 
     $('#id_id_paciente').hide(); 
     $('#id_id_fonoaudiologo').hide();
     $('#id_timestamp').hide();
+    //ADD
+    $('#id_pac_analfabeto').hide();
+    $('#id_ActComun').hide();
+    $('#id_part2p1').hide();
+
     //REGISTRO DATOS
     $(".registro-datos").show();
     $(".registro-datos-btn").show();
@@ -342,6 +391,8 @@ $(document).ready(function() {
         }
     }) //FIN PARTE 1(1-2), 
     $("#cont-form-ebc-4").click(function(){
+
+        setpropervalue(2,1,24);
         //REGISTRO DATOS
         $(".registro-datos").hide();
         $(".registro-datos-btn").hide();
@@ -359,26 +410,29 @@ $(document).ready(function() {
         $(".form-part-3").show();
     })
     $("#cont-form-ebc-5").click(function(){ //SUBMIT
-        // console.log(checkchoice(1,20,3))
+        const id_pac=document.querySelector('#id_id_paciente').value = document.querySelector('#pacientes').value;
+        let setansw1=setAnswer(1,19,1)
+        let setansw2=setAnswer(1,20,3)
+        const actComun=document.querySelector('#id_ActComun').value =setansw1;
+        var part3Punt=document.querySelector('#id_part3Punt').value = setansw2;
         if(checkchoice(1,20,3)!=null){
-            let setansw1=setAnswer(1,19,1)
-            let setansw2=setAnswer(1,20,3)
-            //REGISTRO DATOS
-            
-            var miFormulario = document.getElementById("mi-formulario");
+            var part3Punt=document.querySelector('#id_part3Punt').value = setansw2;
+            const miFormulario = document.getElementById("mi-formulario");
             if (miFormulario) {
                 miFormulario.addEventListener("submit", function(event) {
-                // Asegura asignar los valor ocultos del paciente seleccionado   
-                
-                document.querySelector('#id_id_paciente').value = document.querySelector('#pacientes').value;
-                document.querySelector('#id_ActComun').value =setansw1;
-                document.querySelector('#id_part3Punt').value = setansw2;
-                // Enviar el formulario manualmente
-                miFormulario.submit();    
-                
+                    if(id_pac!=(""||null||false|| " ") || actComun!=(""||null||false|| " ") || part3Punt!= (""||null||false|| " ")){
+                        miFormulario.submit();    
+                    }else{
+                        event.preventDefault();
+                        console.log("Id_paciente, actComun, part3Punt no relleno!");
+                    }
             });               
             } else {
-                console.log("NOTFULL, NOT ABLE");
+                console.log("No existe formulario")
+                // console.log(miFormulario);
+                // console.log(setansw1);
+                // console.log(setansw2);
+                
             }
         } 
     })

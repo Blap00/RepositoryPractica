@@ -259,7 +259,7 @@
                             
                             if (document.querySelector('#id_limitacion').value == "" || document.querySelector('#id_fisico').value == "" || document.querySelector('#id_emocional').value == "") {
                                 // Prevenir el envío del formulario
-                                event.preventDefault();
+
                             } else {
                                 document.querySelector('#id_id_paciente').value = document.querySelector('#pacientes').value;
                                 // Enviar el formulario manualmente
