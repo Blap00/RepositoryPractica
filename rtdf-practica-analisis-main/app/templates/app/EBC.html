@@ -217,7 +217,7 @@
                                     <td>¿La persona es capaz de seguir la instrucción dada por el terapeuta?</td>
                                     <td><label for="p1p19s">SI<input type="radio" name="{{ formulario.part1p19.name }}" value="1" id="p1p19s" {% if formulario.part1p19.value == "1" %}checked{% endif %}></label></td>
                                     <td><label for="p1p19n">NO<input type="radio" name="{{ formulario.part1p19.name }}" value="0" id="p1p19n" {% if formulario.part1p19.value == "0" %}checked{% endif %}></label></td>
-                                    {{formulario.ActComun}}
+                                    {{formulario.actComun}}
                                 </tr>
                             </tbody>
                         </table>
@@ -283,6 +283,7 @@
                                             <label for="p2p4o">Otro, especifique:<input type="radio" name="{{ formulario.part2p4.name  }}" value="Otro" id="p2p4o" {% if formulario.part2p4.value == "Otro" %}checked{% endif %}> <!--Al momento de hacer click despliega input opc--></label><br>
                                             <label for="p2p4es"><input type="text" class="inputopc opc1" placeholder="Otro..." name="{{ formulario.opcfunconver1.name }}" id="p2p4es"></label>
                                             {{formulario.part2p4}}
+                                            {{formulario.opcfunconver1}}
                                     </td>
                                     <td class="responder resp1">
                                             <label for="p2p5ns">Nada satisfecho.<input type="radio" name="{{ formulario.part2p5.name  }}" value="Nada" id="p2p5ns"{% if formulario.part2p5.value == "Nada" %}checked{% endif %}></label><br>
@@ -345,6 +346,7 @@
                                         <label for="p2p10o">Otro, especifique:<input type="radio" name="{{ formulario.part2p10.name  }}" value="Otro" id="p2p10o" {% if formulario.part2p10.value == "Otro" %}checked{% endif %}> <!--Al momento de hacer click despliega input opc--></label><br>
                                         <label for="p2p10es"><input type="text" class="inputopc opc2" placeholder="Otro..." name="{{ formulario.opcfunconver2.name }}" id="p2p10es"></label>
                                         {{formulario.part2p10}}
+                                        {{formulario.opcfunconver2}}
                                     </td>
                                     <td class="responder resp2">
                                         <label for="p2p11ns">Nada satisfecho.<input type="radio" name="{{ formulario.part2p11.name  }}" value="Nada" id="p2p11ns"{% if formulario.part2p11.value == "Nada" %}checked{% endif %}></label><br>
@@ -407,6 +409,7 @@
                                         <label for="p2p16o">Otro, especifique:<input type="radio" name="{{ formulario.part2p16.name  }}" value="Otro" id="p2p16o" {% if formulario.part2p16.value == "Otro" %}checked{% endif %}> <!--Al momento de hacer click despliega input opc--></label><br>
                                         <label for="p2p16es"><input type="text" class="inputopc opc3" placeholder="Otro..." name="{{ formulario.opcfunconver3.name }}" id="p2p16es"></label>
                                         {{formulario.part2p16}}
+                                        {{formulario.opcfunconver3}}
                                     </td>
                                     <td class="responder resp3">
                                         <label for="p2p17ns">Nada satisfecho.<input type="radio" name="{{ formulario.part2p17.name  }}" value="Nada" id="p2p17ns"{% if formulario.part2p17.value == "Nada" %}checked{% endif %}></label><br>
@@ -474,12 +477,13 @@
                                             {{formulario.part2p21}}
                                         </td>
                                         <td class="responder resp4">
-                                            <label for="p2p22i">Sobre satisfacción de necesidades vitales.<input type="radio" name="{{ formulario.22.name  }}"value="Satisfaccion" id="p2p22i" {% if formulario.22.value == "Satisfaccion" %}checked{% endif %}></label><br>
-                                            <label for="p2p22p">Sobre emociones o propósitos de vida.<input type="radio" name="{{ formulario.22.name  }}"value="Emociones/Propositos" id="p2p22p" {% if formulario.22.value == "Emociones/Propositos" %}checked{% endif %}></label><br>
-                                            <label for="p2p22c">Sobre noticias diarias o información mundial.<input type="radio" name="{{ formulario.22.name  }}"value="Noticias/Informaciones" id="p2p22c" {% if formulario.22.value == "Noticias/Informaciones" %}checked{% endif %}></label><br>
-                                            <label for="p2p22o">Otro, especifique:<input type="radio" name="{{ formulario.22.name  }}" value="Otro" id="p2p22o" {% if formulario.22.value == "Otro" %}checked{% endif %}> <!--Al momento de hacer click despliega input opc--></label><br>
+                                            <label for="p2p22i">Sobre satisfacción de necesidades vitales.<input type="radio" name="{{ formulario.part2p22.name  }}" value="Satisfaccion" id="p2p22i" {% if formulario.22.value == "Satisfaccion" %}checked{% endif %}></label><br>
+                                            <label for="p2p22p">Sobre emociones o propósitos de vida.<input type="radio" name="{{ formulario.part2p22.name  }}" value="Emociones/Propositos" id="p2p22p" {% if formulario.22.value == "Emociones/Propositos" %}checked{% endif %}></label><br>
+                                            <label for="p2p22c">Sobre noticias diarias o información mundial.<input type="radio" name="{{ formulario.part2p22.name  }}" value="Noticias/Informaciones" id="p2p22c" {% if formulario.22.value == "Noticias/Informaciones" %}checked{% endif %}></label><br>
+                                            <label for="p2p22o">Otro, especifique:<input type="radio" name="{{ formulario.part2p22.name  }}"  value="Otro" id="p2p22o" {% if formulario.22.value == "Otro" %}checked{% endif %}> <!--Al momento de hacer click despliega input opc--></label><br>
                                             <label for="p2p22es"><input type="text" class="inputopc opc3" placeholder="Otro..." name="{{ formulario.opcfunconver4.name }}" id="p2p22es"></label>
                                             {{formulario.part2p22}}
+                                            {{formulario.opcfunconver4}}
                                         </td>
                                         <td class="responder resp4">
                                             <label for="p2p23ns">Nada satisfecho.<input type="radio" name="{{ formulario.part2p23.name  }}" value="Nada" id="p2p23ns"{% if formulario.part2p23.value == "Nada" %}checked{% endif %}></label><br>
@@ -934,10 +938,11 @@
                                     </td>
                                     <td>
                                         <input type="text" name="Obserp20" id="Obserp20">
-                                    </td>
+                                    </td>                                    
                                 </tr>
                             </tbody>
                         </table>
+                        {{ formulario.part3Punt }}
                     </div>
                     <div class="centerbtn" id="Button-RD1">
                         <button type="submit" id="cont-form-ebc-5">Enviar formulario</button>
@@ -949,10 +954,9 @@
                         <thead>
                             <tr>
                                 <th scope="col">Paciente</th>
-                                <th scope="col">Total ESV</th>
-                                <th scope="col">Limitacion</th>
-                                <th scope="col">Emocional</th>
-                                <th scope="col">Fisico</th>
+                                <th scope="col">Total EBC</th>
+                                <th scope="col">Act Comunicativa</th>
+                                <th scope="col">Func Comunicativa</th>
                                 <th scope="col">TimeStamp</th>
                             </tr>
                         </thead>
@@ -960,10 +964,9 @@
                             {% for i in form %}
                             <tr id={{i.id}}>
                                 <th value={{i.id_paciente}}>{{i.id_paciente}}</th>
-                                <td value={{i.totalESV}}>{{i.totalESV}}</td>
-                                <td value={{i.limitacion}}>{{i.limitacion}}</td>
-                                <td value={{i.emocional}}>{{i.emocional}}</td>
-                                <td value={{i.fisico}}>{{i.fisico}}</td>
+                                <td value={{i.totalEBC}}>{{i.totalEBC}}</td>
+                                <td value={{i.ActComun}}>{{i.ActComun}}</td>
+                                <td value={{i.part3Punt}}>{{i.part3Punt}}</td>
                                 <td value={{i.timestamp}}>{{i.timestamp}}</td>
                             </tr>
                             {% endfor %}
