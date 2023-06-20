@@ -1,7 +1,5 @@
 {% extends 'app/base.html' %}
 {% load static%}
-{% block css%}
-{% endblock %}
 {% block contenido %}
 <!-- CSS BASE -->
 <link type="text/css" rel="stylesheet" href="{% static 'app/css/preregistrados.css' %}">
@@ -163,9 +161,7 @@
                                 <tr>
                                     <th>Indicacion para evaluador</th>
                                     <th>Criterio</th>
-                                    <th>Responda SI O NO</th>
-                                    <th></th>
-                                    <th></th>
+                                    <th colspan="3">Responda SI O NO</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -943,18 +939,20 @@
                             </tbody>
                         </table>
                         {{ formulario.part3Punt }}
+                        
                     </div>
                     <div class="centerbtn" id="Button-RD1">
                         <button type="submit" id="cont-form-ebc-5">Enviar formulario</button>
                     </div>
-                </div>
-                <div class="table">
+                </div> 
+            </form>
+            <div class="table">
                     <h4 id="subtittleEBC">Historico de Evaluacion Biopsicosocial ingresados</h4>
                     <table class="table" >
                         <thead>
                             <tr>
                                 <th scope="col">Paciente</th>
-                                <th scope="col">Total EBC</th>
+                                <th scope="col">¿Analfabeto?</th>
                                 <th scope="col">Act Comunicativa</th>
                                 <th scope="col">Func Comunicativa</th>
                                 <th scope="col">TimeStamp</th>
@@ -964,8 +962,14 @@
                             {% for i in form %}
                             <tr id={{i.id}}>
                                 <th value={{i.id_paciente}}>{{i.id_paciente}}</th>
-                                <td value={{i.totalEBC}}>{{i.totalEBC}}</td>
-                                <td value={{i.ActComun}}>{{i.ActComun}}</td>
+                                <td value="{{i.pac_analfabeto}}">
+                                    {% if i.pac_analfabeto == 1 %}
+                                    Sí
+                                    {% else %}
+                                    No
+                                    {% endif %}
+                                  </td>
+                                <td value={{i.actComun}}>{{i.actComun}}</td>
                                 <td value={{i.part3Punt}}>{{i.part3Punt}}</td>
                                 <td value={{i.timestamp}}>{{i.timestamp}}</td>
                             </tr>
@@ -973,7 +977,6 @@
                         </tbody>
                     </table>
                 </div>
-            </form>
         </div>
     </div>
     {% endif %}

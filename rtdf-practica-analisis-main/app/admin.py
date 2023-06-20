@@ -118,7 +118,7 @@ class ESVAdmin(admin.ModelAdmin):
 admin.site.register(Esv, ESVAdmin)
 # EvaluacionBiopsicosocial
 class EBCAdmin(admin.ModelAdmin):
-     list_display=['id','id_paciente','id_fonoaudiologo','timestamp','ActComun','part3Punt']
+     list_display=['id','id_paciente','id_fonoaudiologo','timestamp','actComun','part3Punt']
 admin.site.register(EBC, EBCAdmin)
 
 # #PROFESIONAL SALUD

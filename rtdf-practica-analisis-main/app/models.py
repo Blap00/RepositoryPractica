@@ -377,7 +377,7 @@ class EBC(models.Model):
     part1p17 = models.BooleanField(default=False, null=False)
     part1p18 = models.BooleanField(default=False, null=False)
     part1p19 = models.BooleanField(default=False, null=False)
-    ActComun = models.CharField(max_length=50, null=False)
+    actComun = models.CharField(max_length=50, null=False)
     part2p1 = models.CharField(max_length=2, null=True)
     part2p2 = models.CharField(max_length=10, null=True)
     part2p3 = models.CharField(max_length=6, null=True)
@@ -426,7 +426,6 @@ class EBC(models.Model):
     part3p18 = models.BooleanField(default=False, null=False)
     part3p19 = models.BooleanField(default=False, null=False)
     part3p20 = models.BooleanField(default=False, null=False)
-
     part3Punt= models.CharField(max_length=50, null=False)
       
     def __str__(self):

@@ -31,7 +31,7 @@ class EBCForm(forms.ModelForm):
         fields  = '__all__'
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        for field_name in ['part2p1', 'part2p2', 'part2p3', 'part2p4', 'part2p5', 'part2p6', 'part2p7', 'part2p8', 'part2p9', 'part2p10', 'part2p11', 'part2p12', 'part2p13', 'part2p14', 'part2p15', 'part2p16', 'part2p17', 'part2p18', 'part2p19', 'part2p20', 'part2p21','part2p22', 'part2p23','part2p24','opcfunconver1','opcfunconver2','opcfunconver3','opcfunconver4' ]:
+        for field_name in ['part2p1', 'part2p2', 'part2p3', 'part2p4', 'part2p5', 'part2p6', 'part2p7', 'part2p8', 'part2p9', 'part2p10', 'part2p11', 'part2p12', 'part2p13', 'part2p14', 'part2p15', 'part2p16', 'part2p17', 'part2p18', 'part2p19', 'part2p20', 'part2p21','part2p22', 'part2p23','part2p24','opcfunconver1','opcfunconver2','opcfunconver3','opcfunconver4']:
             if field_name in self.fields:
                 self.fields[field_name].required = False
 

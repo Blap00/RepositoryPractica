@@ -167,11 +167,16 @@ function checkfirstData() {
 function bucleValueAnswer(secc, i, valueact) {
     var bdDate = document.querySelector("#id_part" + secc + "p" + i); //dato de BBDD
     var radioButtons = document.getElementsByName(`part${secc}p${i}`); //GET RADIOBUTTONS
-    var selectedValue=valueact;
-    var checked=false;
+    var selectedValue = valueact;
+    var checked = false;
     for (var j = 0; j < radioButtons.length; j++) {
         if (setanalfab()) {
             if (secc != 1) {
+                if (radioButtons[j].checked) {
+                    checked = true;
+                    selectedValue += Number(radioButtons[j].value); // Sumar el valor seleccionado
+                    break;
+                }
             } else {
                 if (i == 17 || i == 18) {
                     checked = true;
@@ -194,56 +199,56 @@ function bucleValueAnswer(secc, i, valueact) {
             }
         }
     }
-    return selectedValue
+    return Number(selectedValue);
 }
 function setAnswer(pregIni, pregFin, secc) {
     var selectedValue = Number(0);
-    var selectTotal = Number(0);
     for (let i = pregIni; i <= pregFin; i++) {
-        selectedValue=bucleValueAnswer(secc, i, selectedValue);
-        selectTotal+=selectedValue;
+        selectedValue = bucleValueAnswer(secc, i, selectedValue);
     }
+
     if (!setanalfab()) {
-        if (secc === 3) {
-            if (selectTotal >= 20) {
+        if (secc == 3) {
+            if (selectedValue >= 20) {
                 return "Funcionalidad comunicativa normal.";
             }
-            else if (selectTotal <= 18) {
+            else if (selectedValue <= 18) {
                 return "déficit de la funcionalidad comunicativa.";
             }
         } else if (secc === 1) {
-            if (selectTotal >= 19) {
+            if (selectedValue >= 19) {
                 return "Actividad comunicativa normal.";
             }
-            else if (selectTotal <= 18) {
+            else if (selectedValue <= 18) {
                 return "Déficit de actividad comunicativa.";
             }
         }
     }
-    else{
+    else {
         if (secc == 1) {
-            if (selectTotal >= 17) {
+            if (selectedValue >= 17) {
                 return "Actividad comunicativa normal.";
-            } else if (selectTotal <= 16) {
+            } else if (selectedValue <= 16) {
                 return "Déficit de actividad comunicativa.";
             }
         }
         else if (secc == 3) {
-            if (selectTotal == 20) {
+
+            if (selectedValue == 20) {
                 return "Funcionalidad comunicativa normal.";
             }
-            else if (selectTotal <= 18) {
+            else if (selectedValue <= 18) {
                 return "déficit de la funcionalidad comunicativa.";
             }
         }
-        else{
+        else {
             return "No existe data para registrar"
         }
     }
 }
 
 //SET VALUES; 
-function sumTotal(){
+function sumTotal() {
     return suma
 }
 function setanalfab() {
@@ -285,10 +290,10 @@ function setpropervalue(secc, pregini, pregfin) {
                 selectedOption = setpregunta[0].value;
             } else {
                 selectedOption = "NO"
-            }            
+            }
             var inputField = document.getElementById(`id_part${secc}p${i}`);
             inputField.value = selectedOption;
-        }else if (secc == 3) {
+        } else if (secc == 3) {
             // Manejar las preguntas de la sección 3
             if (setpregunta[0].type === "checkbox") {
                 for (let j = 0; j < setpregunta.length; j++) {
@@ -310,8 +315,8 @@ function setpropervalue(secc, pregini, pregfin) {
                 selectedOption = setpregunta[0].value;
             } else if (setpregunta[0].tagName === "textarea") {
                 selectedOption = setpregunta[0].value;
-            }else{
-                selectedOption="NO"
+            } else {
+                selectedOption = "NO"
             }
             var inputField = document.getElementById(`id_part${secc}p${i}`);
             inputField.value = selectedOption;
@@ -449,40 +454,42 @@ $(document).ready(function () {
         scrollToTop
     })
     $("#cont-form-ebc-5").click(function () { //SUBMIT
-        const id_pac = document.querySelector('#id_id_paciente').value = document.querySelector('#pacientes').value;
-        let setansw1 = setAnswer(1, 19, 1);
-        let setansw2 = setAnswer(1, 20, 3);
-        console.log('valor a modificar en part3Punt: ',setansw2)
-        console.log('antes de modificar: ',$('#id_actComun').value);
-        let actComun = document.querySelector('#id_actComun').value=setansw1;
-        let part3Punt = document.querySelector('#id_part3Punt').value= setansw2;
-        console.log('despues de modificar: ',part3Punt);
-        document.querySelector('#id_opcfunconver1').value = document.getElementById('p2p4es').value;
-        document.querySelector('#id_opcfunconver2').value = document.getElementById('p2p10es').value;
-        document.querySelector('#id_opcfunconver3').value = document.getElementById('p2p16es').value;
-        document.querySelector('#id_opcfunconver4').value = document.getElementById('p2p22es').value;
-        document.querySelector('#id_totalEBC').value = setansw1+setansw2;
-
         if (checkchoice(1, 20, 3) != null) {
+            scrollToTop();
+            const id_pac = document.querySelector('#id_id_paciente').value = document.querySelector('#pacientes').value;
+            const setansw1 = setAnswer(1, 19, 1);
+            const setansw2 = setAnswer(1, 20, 3);
+            let part3punt = $('#id_part3Punt').value = setansw2;
+            let check = [];
+            let actComuni = $('#id_actComun').value = setansw1;
+            check.push(actComuni);
+            check.push(part3punt);
+            if (check.length === 2 && check[0] != undefined && check[1] != undefined) {
+                document.querySelector('#id_part3Punt').value = part3punt;
+                document.querySelector('#id_actComun').value = actComuni;
+                abc(setansw2, setansw1);
+            }
+            function abc(setansw2, setansw1) {
+                $('#id_opcfunconver1').value = $('#p2p4es').value;
+                $('#id_opcfunconver2').value = $('#p2p10es').value;
+                $('#id_opcfunconver3').value = $('#p2p16es').value;
+                $('#id_opcfunconver4').value = $('#p2p22es').value;
 
-            const miFormulario = document.getElementById("mi-formulario");
-            if (miFormulario) {
-                miFormulario.addEventListener("submit", function (event) {
-                    if (id_pac != ("" || null || false || " ") || actComun != ("" || null || false || " ") || part3Punt != ("" || null || false || " ")) {
-                        miFormulario.submit(); 
-                    } else {
-                        event.preventDefault();
-                        console.log("Id_paciente, actComun, part3Punt no relleno!");
-                    }
-                });
-            } else {
-                console.log("No existe formulario")
-                // console.log(miFormulario);
-                // console.log(setansw1);
-                // console.log(setansw2);
 
+                const miFormulario = document.getElementById("mi-formulario");
+                if (miFormulario) {
+                    miFormulario.addEventListener("submit", function (event) {
+                        if (id_pac != ("" || null || false || " ") || actComun != ("" || null || false || " ") || part3Punt != ("" || null || false || " ")) {
+                            miFormulario.submit();
+                        } else {
+                            event.preventDefault();
+                            console.log("Id_paciente, actComun, part3Punt no relleno!");
+                        }
+                    });
+                } else {
+                    console.log("No existe formulario")
+                }
             }
         }
     })
-    // REALIZAR BBDD
 })

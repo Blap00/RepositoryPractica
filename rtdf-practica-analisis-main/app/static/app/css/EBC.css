@@ -57,6 +57,7 @@ div .table #subtittleEBC{
     justify-content:center; 
     margin:5px;
 }
+
 th{
     text-align: center!important;
 }
@@ -131,7 +132,19 @@ textarea{
 }
 .table .table th,.table .table td{
     text-align: center;
+
 }
+
+form td{
+    border: 1px solid #69696963;
+}
+form #pcspm th{
+    border: 1px solid #69696963;
+}
+form .thistable th, form .thistable td{
+    border: 1px solid #69696963;
+}
+
 .thintern{
     text-align: left!important;
 }
