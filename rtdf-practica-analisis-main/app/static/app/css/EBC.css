@@ -135,16 +135,9 @@ textarea{
 
 }
 
-form td{
-    border: 1px solid #69696963;
-}
-form #pcspm th{
-    border: 1px solid #69696963;
-}
-form .thistable th, form .thistable td{
-    border: 1px solid #69696963;
-}
-
+form table tr:nth-child(even){
+    background-color: #eeeeee;
+}   
 .thintern{
     text-align: left!important;
 }
