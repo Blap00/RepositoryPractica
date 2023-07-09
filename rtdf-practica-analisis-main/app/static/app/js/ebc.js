@@ -164,20 +164,22 @@ function checkfirstData() {
         return false;
     }
 }
-function bucleValueAnswer(secc, i, valueact) {
-    var bdDate = document.querySelector("#id_part" + secc + "p" + i); //dato de BBDD
+function bucleValueAnswer(secc, i, selectedValue) {
     var radioButtons = document.getElementsByName(`part${secc}p${i}`); //GET RADIOBUTTONS
-    var selectedValue = valueact;
     var checked = false;
+    console.log('pregunta: ',i)
     for (var j = 0; j < radioButtons.length; j++) {
         if (setanalfab()) {
-            if (secc != 1) {
+            if (secc == 3) {
                 if (radioButtons[j].checked) {
                     checked = true;
                     selectedValue += Number(radioButtons[j].value); // Sumar el valor seleccionado
+                    console.log('Seccion: ',secc);
+                    console.log('Analfabeto? ',setanalfab());
+                    console.log('total marcado: ', selectedValue);
                     break;
                 }
-            } else {
+            } else if(secc==1) {
                 if (i == 17 || i == 18) {
                     checked = true;
                     radioButtons[j].value = 0;
@@ -199,21 +201,24 @@ function bucleValueAnswer(secc, i, valueact) {
             }
         }
     }
-    return Number(selectedValue);
+    return selectedValue;
 }
 function setAnswer(pregIni, pregFin, secc) {
     var selectedValue = Number(0);
     for (let i = pregIni; i <= pregFin; i++) {
         selectedValue = bucleValueAnswer(secc, i, selectedValue);
     }
-
     if (!setanalfab()) {
+
         if (secc == 3) {
             if (selectedValue >= 20) {
                 return "Funcionalidad comunicativa normal.";
             }
-            else if (selectedValue <= 18) {
+            else if (selectedValue <= 19) {
                 return "déficit de la funcionalidad comunicativa.";
+            }
+            else{
+                return "Valor nulo, volver a hacer";
             }
         } else if (secc === 1) {
             if (selectedValue >= 19) {
@@ -221,6 +226,9 @@ function setAnswer(pregIni, pregFin, secc) {
             }
             else if (selectedValue <= 18) {
                 return "Déficit de actividad comunicativa.";
+            }
+            else{
+                return "Valor nulo, volver a hacer";
             }
         }
     }
@@ -231,14 +239,20 @@ function setAnswer(pregIni, pregFin, secc) {
             } else if (selectedValue <= 16) {
                 return "Déficit de actividad comunicativa.";
             }
-        }
+            else{
+                return "Valor nulo, volver a hacer";
+            }
+        }        
         else if (secc == 3) {
 
-            if (selectedValue == 20) {
+            if (selectedValue >= 20) {
                 return "Funcionalidad comunicativa normal.";
             }
-            else if (selectedValue <= 18) {
+            else if (selectedValue <= 19) {
                 return "déficit de la funcionalidad comunicativa.";
+            }
+            else{
+                return "Valor nulo, volver a hacer";
             }
         }
         else {
@@ -460,16 +474,13 @@ $(document).ready(function () {
             const setansw1 = setAnswer(1, 19, 1);
             const setansw2 = setAnswer(1, 20, 3);
             let part3punt = $('#id_part3Punt').value = setansw2;
-            let check = [];
             let actComuni = $('#id_actComun').value = setansw1;
-            check.push(actComuni);
-            check.push(part3punt);
-            if (check.length === 2 && check[0] != undefined && check[1] != undefined) {
-                document.querySelector('#id_part3Punt').value = part3punt;
-                document.querySelector('#id_actComun').value = actComuni;
-                abc(setansw2, setansw1);
-            }
-            function abc(setansw2, setansw1) {
+            document.querySelector('#id_part3Punt').value = part3punt;
+            document.querySelector('#id_actComun').value = actComuni;
+            console.log(setansw2);
+            // abc(setansw2, setansw1);
+            
+            function abc() {
                 $('#id_opcfunconver1').value = $('#p2p4es').value;
                 $('#id_opcfunconver2').value = $('#p2p10es').value;
                 $('#id_opcfunconver3').value = $('#p2p16es').value;

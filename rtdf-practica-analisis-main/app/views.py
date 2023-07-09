@@ -356,6 +356,29 @@ def lista_pacientes(request):
         return render(request, 'app/lista-pacientes.html',{'pacientes':{}})
 
 
+@user_passes_test(validate)
+def formspaciente_GRBAS(request):
+    if request.method == 'GET':
+        user_type = str(request.user.id_tipo_user)
+        if user_type == 'Fonoaudiólogo':
+            #si el usuario es fonoaudiologo buscara todas sus entradas en Profesional_Paciente
+            #luego filtrara los usuarios que sean llave foranea Rpaciente en esta lista
+            #finalmente contara los audios que contienen en audioscoeficientes y mostrara aquellos con al menos un audio analizado
+            try:
+                pacientes_medico=Profesional_Paciente.objects.filter(id_profesional_salud=request.user)
+                pacientes=Usuario.objects.filter(Rpaciente__in=pacientes_medico)
+                pacientes=pacientes.annotate(count=Count('audioscoeficientes')).filter(count__gte=1)
+
+            except Exception as e:
+                return render(request, 'app/lista-pacientes.html',{'pacientes':{}})
+            return render(request, 'app/lista-pacientes.html',{'pacientes':pacientes})
+        if request.user.is_superuser:
+            pacientes=Usuario.objects.filter(id_tipo_user=3).annotate(count=Count('audioscoeficientes')).filter(count__gte=1)
+            return render(request, 'app/lista-pacientes.html',{'pacientes':pacientes})
+        return render(request, 'app/lista-pacientes.html',{'pacientes':{}})
+
+
+
 #vista de form para añadir coeficientes a un audio
 #requiere recibir por medio de un get un id de audio
 #en caso de no tenerlo vuelve a pacientes_audios
